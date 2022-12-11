@@ -57,7 +57,7 @@ Ziffers has evolved from a simple script embedded in one of many Sonic Pi’s te
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.9\textwidth]{images/musescore.png}
-\caption{Ziffers plugin for MuseScore exporting fragment from Aphex Twin's Avril 14th score}
+\caption{Ziffers plugin for MuseScore exporting fragment from Aphex Twin's Avril 14th score.\label{mplugin}}
 \end{figure}
 
 MuseScore plugin can be used to transform traditional scores (from MusicXML, ABC notation or MIDI files) to the numeric notation for analyzing the musical structures from your favorite composers and using the displaced sequences as form of rehersal and inspiration for the live coding. Examples above and below exemplifies this form of learning practice using the extracted sequence from Avril 14th by Aphex Twin. 

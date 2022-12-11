@@ -1,0 +1,1022 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Ziffers - Numbered Notation for Algorithmic Composition</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="css/iclc.css" />
+  
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ziffers - Numbered Notation for Algorithmic
+Composition</h1>
+<ul id="authorlist">
+<li>true</li>
+<li>true</li>
+</ul>
+</div>
+
+<h2 class="abstract">Abstract</h2>
+<div id="abstract">
+<p>Ziffers is an algorithmic number based musical notation system
+offering a terse syntax for the improvisation and composition of complex
+melodies and rhythms. Ziffers gradually evolved from empirical
+experiments aiming at closing the gap between several number-based
+notational practices spanning from numerical and staff notation to pitch
+class set and post-tonal theories. Ziffers places a special emphasis on
+providing support for live algorithmic and generative composition,
+embedding a toolset of algorithmic processes directly in its syntax
+model. The system also tries to accommodate these fixed media types of
+notation to the liveness experienced when using live coding
+environments. Ziffers has been influenced by <em>TidalCycles</em> <span
+class="citation" data-cites="mclean2010tidal">(McLean and Wiggins
+2010)</span> and <em>Ixi Lang</em> <span class="citation"
+data-cites="magnusson2011ixi">(Magnusson 2011)</span>, two popular live
+coding libraries designed around the use of a custom domain specific
+language, called mininotation, allowing the live manipulation and
+transformation of musical patterns. In this article, we propose an
+environment agnostic presentation of the Ziffers musical notation
+system. As a proof of concept, this article also introduces two
+implementations running in different environments: <em>Sonic Pi</em>
+<span class="citation" data-cites="aaron2016sonic">(Aaron 2016)</span>,
+a live coding platform designed for education and music performance and
+Musescore, a general purpose scorewriter and score playback software. In
+doing so, we are hoping to highlight the versatility of our approach,
+which seems to allow the use of a unified syntax for different contexts
+of execution and interpretation.</p>
+</div>
+
+<h1 data-number="1"
+id="introduction-ziffers-quickly-editable-number-based-notation"><span
+class="header-section-number">1</span> INTRODUCTION: ZIFFERS, QUICKLY
+EDITABLE NUMBER BASED NOTATION</h1>
+<p><strong>Ziffers</strong> — named and inspired by the older
+<em>Ziffersystem</em> <span class="citation"
+data-cites="warkentin2022story">(Warkentin 2022)</span> — proposes a
+system focused on the conciseness and expressiveness of musical
+notation. Ziffers is designed to enable generation and transformation of
+musical patterns <span class="citation"
+data-cites="mccormack1996grammar mclean2020algorithmic">(McCormack et
+al. 1996; McLean 2020)</span> in minimal amounts of time and typing. To
+do so, Ziffers uses a text-based syntax for representing various
+short-hand symbolic notations used in music theory and concepts in
+programming languages. The need for concise and succinct notation in the
+context of live coding performance is a well-known constraint <span
+class="citation" data-cites="roberts2018tensions">(Charlie Roberts and
+Wakefield 2018)</span> that gave rise to many practices and techniques
+aiming to reduce frictions in the conversational feedback loop between
+the musician and its programming interface (REFERENCE). Domain specific
+languages (DSLs) and the use of terse mini notations have become an
+important design pattern in the conception of live coding interfaces
+(Hoogland 2019; ADD OTHER), and can also be noted to be a key concept in
+the larger realm of exploratory or conversational open-ended programming
+where reactivity and fast decision-making is of prime importance to
+achieve a creative state of flow <span class="citation"
+data-cites="nash2015cognitive kery2017exploring">(Nash 2015; Kery and
+Myers 2017)</span>.</p>
+<p>Ziffers is designed as a terse and platform independent syntax
+capable of embedding algorithmic and generative processes at the
+notational level. Basic notation tokens denoting pitch, rhythm or
+expression marks form the base notation, enriched by a set of generative
+operators and tokens denoting algorithmic transformations of that first
+layer of notation. Implementation of the Ziffers system is specific to
+each targeted platform, in conformity with the notation described in
+this article and the documentation for the prototype implementation. The
+first prototype of Ziffers has been created in 2018 <span
+class="citation" data-cites="Ziffers_2018">(Alonen 2018)</span> as an
+inline parser for <em>Sonic Pi</em>. It was thought as an attempt to
+speed up the process of writing melodic lines on-the-fly, taking
+advantage of the large number of predefined methods and compositional
+helpers offered by <em>Sonic Pi’s</em> rich internal library. Its design
+aimed at resolving the dissociation between pitch and rhythm imposed by
+<em>Sonic Pi</em> data structure and imperative-oriented programming
+model. After a few years of evolutionary prototyping, Ziffers 2.0 was
+released in 2022 <span class="citation"
+data-cites="Ziffers_2022">(Alonen 2022b)</span>, including a new parser
+aiming at extending Ziffers capabilities with new operators, nested
+structures and better support for stochastic and aleatoric
+composition.</p>
+<h1 data-number="2"
+id="method-designing-by-drawing-from-music-notation-history"><span
+class="header-section-number">2</span> METHOD: DESIGNING BY DRAWING FROM
+MUSIC NOTATION HISTORY</h1>
+<p>The Ziffers music notation project initially started as an experiment
+to confront historical numeric pitch-based music notation practices with
+the kairotic notations <span class="citation"
+data-cites="cocker2013live">(Cocker 2013)</span> typically found in live
+coding and algorithmic music performance systems <span class="citation"
+data-cites="blackwell2022live">(Blackwell et al. 2022)</span>.
+Therefore, the system has been designed iteratively in conversation with
+the diverse and complex historical legacy of said practices. Documents
+pertaining to the systems of numeric pitch notation in common practice
+can be traced back as early as the European baroque up to the
+contemporan era through examples as varied as the American Nashville
+system, the Chinese Jianpu simplified notation <span class="citation"
+data-cites="kaminski2022jianpu MNMA_2022">(Kaminski 2022; MNMA
+2022)</span> or the theoretical pitch-class set numbering of musical
+structures and chords used in post-tonal music theory <span
+class="citation" data-cites="forte1973structure">(Forte
+1973)</span>.</p>
+<p>Numerical systems for score, harmonic or melodic writing – less
+commonly encountered than their staff-based counterparts – have
+historically served as compositional tools for polyphonic contrapuntal
+notation <span class="citation" data-cites="davantes1560">(Davantès
+1560)</span>, early theoretical endeavours in algorithmic composition
+<span class="citation" data-cites="kircher1650">(Kircher 1650)</span> or
+in pedagogy and teaching <span class="citation"
+data-cites="rousseau1781projet">(Rousseau 1781)</span>. Finding a new
+breath during the late nineteenth-century through the Galin-Paris-Chevré
+notation <span class="citation" data-cites="dauphin2012devenir">(Dauphin
+2012)</span>, the practice spread to Asia where it is widely used, known
+and practiced, sometimes concurrently with standard staff notation. Some
+specialized applications of numbered notation can also be found in the
+toolset of contemporary ethnomusicologists and ethnomathematicians that
+often take advantage of the versatility of symbolic cipher notation to
+devise notation systems capable of formalizing musical systems or
+previously non-written musical practices <span class="citation"
+data-cites="chemillier2002ethnomusicology">(Chemillier 2002)</span>.</p>
+<p>We perceive – as a thought experiment – the use of mininotations
+<span class="citation" data-cites="magnusson2018performing">(Magnusson
+and McLean 2018)</span> as modern live coding analogues to previously
+mentioned numerical music notation systems. In that regard, with their
+conciseness and economy of expression, we observe that older
+non-computer based numerical notations systems are adequate fits for the
+domain but have never been fully transposed and applied to the realm of
+live coding performance. Strikingly, we see them being used by musicians
+and music theorists alike as pragmatic and practical tools for draft
+notation and information sharing. In our opinion, the versatility of
+pitch-based number notations as well as their adequacy to the
+traditional way of inputting complex data structures (as lists, arrays
+or ordered data) in the most music programming languages <span
+class="citation"
+data-cites="roads1996computer dannenberg2018languages">(Roads 1996;
+Dannenberg 2018)</span> make this type of notation a fruitful
+exploration domain for live coding and computer-based music notation
+alike. Generative numeric notation can also mitigate the separation
+between static and dynamic music notation languages as defined by
+Dannenberg’s typology of the domain. Examples such as Adagio <span
+class="citation" data-cites="dannenberg1986cmu">(Dannenberg
+1986)</span>, ABC <span class="citation"
+data-cites="walshaw2011abc">(Walshaw 2011)</span>, Guido <span
+class="citation" data-cites="hoos1998guido">(Hoos et al. 1998)</span>,
+MML <span class="citation" data-cites="mml2001">(Izumi 2001)</span>,
+MusicXML <span class="citation" data-cites="good2001musicxml">(Good
+2001)</span>, Lilypond <span class="citation"
+data-cites="nienhuys2003lilypond">(Nienhuys and Nieuwenhuizen
+2003)</span> or MusicTXT <span class="citation"
+data-cites="li2021musictxt">(Li and Li 2021)</span>, as static
+languages, focus on the encoding of musical information on fixed medium
+while other dynamic languages such as Nyquist <span class="citation"
+data-cites="dannenberg1997machine">(Dannenberg 1997)</span>,
+SuperCollider <span class="citation"
+data-cites="mccartney2002rethinking">(McCartney 2002)</span>, Sonic Pi
+<span class="citation" data-cites="aaron2016sonic">(Aaron 2016)</span>,
+TidalCycles <span class="citation" data-cites="mclean2010tidal">(McLean
+and Wiggins 2010)</span>, Open Music <span class="citation"
+data-cites="bresson2017next">(Bresson et al. 2017)</span>, OpusModus
+<span class="citation" data-cites="opusmodus2022">(Opusmodus
+2022)</span>, often extends musical notation by blending it with
+computational models of control flow, sound processing capabilities or
+binding different means of sonic writing: “The instrument incorporates
+notational elements, but conversely the notational is becoming
+increasingly instrumental and systematic” <span class="citation"
+data-cites="magnusson2019sonic">(Magnusson 2019)</span>.</p>
+<h1 data-number="3"
+id="objectives-specification-of-a-cross-platform-notation-system"><span
+class="header-section-number">3</span> OBJECTIVES: SPECIFICATION OF A
+CROSS-PLATFORM NOTATION SYSTEM</h1>
+<p>Objectives of the Ziffers numerical notation adheres to the cognitive
+dimensions of music notations as defined by <span class="citation"
+data-cites="nash2015cognitive">Nash (2015)</span> and to the criterion
+defined by the Music Notation Project <span class="citation"
+data-cites="MNMA_2022">(MNMA 2022)</span>. The notation must allow users
+of different ages and backgrounds to compose music. The Ziffers
+extension built for Sonic Pi presented in latter sections of this paper
+builds on the accessibility and pedagogical efforts pursued by <span
+class="citation" data-cites="aaron2016sonic">Aaron (2016)</span>. The
+development of the numerical notation aims to remove the exclusivity
+that comes with the music theory and provide a beneficial live coding
+experience for the uninitiated. Use of numeric notation should make it
+possible to write melodic sequences and interval movements using numbers
+regardless of the key and scale. The notation should also be minimal
+enough to be easily manipulated through any writing tool by relying
+solely on symbols taken from the ASCII table. To easily conceptualize
+pitches in time, defining a combination of pitch and duration should be
+as straightforward as possible. The notation should be able to function
+as an educational tool for teaching music theory and composition.
+Furthermore, by making the user aware of the relationship between
+musical and mathematical notation, the system should also support
+teaching advanced music theory concepts such as musical set theory and
+the manipulation of pitch-sets or any complex musical objects.</p>
+<p>The number of live coding environments have steadily increased in
+recent years <span class="citation" data-cites="awesome2022">(Toplap
+2022)</span>. We argue that there is now a need for some amount of
+notational interoperability between different live coding environments.
+We interpret the non coordinated emergence of Tidal-like mininotations
+in tools such as Gibber <span class="citation"
+data-cites="roberts2019bringing">(Charles Roberts and Pachon-Puentes
+2019)</span>, Bacalao <span class="citation"
+data-cites="balacao2020">(Fraser 2020)</span>, Petal <span
+class="citation" data-cites="petal_2019">(kn1kn1 2017)</span> and Hydra
+<span class="citation" data-cites="jackhydra">(Jack 2019)</span> as an
+attempt from live-coders to agree on a common rhythmic pattern language
+despite the use of different and often highly personalized environments.
+In a similar fashion, the Ziffers project is hoping to bring some
+cross-environment support for concise and rich melodic notation.
+Moreover, this project can also be considered as an attempt to bridge
+the gap between traditional staff-based notation tools such as Avid’s
+Sibelius, Steinberg’s Dorico or Musescore and kairotic pattern notations
+used by live-coders. As demonstrated by the Musescore interpreter ,
+Ziffers can be used both as a live and fixed-media notation, allowing
+any musician learning the system to quickly jot down or hear their ideas
+directly in any Ziffers supported software system capable of audio
+playback.</p>
+<p>The Ziffers system is open for the multiple interpretations of any
+integer sequence. Depending on context and purpose, numbers can receive
+multiple interpretations, denoting musical objects such as integer
+notation (<code>0-9</code> and <code>T=10</code> and <code>E=11</code>),
+scale degrees (<code>1-9, 0=rest</code>), midi notation
+(<code>1-127</code>), MIDI channels (<code>0-15</code>) or even roman
+numerals for chord sequence writing (<code>i-vii</code>). The notation
+also supports commenting and providing supplementary information to
+clarify the meaning of any number sequence, thus adding support for the
+definition of custom scales, temperaments and events of any kind. The
+base syntax has also been designed to support common score-centric
+notation symbols (articulations, bar lines, repetitions) and extended
+generative symbols (random numbers, mathematical operations) more
+typically found in a live coding context. In doing so, the Ziffers
+system allows for some amount of transduction between different notation
+mediums and contexts, allowing the displacement of live coding ideas
+into the realm of score-based music composition. From another
+perspective, Ziffers also opens the field for quickly bringing musical
+ideas from staff-based musical notation in to the typically improvised
+and delayed feedback <span class="citation"
+data-cites="rohrhuber2018algorithmic">(Rohrhuber, Dean, and McLean
+2018)</span> oriented performing context permitted by live coding
+environments.</p>
+<h1 data-number="4" id="sonic-pi-based-prototype-implementation"><span
+class="header-section-number">4</span> SONIC-PI BASED PROTOTYPE
+IMPLEMENTATION</h1>
+<p>Ziffers has evolved from a simple script embedded in one of many
+Sonic Pi’s text buffers to a fully fledged DSL and framework for
+computer aided algorithmic composition and live coding. The current
+software architecture for the Sonic Pi’s based Ziffers implementation is
+presented in the figure above. A <em>Musescore 3.0</em> plugin allowing
+the transformation of staff-based score format to Ziffers notation has
+also been created and proposed as a proof of concept tool for learning
+the new numeric notation.</p>
+<p>MuseScore plugin can be used to transform traditional scores (from
+MusicXML, ABC notation or MIDI files) to the numeric notation for
+analyzing the musical structures from your favorite composers and using
+the displaced sequences as form of rehersal and inspiration for the live
+coding. Examples above and below exemplifies this form of learning
+practice using the extracted sequence from Avril 14th by Aphex Twin.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ziffers <span class="st">&quot; // Aphex Twin - Avril 14th with added transformations</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">/ synth: piano</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> q ^ 2 _ 5 ^ 0 e r s 0  </span><span class="sc">|</span><span class="ss"> sq. 5 e 5 ^ 4 3 2 0  </span><span class="sc">|</span><span class="ss"> /</span> retrograde<span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q <span class="dv">2</span> _ <span class="dv">5</span> <span class="op">^</span> <span class="dv">0</span> e r s <span class="dv">0</span> _  <span class="op">|</span> sq<span class="op">.</span> <span class="at">_</span> <span class="dv">5</span> e <span class="dv">5</span> <span class="op">^</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">0</span>  <span class="op">|</span> <span class="ss">/ octave: -2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> e __ 0 5 ^ 0 2 _ 2 ^ 0 2 4  </span><span class="sc">|</span><span class="ss"> e __ 3 ^ 0 3 4 _ 1 ^ 0 3 2  </span><span class="sc">|</span><span class="ss"> /</span> inverse<span class="op">:</span> <span class="dv">2</span><span class="st">&quot;</span></span></code></pre></div>
+<h2 data-number="4.1" id="main-methods"><span
+class="header-section-number">4.1</span> Main methods</h2>
+<p>The <strong>zplay</strong>, <strong>zloop</strong> (z0…z20) and
+<strong>zparse</strong> methods are the main entry points to interact
+with Ziffers. The multiline methods, <strong>ziff</strong> for single
+play and <strong>ziffers</strong> for looping, allow vertical writing of
+polyphonic patterns (as in Aphex Twin example above). A slightly
+different version, <strong>ztracker</strong>, emulates the behavior of
+classic music tracker softwares (e.g. Pro Tracker, Renoise) for
+multiline horizontal writing. Multiple modes of interaction with the
+patterning system are detailed in the repository hosting the <em>Sonic
+Pi</em> implementation. Each method has its own specificities, and can
+be adapted to a particular context of execution. For instance, composing
+will preferably be supported by the non-looping zplay method while
+improvisation is preferably handled through the looping and
+automatically synchronized zloop methods (each loop synchronizing on
+z0). Being non intrusive, Ziffers can also adapt to the
+<strong>live_loop</strong> mechanism defined by Sonic Pi to enable quick
+playback of different inputs and further enhance musical expressivity.
+The combined usage of <strong>live_loop</strong> and
+<strong>zplay</strong> methods is supported for musicians willing to use
+both patterning paradigms.</p>
+<h2 data-number="4.2" id="inputs-and-parameters"><span
+class="header-section-number">4.2</span> Inputs and parameters</h2>
+<p>All inputs are normalized to a string, type conversion being applied
+when necessary. The integer ‘2468’ can be parsed to a sequence of notes
+or a chord, etc… Adjusting the base behavior of the parser can be done
+by providing additional keyword arguments defining a context for the
+parser. In a similar fashion, user input can also be specified as a
+lambda function or as enumerable defined by the <em>Ruby</em> language.
+This is allowing for the definition and use of infinite note sequences
+such as the Morse-Thue sequence demonstrated below, one that is commonly
+used in fractal music composition <span class="citation"
+data-cites="kindermann2001musinum gomez2021symbolic">(Kindermann 2001;
+Gómez and Nasser 2021)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;q 0 236 q.4 e6 3 0 2&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>piano</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">13579</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> release<span class="op">:</span> (ring <span class="fl">0.125</span><span class="op">,</span><span class="fl">0.25</span><span class="op">,</span><span class="fl">1.0</span>) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">13579</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> parse_chords<span class="op">:</span> <span class="kw">false</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>zplay [<span class="dv">1</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">6</span>]<span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>E4<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>hex_sus<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>chiplead<span class="op">,</span> width<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> pan<span class="op">:</span> <span class="op">-&gt;</span>(){rand} </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>zplay [[<span class="dv">1</span><span class="op">,</span><span class="fl">0.5</span>]<span class="op">,</span>[<span class="dv">3</span><span class="op">,</span><span class="fl">0.25</span>]<span class="op">,</span>[<span class="dv">0</span><span class="op">,</span><span class="fl">1.0</span>]]<span class="op">,</span> key<span class="op">:</span> <span class="dv">60</span><span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>aeolian<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>blade<span class="op">,</span> res<span class="op">:</span> <span class="fl">0.1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">-&gt;</span>(){<span class="fu">rrand_i</span>(<span class="op">-</span><span class="dv">9</span><span class="op">,</span><span class="dv">9</span>)}<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>blues_minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>kalimba<span class="op">,</span> clickiness<span class="op">:</span> <span class="op">-&gt;</span>(){rand}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a># Morse<span class="op">-</span>thue sequence using mod <span class="dv">7</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">z1</span> (<span class="fl">0.</span><span class="op">.</span><span class="at">Float</span><span class="op">::</span>INFINITY)<span class="op">.</span><span class="at">lazy</span><span class="op">.</span><span class="at">collect</span>{<span class="op">|</span>n<span class="op">|</span>n<span class="op">.</span><span class="fu">to_s</span>(<span class="dv">2</span>)<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">count</span>(<span class="st">&#39;1&#39;</span>)<span class="op">%</span><span class="dv">7</span>}<span class="op">,</span>rhythm<span class="op">:</span><span class="fu">spread</span>(<span class="dv">7</span><span class="op">,</span><span class="dv">9</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a># Built<span class="op">-</span><span class="kw">in</span> enumerable <span class="cf">for</span> pi</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>z1 pi<span class="op">.</span><span class="fu">take</span>(<span class="dv">10</span>)<span class="op">,</span>scale<span class="op">:</span> <span class="op">:</span>blues_minor<span class="op">,</span>synth<span class="op">:</span> <span class="op">:</span>hoover<span class="op">,</span>release<span class="op">:-&gt;</span>(){rand}<span class="op">,</span>res<span class="op">:-&gt;</span>(){rand}</span></code></pre></div>
+<h2 data-number="4.3" id="parsers"><span
+class="header-section-number">4.3</span> Parsers</h2>
+<p>Parsing is implemented with parsing expression grammars (PEGs) using
+the Ruby-based Treetop library (Treetop 2022). Ziffers is constituted of
+three parsers, each one handling specific use cases depending on the
+nature of the input. The <strong>Parameter parser</strong> is used for
+multiline parsing where notation can include supplementary information
+for the parsing, such as the key, scale, synth, MIDI port, MIDI channel
+and other context or environment specific parameters. <strong>Generative
+parser</strong> has been specialized to parse random number generators,
+sequence generators relying on various conditional statements and
+mathematical operations. Furthermore, an optional string rewrite loop
+can be used to extend these generative capabilities by transforming the
+input through recursive substitution of some parts of the initial input.
+One can think of the Ziffers parsing system as a multi-layered
+conditional parsing operation. After a first part of context specific or
+generative parsing operations, the resulting string is parsed again
+using the <strong>Basic parser</strong>, which includes only the static
+definitions of pitches, octaves and durations. The relevant data
+structures for the parsed notation is implemented as subclasses of array
+and hash which implements all of the necessary methods for the
+transformations.</p>
+<h2 data-number="4.4" id="transformations"><span
+class="header-section-number">4.4</span> Transformations</h2>
+<p>The Transformation phase is an optional step for the manipulation of
+the generated musical patterns as defined by <span class="citation"
+data-cites="spiegel1981manipulations">Spiegel (1981)</span>, for example
+retrograde, inversion, substitution or by defining custom
+transformations that can manipulate the order, pitches, durations or any
+other parameters in the sequence. Transformations can be done in
+multiple ways and in different phases of the live composition
+process.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a># Transformations applied on a live sequence</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;e0 s 1 2 3 4 e5&quot;</span><span class="op">,</span> inverse<span class="op">:</span> [<span class="kw">false</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,-</span><span class="dv">1</span>]<span class="op">,</span> retrograde<span class="op">:</span> [<span class="kw">true</span><span class="op">,</span><span class="kw">false</span>]<span class="op">,</span> swap<span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">4</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a># Deferred transformations using <span class="st">&#39;zparse&#39;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> zparse <span class="st">&quot;q 0 2 1 4&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">.</span><span class="at">inverse</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a<span class="op">.</span><span class="at">retrograde</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> a<span class="op">.</span><span class="fu">inverse</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">.</span><span class="at">retrograde</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">zplay</span> (a<span class="op">*</span><span class="dv">2</span><span class="op">+</span>b<span class="op">+</span>c<span class="op">*</span><span class="dv">2</span><span class="op">+</span>b)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a># Inline variant <span class="kw">of</span> the above mentioned methods</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;((q 0 e 4 2 5 3)&lt;inverse&gt;(3 0 2 3))&lt;swap&gt;(1 3 0)&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>mixolydian</span></code></pre></div>
+<p>Ziffers also implements a <strong>string rewriting system</strong>
+that is a non-deterministic Turing machine for evaluating axioms using
+unrestricted, context-sensitive and stochastic grammars <span
+class="citation" data-cites="mccormack1996grammar">(McCormack et al.
+1996)</span>. Rules for matching can be defined using regular
+expressions and substituted by using any syntax defined in the Ziffers
+notation. In contrast to some other common generative grammar systems
+<span class="citation" data-cites="nierhaus2009algorithmic">(Nierhaus
+2009)</span>, the substitutions made to each generation can be evaluated
+within a loop. This also allows rules to be added, edited and evaluated
+on the fly, creating a new form of rule machine that can be used in a
+live performance.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a># Simple rules creating a long pattern</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 2&quot;</span><span class="op">,</span> <span class="st">&quot;1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;2 1&quot;</span><span class="op">,</span> <span class="st">&quot;2&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 0&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">6</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a># Match using regex<span class="op">,</span> substitute <span class="cf">with</span> evaluation and mod by <span class="dv">7</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;1 2 3&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="ss">/</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;({$*2} [e,q] {$*3})%7&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a># Play and mutate generations on<span class="op">-</span>the<span class="op">-</span>fly</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;q 0 1&quot;</span><span class="op">,</span> <span class="st">&quot;1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e (1,4) 0&quot;</span> }</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a># Change durations using rules</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>z2 <span class="st">&quot;q0 e2 e1 q4&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e&quot;</span><span class="op">,</span> <span class="st">&quot;e&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;q&quot;</span>}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a># Stochastic rules using Ziffers notation and regular expressions</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.5?q3:q0}&quot;</span><span class="op">,</span> <span class="st">&quot;q3&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.25?q(3,7):q0}&quot;</span><span class="op">,</span> <span class="ss">/q</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;[q3,q0]&quot;</span>}</span></code></pre></div>
+<p>Using different input parameters to control the parsing and output
+can be seen as more implementation specific. Capital characters can be
+used as place handlers to time different kind of events and
+implementation specific functions.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="op">:</span>bd_boom<span class="op">,</span> H<span class="op">:</span> <span class="op">:</span>drum_cymbal_closed</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> H<span class="op">:</span> <span class="dv">90</span><span class="op">,</span> port<span class="op">:</span> <span class="st">&quot;ext_midi&quot;</span><span class="op">,</span> channel<span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>define <span class="op">:</span>foo <span class="cf">do</span> sample <span class="op">:</span>bd_zum end # Define Sonic Pi method</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q F e F F&quot;</span><span class="op">,</span> F<span class="op">:</span> <span class="op">:</span>foo # Time the method using ziffers</span></code></pre></div>
+<h1 data-number="5" id="notation"><span
+class="header-section-number">5</span> NOTATION</h1>
+<h2 data-number="5.1" id="basic-notation-pitch-rhythm-and-silence"><span
+class="header-section-number">5.1</span> Basic Notation: pitch, rhythm
+and silence</h2>
+<p>The Ziffers syntax is supporting many classic musical notation
+symbols as well as many variations in their writing. For better
+readability and for the sake of brevity, we have chosen to list and
+comment only the most commonly accessed tokens, relegating other
+notation symbols to the example tables. Detailed sections will cover the
+more advanced and Ziffers specific features.</p>
+<p>Basic notation contains all static symbols, which can be parsed
+without additional processing. By default, Ziffers interprets numbers as
+in pitch class notation <code>[0-9TE]</code>, extending numbers to
+capital characters <code>T</code> for <code>10</code> and <code>E</code>
+for <code>11</code> to support faster input for 12-tone compositions.
+Pitch classes higher than <code>9</code> or lower than <code>-9</code>
+can also be escaped using curly braces. For example pitch classes
+<code>-12</code> and <code>24</code> could be notated as
+<code>{-12 23}</code>, which is then interpreted to the right octave
+depending on the scale. For example in major scale number
+<code>24</code> becomes pitch class <code>3</code> in octave
+<code>3</code>.</p>
+<p>In pitch class notation 0 represents the root for the scale. Negative
+pitch classes can be used to denote pitch classes below the root. Scales
+can be thus mentally visualized as number lines ranging from negative to
+positive, which then makes it easier to find the right pitch without any
+calculation and knowledge of the given scale.</p>
+<p>Alternatively degree based interpretation can be used as a separate
+option, where integers from 1-9 are interpreted as scale degrees. Use of
+degree based notation can be easier for those who are only familiar with
+scale degrees and not accustomed to pitch class notation.</p>
+<p>In degree based notation degrees range from 1 to 9 (depending on the
+scale length). Compared to pitch class notation the degree based
+notation does not have the root as a mirroring axis. Pitches can also be
+sharpened using <strong>#</strong> or flattened with <strong>b</strong>
+when using diatonic scales.</p>
+<p><strong>Note durations</strong> are denoted with lower case
+characters which are selected from note length names, for example
+<strong>w</strong> for whole, <strong>h</strong> for half,
+<strong>q</strong> for quarter, <strong>e</strong> for the eight note
+etc. In integer notation, silence is defined using the character
+<strong>r</strong> for rest. In degree based notation, 0 is also treated
+as silence, as used in the Galin-Paris-Chevé notation <span
+class="citation" data-cites="dauphin2012devenir">(Dauphin 2012)</span>.
+Characters for nearby triplet notes have been selected on the basis of
+the close proximity on the qwerty keyboard. See the full list of
+characters assigned to note lengths in the Ziffers wiki <span
+class="citation" data-cites="zifferswiki">(Alonen 2022a)</span>.
+Alternatively, decimals can be used instead of characters. Dotted
+lengths are used as in traditional musical notation to increase the note
+duration. Similarly, decimal notation can be used as an alternative to
+letter-based durations and dots, especially for venturing outside of the
+traditional note lengths. For example in children’s song row your boat
+could be notated differently depending on the chosen duration
+syntax:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a># Melody using note length characters</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">|</span> q2 e1 q2 e3 <span class="op">|</span> h<span class="op">.</span><span class="dv">4</span> <span class="op">|</span> e <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q4 e3 q2 e1 <span class="op">|</span> h<span class="op">.</span> <span class="dv">0</span> <span class="op">|</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a># Melody using decimal notation</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.75</span> <span class="dv">4</span> <span class="op">|</span> …</span></code></pre></div>
+<p><strong>Key</strong> is determined from given parameters or from
+inline notation denoted by either MIDI notes, note names or scientific
+pitch notation. <strong>Scale</strong> is determined from the predefined
+scale names or by defining custom scales using an array of intervals
+where <code>1</code> represents semitone and <code>2</code> tone, or by
+using decimals for intervals smaller than a semitone.
+<strong>Octaves</strong> can be changed using special characters
+<code>_</code> for lowering and <code>^</code> for raising the octave or
+by using escaped integers <code>&lt;3&gt;</code> to define the exact
+octave. Octaves can be changed using negative integers which also keeps
+the relative distance when for example, the scale is changed from minor
+to minor pentatonic. Consider following pattern both key:
+<code>| 0 3 -1 2 | 0 3 _6 2 |</code> In minor scale both measures are
+exactly the same, but since minor pentatonic has only 5 scale degrees
+there is a difference in how the <code>_6</code> is interpreted compared
+to <code>-1</code>. <strong>Chords</strong> are typically represented by
+using number groups. The basic diatonic major chord can thus be
+represented as 024 in diatonic context, and as 047 in a chromatic
+context. Pitches in chords can be defined in different octaves combining
+the notation for example <code>024^0 _12&lt;1&gt;4</code>.
+<strong>Whitespace</strong> acts as an separator for different objects,
+like the chords in a sequence. <strong>Chord inversions</strong> can be
+amended using the <code>%</code> symbol like <code>024%2</code>. Roman
+numerals are also supported as part of the extended syntax for chord
+writing based on tonal/diatonic techniques. Definition of
+<strong>Measures</strong> are optional but can prove necessary if there
+is a need to access them in different order. They are denoted using the
+pipe character <code>|</code> and each such character always resets the
+current octave and note length to the default value. This is important
+for both human and a machine to be able to start from any given measure
+without having the need to retrace to the beginning of the
+arrangement.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a comment                 // One-line comments in Ziffers notation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* this is a multiline comment */</span>    <span class="co">// Multiline comments</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>d3<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span> <span class="op">&lt;</span>minor<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span>             <span class="co">// Inline key and scale</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> h <span class="dv">0</span> <span class="op">^</span> q<span class="op">.</span> <span class="dv">4</span> e <span class="dv">2</span> <span class="op">|</span> q<span class="op">.</span> <span class="dv">4</span> h <span class="dv">6</span> e <span class="dv">2</span> <span class="op">|</span>    <span class="co">// Measures</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="vs">``</span><span class="dv">0</span> <span class="vs">`0 0 ´0 ´´0                      // Accents (`</span> softer and ´ louder amp<span class="op">.</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;0 &#39;&#39;0                             // Staccato (shortened duration)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">~&lt;</span><span class="fl">0.3</span><span class="op">&gt;</span><span class="bn">0123456</span>                        <span class="co">// Glissando/bends (with speed param.)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>{<span class="dt">decay</span><span class="op">:</span> <span class="fl">0.5</span>}  <span class="dv">1</span> {<span class="dt">port</span><span class="op">:</span> ext_2} <span class="dv">3</span>      <span class="co">// Hash notation for inline parameters</span></span></code></pre></div>
+<h2 data-number="5.2" id="generative-notation"><span
+class="header-section-number">5.2</span> Generative notation</h2>
+<p>Repetition is the simplest form of generative syntax also used by the
+traditional staff notation. <strong>Repeats</strong> are denoted using
+dotted list notation with optionally nested structure as exemplified
+here with frere jacques:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> q <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">2</span> <span class="dv">3</span> h4 <span class="op">:</span>] [<span class="op">:</span> [<span class="op">:</span> e <span class="dv">4</span> <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> q <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">0</span> _4 h0 <span class="op">:</span>] <span class="op">:</span>]</span></code></pre></div>
+<p><strong>Bracket syntax</strong> is alternative notation for durations
+that subdivides the note lengths using nested brackets. Similar notation
+is also used by TidalCycles and Alda. Bracket syntax is especially
+useful for notating triplets or n-tuplets.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a># Frere Jacques again using bracket syntax</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>w [<span class="op">:</span> [<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">2</span> <span class="dv">3</span>] <span class="dv">4</span>] <span class="op">:</span>] [<span class="op">:</span>[<span class="op">:</span> [[<span class="dv">4</span> <span class="dv">5</span>] [<span class="dv">4</span> <span class="dv">3</span>] <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">0</span> _4] <span class="dv">0</span>] <span class="op">:</span>]<span class="op">:</span>]</span></code></pre></div>
+<p><strong>Cyclic notation</strong> for events has been previously
+introduced by TidalCycles. Cyclic structures can be defined by enclosing
+the sequence using angle brackets to optionally nested structure such as
+<code>&lt;1 2 &lt;3 &lt;4 5&gt;&gt;&gt;</code>. Ziffers enables the use
+of cyclic notation in loops or as part of repeat notation as alternative
+endings also used in the traditional staff notation. When cycles are
+defined within a repeat notation, the cycles are evaluated within the
+context of the repeat, for example
+<code>[: 1 2 &lt;3 4&gt; :]</code>.</p>
+<p><strong>Random numbers</strong> are the basic building blocks of all
+aleatoric melodies. There are multiple ways of defining random integers
+and decimals in the generative syntax and the generated values can be
+used for different purposes. Number sequences can be generated using
+range notation inspired by the Ruby syntax which has updated to be more
+versatile.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.5</span>) (<span class="dv">0</span><span class="op">,</span><span class="dv">5</span>)            <span class="co">// Random decimal and pitch between defined range</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> <span class="op">?</span>                         <span class="co">// % = (0.01,1.0) ? = (0,scale length)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.125</span><span class="op">,</span><span class="fl">0.25</span><span class="op">,</span><span class="fl">0.5</span>] [<span class="dv">0</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">6</span>] <span class="co">// Random numbers from selection</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.</span><span class="op">.</span><span class="dv">1</span>                    <span class="co">// =&gt; -1 0 1</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>                   <span class="co">// =&gt; 0 2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>                   <span class="co">// =&gt; 0 2</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">*</span><span class="dv">2</span>                   <span class="co">// =&gt; 0 2 4 </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">?..</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">5</span>)                 <span class="co">// =&gt; 5..3 =&gt; 5 2 3</span></span></code></pre></div>
+<p><strong>Lists</strong> syntax can be used to arrange pitches into
+operable sequences. Arithmetic operations
+<code>+ - * ** / ^ % | &amp; &lt;&lt; &gt;&gt;</code> can be applied to
+list values in a serial manner. Arithmetic operations can also be
+applied between to lists creating cartesian operations. To produce long
+alternating patterns arithmetic operations can also be chained together.
+There are also 5 special methods that have designated short-hand
+symbols. Combine <strong>&amp;</strong> for creating a chord out of
+list, separate <strong>$</strong> for creating the sequence from a
+chord, unique <strong>!</strong> for removing same pitches from the
+list, pick random <strong>?</strong> for picking 1-n pitches from the
+list and suffle <strong>~</strong> for suffling and picking unique
+random values from the list.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span>  e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span><span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">%</span><span class="dv">7</span>                <span class="co">// Applying multiple operations to a list</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">+</span>(<span class="dv">3</span> <span class="dv">4</span>)                             <span class="co">// Same as: 1+3 1+4 2+3 2+4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span>  e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span>(<span class="dv">3</span> <span class="dv">0</span> <span class="op">-</span><span class="dv">2</span> <span class="dv">3</span>)<span class="op">-</span>(<span class="dv">2</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">4</span>) <span class="co">// Lists and operations can be chained</span></span></code></pre></div>
+<p><strong>Transformations</strong> can also be notated inline using the
+list syntax and escape notation for built-in methods:
+<code>(list)&lt;method&gt;(optional-list)</code>. Ziffers also
+implements numerous shorthand notations for useful transformations, like
+<strong>cyclic zip</strong> for combining values from two lists,
+notation for <strong>pitch-class set multiplication</strong>
+[heinemann1998pitch] and <strong>sequence interpolation</strong>
+inspired by the Thesaurus of scales and melodic patterns <span
+class="citation" data-cites="slonimsky1986thesaurus">(Slonimsky
+1986)</span>. <strong>Generative repeat</strong> syntax can be used to
+generate values multiple times, where as normal repeats are used to
+repeat the generated values and create a sense of repetition.
+<strong>List functions</strong> are inspired by polynomial functions,
+and can be used to transform the values using arithmetic
+expressions.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(q e e)<span class="op">&lt;&gt;</span>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>) <span class="co">// =&gt; q 0 e 1 q 2 e 3 q 4 # Cyclic zip</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">&lt;+&gt;</span>(<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>) <span class="co">// =&gt; 1 3 1 4 1 5 2 3 2 4 2 5 # Product of two lists</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">5</span>)<span class="op">&lt;*&gt;</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>) <span class="co">// =&gt; 0 5 3 8 6 {11} 9 {14} # Pitch-class set multiplication</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">3</span>)<span class="op">&lt;</span><span class="dv">4</span><span class="op">&gt;</span>(<span class="dv">1</span> <span class="dv">3</span>) <span class="co">// =&gt; 2 4 6 1 3 5 # Interval interpolation</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">4</span>) <span class="op">:</span><span class="dv">3</span>) <span class="co">// Generated 3 different random numbers</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span> (<span class="fl">0.</span><span class="op">.</span><span class="dv">3</span>){(<span class="dv">2</span><span class="er">x</span><span class="op">-</span><span class="dv">1</span>)(<span class="dv">2</span><span class="er">x</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span>)} <span class="co">// Using function to transform a list</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>((<span class="dv">1</span><span class="op">,</span><span class="dv">5</span>)){x<span class="op">&lt;</span><span class="dv">2</span><span class="op">?</span>(x<span class="op">+</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">2</span><span class="er">x</span>)(x<span class="op">-</span><span class="dv">2</span>)} <span class="co">// Applying functions conditionally </span></span></code></pre></div>
+<p><strong>Chords</strong> can be generated using roman numerals
+<code>(i-vii)</code> and further modified using chord names, inversions
+and modal interchange. <strong>Chord names</strong> are defined using
+the caret symbol and the corresponding name, for example:
+<code>i^dim7</code>. Chord names are based on Sonic Pi’s definitions and
+further standardization would be needed to include more chord names and
+harmonize varying different practices. Chords can also be inverted using
+<code>%</code> symbol, for example <code>iv%-2</code>. Tri-chords can
+also be built by defining number of pitches
+<code>{i-vii}+{number of pitches}</code>, for example <code>ii+6</code>.
+<strong>Borrowed chords</strong> can be created using shorthand
+characters for modes <code>(a-g)</code> combined with the roman
+numerals, for example: <code>iib</code> (locrian), <code>iiig</code>
+(mixolydian). Chords can also be generated from lists using combine
+<strong>&amp;</strong> shorthand that transforms sequences to chords,
+for example: <code>((10,100) (100,1000))&amp;</code> or
+<code>((4..7)*4)&amp;</code>. <strong>Arpeggios</strong> can be
+generated by defining sequences of chords and selecting pitches using
+the ampersand **<span class="citation" data-cites="*"></span>*-operator,
+for example: <code>(i ii iii iv v vi vii)@(e 0 1 2 012)</code>.
+Similarly, a list of pitches can be also accessed horizontally using the
+<strong>#</strong>-operator, for building new chords or sequences, for
+example: <code>(0 2 4 6)#(e 0 1 2 012)</code>.</p>
+<p><strong>Euclidean rhythms</strong> have gained popularity among music
+composers <span class="citation"
+data-cites="morrill2022euclidean">(Morrill 2022)</span> for some years
+after Godfried Toussaint first presented the idea of using euclidean
+algorithm to generate rhythms from binary sequences <span
+class="citation" data-cites="bridges2005">(Toussaint 2005)</span>.
+<em>Sonic Pi</em> also implements the euclidean algorithm as a spread
+method named after the evenly spread boolean. Ziffer’s has it’s own
+approach to euclidean patterns and implements an algorithm defined by
+Thomas Morrill <span class="citation"
+data-cites="morrill2022euclidean">(Morrill 2022)</span> and a novel
+syntax that can be used to combine both onset and offset values from the
+binary sequence. Syntax for the euclidean generator is defined as an
+operator for one or two lists:
+<code>(onset)&lt;beats,total,rotate&gt;(offset)</code>. Values will be
+selected from onset or offset list according to the binary sequence
+generated by the euclidean algorithm. Default offset value is a rest,
+but it can be replaced with a list of alternative offset values. Both
+onset and offset lists can include any syntax defined in the numeric
+notation. Values in the list will overflow to the beginning if there are
+not enough values for the whole cycle. Inner cycles can also be defined
+using cyclic syntax, to make more complex structures.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;s (&lt;0 &lt;3 &lt;5 (-3,3)&gt;&gt;&gt;)&lt;3,6&gt;&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>pretty_bell <span class="co">// Spread nested cycles</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>z2 <span class="st">&quot;((q 0 3) (q 4 3))&lt;3,5&gt;((e 3 4) (e 1 4))&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>kalimba <span class="co">// Spread lists</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>z3 <span class="st">&quot;(eX sB)&lt;13,16&gt;(eB sX)&quot;</span><span class="op">,</span> X<span class="op">:</span> <span class="op">:</span>elec_flip<span class="op">,</span> B<span class="op">:</span> <span class="op">:</span>drum_cowbell <span class="co">// Spread samples</span></span></code></pre></div>
+<p>Expressions can be <strong>evaluated</strong> using curly braces:
+<code>{...}</code>, which can be used for escaping pitches, arithmetic
+operations or conditional logic. Using ternary operator syntax
+<code>(cond)?(true):(false)</code> it is possible to define alternative
+or conditional parts. Generative notation can be stored to
+<strong>variables</strong> denoted using capital letters to form
+repetitive random structures from the generated values.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>{<span class="dv">10</span> <span class="dv">11</span> <span class="dv">9</span><span class="op">+</span><span class="dv">2</span> <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}         <span class="co">// Evaluate as pitches</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">=</span>{<span class="dv">10</span> (<span class="dv">10</span><span class="op">,</span><span class="dv">20</span>) <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}       <span class="co">// Evaluates as chords</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">3</span>}               <span class="co">// Conditional evalution</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>{(<span class="dv">0</span><span class="op">,</span><span class="dv">9</span>)<span class="op">&gt;</span><span class="dv">4</span><span class="op">?</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">6</span>)}   <span class="co">// Random numbers based on condition</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span> <span class="op">%&gt;</span><span class="fl">0.2</span><span class="op">?</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>}    <span class="co">// Multiple conditionals </span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Assign Ziffers patterns to variables</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">1</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>)) B<span class="op">=</span>(<span class="dv">0</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span><span class="dv">6</span>] <span class="dv">3</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span><span class="dv">5</span>]) A B A B A</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>A<span class="op">=&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span><span class="op">&gt;</span> B<span class="op">=</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) B A B B A</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">4</span>) B<span class="op">=</span>(A)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span> C<span class="op">=</span>(B)<span class="op">&lt;</span>inverse<span class="op">&gt;</span>(<span class="dv">3</span>) A B C</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) {A<span class="op">&gt;</span><span class="dv">3</span><span class="op">?</span>(q1)<span class="op">:</span>(e <span class="dv">1</span> b2)}</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>A<span class="op">=%</span> {A<span class="op">&gt;</span><span class="fl">0.5</span><span class="op">?</span>(e <span class="dv">1</span> <span class="dv">2</span>)<span class="op">:</span>(q2)} {A<span class="op">&lt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span>}</span></code></pre></div>
+<h1 data-number="6" id="conclusion-and-future-work"><span
+class="header-section-number">6</span> Conclusion and future work</h1>
+<p>In this paper, we have presented a novel numeric notation and a
+pattern language usable in a live coding context. The presented notation
+is designed as a bridge from the old to the new, linking and
+facilitating exploration between different forms of computer and
+staff-based musical notation; from pitch-based staff writing to
+generative and improvised performance. The Ziffers notation is designed
+to be platform independent, making it possible to share generative
+melodies and patterns between different live coding languages and more
+traditional composition tools. Even though Ziffers as a language is
+expressive enough to describe arbitrarily complex musical sequences
+using mathematical and generative operations, profound and meaningful
+interaction is still to be found in the link between Ziffers and the
+underlying logic and flow centered operation of live coding interfaces
+implementing it. Further experimentation is still needed to find the
+perfect balance between the proposed numbered notation and different
+live coding languages.<br />
+For now, Sonic Pi is the only fully supported platform for Ziffers. In
+the future such extensions may become obsolete due to a planned change
+from Ruby to Elixir programming language. By then, the implementation
+needs to be rewritten, but it has also already served its purpose as an
+exploratory medium for prototyping numbered notation in live coding. It
+is also always possible to use Ziffers with the latest <em>Sonic Pi</em>
+version with the Ruby support. As a future work, we intend to develop
+parsers in other live coding libraries such as Sardine (Forment 2022),
+SuperCollider and others. An upgrade for the MuseScore plugin is also
+planned to the upcoming MuseScore version 4.0, as a way to support input
+of the generative numeric notation directly to traditional sheet music
+and create a hybrid algorithmic composition environment for both
+numbered and standard notation. We envision that the proposed notation
+can also be used as a tool for teaching music analysis and pitch-class
+set theory and act as a stepping stone between music theory and live
+coding.</p>
+<h1 data-number="7" id="acknowledgment"><span
+class="header-section-number">7</span> Acknowledgment</h1>
+<p>Authors would like to thank Sam Aaron and the whole Sonic Pi
+community for the important work on improving the pedagogy and
+accessibility of programming and for the inspiration to pursue research
+in the field of live coding. Raphaël would like to thank Laurent Pottier
+and Alain Bonardi for their support, as well as the doctoral school
+<em>3LA</em> from the University of Lyon for the funding it provided to
+this research.</p>
+<h1 class="unnumbered" id="references">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-aaron2016sonic" class="csl-entry" role="doc-biblioentry">
+Aaron, Sam. 2016. <span>“Sonic Pi–Performance in Education, Technology
+and Art.”</span> <em>International Journal of Performance Arts and
+Digital Media</em> 12 (2): 171–78.
+</div>
+<div id="ref-Ziffers_2018" class="csl-entry" role="doc-biblioentry">
+Alonen, Miika. 2018. <em>Ziffers: Numbered Notation for Algorithmic
+Composition</em> (version 0.1). <a
+href="https://github.com/amiika/ziffers/commit/c12516d2b1604836925cbe829e488e033578405c">https://github.com/amiika/ziffers/commit/c12516d2b1604836925cbe829e488e033578405c</a>.
+</div>
+<div id="ref-zifferswiki" class="csl-entry" role="doc-biblioentry">
+———. 2022a. <span>“List of All Note Lengths in Ziffer’s Wiki.”</span> <a
+href="https://github.com/amiika/ziffers/wiki/Melody#list-of-all-note-length-characters">https://github.com/amiika/ziffers/wiki/Melody#list-of-all-note-length-characters</a>.
+</div>
+<div id="ref-Ziffers_2022" class="csl-entry" role="doc-biblioentry">
+———. 2022b. <em><span class="nocase">Ziffers: Numbered notation for
+algorithmic composition</span></em> (version 2.0). <a
+href="https://github.com/amiika/ziffers">https://github.com/amiika/ziffers</a>.
+</div>
+<div id="ref-blackwell2022live" class="csl-entry"
+role="doc-biblioentry">
+Blackwell, Alan F, Emma Cocker, Geoff Cox, Alex McLean, and Thor
+Magnusson. 2022. <em>Live Coding: A User’s Manual</em>. MIT Press.
+</div>
+<div id="ref-bresson2017next" class="csl-entry" role="doc-biblioentry">
+Bresson, Jean, Dimitri Bouche, Thibaut Carpentier, Diemo Schwarz, and
+Jérémie Garcia. 2017. <span>“Next-Generation Computer-Aided Composition
+Environment: A New Implementation of OpenMusic.”</span> In
+<em>International Computer Music Conference (ICMC’17)</em>.
+</div>
+<div id="ref-chemillier2002ethnomusicology" class="csl-entry"
+role="doc-biblioentry">
+Chemillier, Marc. 2002. <span>“Ethnomusicology, Ethnomathematics. The
+Logic Underlying Orally Transmitted Artistic Practices.”</span> In
+<em>Mathematics and Music</em>, 161–83. Springer.
+</div>
+<div id="ref-cocker2013live" class="csl-entry" role="doc-biblioentry">
+Cocker, Emma. 2013. <span>“Live Notation:–Reflections on a Kairotic
+Practice.”</span> <em>Performance Research</em> 18 (5): 69–76.
+</div>
+<div id="ref-dannenberg1986cmu" class="csl-entry"
+role="doc-biblioentry">
+Dannenberg, Roger B. 1986. <span>“The Cmu Midi Toolkit.”</span> In
+<em>ICMC</em>, 86:53–56.
+</div>
+<div id="ref-dannenberg1997machine" class="csl-entry"
+role="doc-biblioentry">
+———. 1997. <span>“Machine Tongues XIX: Nyquist, a Language for
+Composition and Sound Synthesis.”</span> <em>Computer Music Journal</em>
+21 (3): 50–60.
+</div>
+<div id="ref-dannenberg2018languages" class="csl-entry"
+role="doc-biblioentry">
+———. 2018. <span>“Languages for Computer Music.”</span> <em>Frontiers in
+Digital Humanities</em> 5: 26.
+</div>
+<div id="ref-dauphin2012devenir" class="csl-entry"
+role="doc-biblioentry">
+Dauphin, Claude. 2012. <span>“Le Devenir Du Syst<span>è</span>me de
+Notation Musicale de Jean-Jacques Rousseau.”</span> <em>Rousseau En
+Musique, Orages</em>, no. 11: 79–98.
+</div>
+<div id="ref-davantes1560" class="csl-entry" role="doc-biblioentry">
+Davantès, Pierre. 1560. <span>“Pseaumes de David, Nouvelle Et Facile
+Methode Pour Chanter Chacun Couplet Des Pseaumes Sans Recour Au
+Premier.”</span> 1560. <a
+href="https://gallica.bnf.fr/ark:/12148/bpt6k3135388/f23.item">https://gallica.bnf.fr/ark:/12148/bpt6k3135388/f23.item</a>.
+</div>
+<div id="ref-forte1973structure" class="csl-entry"
+role="doc-biblioentry">
+Forte, Allen. 1973. <em>The Structure of Atonal Music</em>. Vol. 304.
+Yale University Press.
+</div>
+<div id="ref-balacao2020" class="csl-entry" role="doc-biblioentry">
+Fraser, Glen. 2020. <em>Balacao - Somewhat Fishy Live Cod(e) Extensions
+to SuperCollider.</em> (version 0.1). <a
+href="https://github.com/totalgee/bacalao">https://github.com/totalgee/bacalao</a>.
+</div>
+<div id="ref-gomez2021symbolic" class="csl-entry"
+role="doc-biblioentry">
+Gómez, Ricardo, and Luis Nasser. 2021. <span>“Symbolic Structures in
+Music Theory and Composition, Binary Keyboards, and the Thue–Morse
+Shift.”</span> <em>Journal of Mathematics and Music</em> 15 (3): 247–66.
+</div>
+<div id="ref-good2001musicxml" class="csl-entry" role="doc-biblioentry">
+Good, Michael. 2001. <span>“MusicXML for Notation and Analysis.”</span>
+<em>The Virtual Score: Representation, Retrieval, Restoration</em> 12
+(113-124): 160.
+</div>
+<div id="ref-hoos1998guido" class="csl-entry" role="doc-biblioentry">
+Hoos, Holger H, Keith A Hamel, Kai Renz, and Jürgen Kilian. 1998.
+<span>“The GUIDO Notation Format–a Novel Approach for Adequately
+Representing Score-Level Music.”</span>
+</div>
+<div id="ref-mml2001" class="csl-entry" role="doc-biblioentry">
+Izumi. 2001. <span>“Music Macro Language.”</span> 2001. <a
+href="http://www.vgmpf.com/Wiki/index.php/Music_Macro_Language">http://www.vgmpf.com/Wiki/index.php/Music_Macro_Language</a>.
+</div>
+<div id="ref-jackhydra" class="csl-entry" role="doc-biblioentry">
+Jack, Olivia. 2019. <span>“Hydra: Live Coding Networked Visuals.”</span>
+In <em>Proceedings of the Fourth International Conference on Live
+Coding</em>, 353–54.
+</div>
+<div id="ref-kaminski2022jianpu" class="csl-entry"
+role="doc-biblioentry">
+Kaminski, Joseph S. 2022. <span>“Jianpu Simplified Notation and the
+Transnational in Musical Repertoires of New York’s Chinatown.”</span> In
+<em>Material Cultures of Music Notation</em>, 110–23. Routledge.
+</div>
+<div id="ref-kery2017exploring" class="csl-entry"
+role="doc-biblioentry">
+Kery, Mary Beth, and Brad A Myers. 2017. <span>“Exploring Exploratory
+Programming.”</span> In <em>2017 IEEE Symposium on Visual Languages and
+Human-Centric Computing (VL/HCC)</em>, 25–29. IEEE.
+</div>
+<div id="ref-kindermann2001musinum" class="csl-entry"
+role="doc-biblioentry">
+Kindermann, Lars. 2001. <span>“MusiNum-the Music in the Numbers.”</span>
+In <em>In: ER Miranda, Composing with Computers. Music Technology
+Series, Focal Press, Oxford.</em>
+</div>
+<div id="ref-kircher1650" class="csl-entry" role="doc-biblioentry">
+Kircher, Athanasius. 1650. <span>“Musurgia Universalis Sive Ars Magna
+Consoni Et Dissoni.”</span> 1650. <a
+href="https://archive.org/details/bub_gb_97xCAAAAcAAJ/mode/2up">https://archive.org/details/bub_gb_97xCAAAAcAAJ/mode/2up</a>.
+</div>
+<div id="ref-petal_2019" class="csl-entry" role="doc-biblioentry">
+kn1kn1. 2017. <em>Petal - a Small Language on Sonic Pi with Similar
+Syntax to TidalCycles</em>. <a
+href="https://github.com/siaflab/petal">https://github.com/siaflab/petal</a>.
+</div>
+<div id="ref-li2021musictxt" class="csl-entry" role="doc-biblioentry">
+Li, Kelian, and Wanwan Li. 2021. <span>“MusicTXT: A Text-Based Interface
+for Music Notation.”</span> In <em>Proceedings of the 11th Workshop on
+Ubiquitous Music (UbiMus 2021)</em>, 62–71. g-ubimus.
+</div>
+<div id="ref-magnusson2011ixi" class="csl-entry" role="doc-biblioentry">
+Magnusson, Thor. 2011. <span>“The Ixi Lang: A Supercollider Parasite for
+Live Coding.”</span> In <em>ICMC</em>.
+</div>
+<div id="ref-magnusson2019sonic" class="csl-entry"
+role="doc-biblioentry">
+———. 2019. <em>Sonic Writing: Technologies of Material, Symbolic, and
+Signal Inscriptions</em>. Bloomsbury Academic.
+</div>
+<div id="ref-magnusson2018performing" class="csl-entry"
+role="doc-biblioentry">
+Magnusson, Thor, and Alex McLean. 2018. <span>“Performing with Patterns
+of Time.”</span>
+</div>
+<div id="ref-mccartney2002rethinking" class="csl-entry"
+role="doc-biblioentry">
+McCartney, James. 2002. <span>“Rethinking the Computer Music Language:
+Super Collider.”</span> <em>Computer Music Journal</em> 26 (4): 61–68.
+</div>
+<div id="ref-mccormack1996grammar" class="csl-entry"
+role="doc-biblioentry">
+McCormack, Jon et al. 1996. <span>“Grammar Based Music
+Composition.”</span> <em>Complex Systems</em> 96: 321–36.
+</div>
+<div id="ref-mclean2020algorithmic" class="csl-entry"
+role="doc-biblioentry">
+McLean, Alex. 2020. <span>“Algorithmic Pattern.”</span> In
+<em>Proceedings of the 20th Conference on New Interfaces for Musical
+Expression. Birmingham, UK</em>.
+</div>
+<div id="ref-mclean2010tidal" class="csl-entry" role="doc-biblioentry">
+McLean, Alex, and Geraint Wiggins. 2010. <span>“Tidal–Pattern Language
+for the Live Coding of Music.”</span> In <em>Proceedings of the 7th
+Sound and Music Computing Conference</em>, 331–34.
+</div>
+<div id="ref-MNMA_2022" class="csl-entry" role="doc-biblioentry">
+MNMA. 2022. <span>“The Music Notation Project.”</span> 2022. <a
+href="https://musicnotation.org/tutorials/numerical-notation-systems/">https://musicnotation.org/tutorials/numerical-notation-systems/</a>.
+</div>
+<div id="ref-morrill2022euclidean" class="csl-entry"
+role="doc-biblioentry">
+Morrill, Thomas. 2022. <span>“On the Euclidean Algorithm: Rhythm Without
+Recursion.”</span> <em>Bulletin of the Australian Mathematical
+Society</em>, 1–7.
+</div>
+<div id="ref-nash2015cognitive" class="csl-entry"
+role="doc-biblioentry">
+Nash, Chris. 2015. <span>“The Cognitive Dimensions of Music
+Notations.”</span>
+</div>
+<div id="ref-nienhuys2003lilypond" class="csl-entry"
+role="doc-biblioentry">
+Nienhuys, Han-Wen, and Jan Nieuwenhuizen. 2003. <span>“LilyPond, a
+System for Automated Music Engraving.”</span> In <em>Proceedings of the
+XIV Colloquium on Musical Informatics (XIV CIM 2003)</em>, 1:167–71.
+Citeseer.
+</div>
+<div id="ref-nierhaus2009algorithmic" class="csl-entry"
+role="doc-biblioentry">
+Nierhaus, Gerhard. 2009. <em>Algorithmic Composition: Paradigms of
+Automated Music Generation</em>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-opusmodus2022" class="csl-entry" role="doc-biblioentry">
+Opusmodus. 2022. <span>“Opusmodus - Structural Composition
+System.”</span> 2022. <a
+href="https://opusmodus.com/">https://opusmodus.com/</a>.
+</div>
+<div id="ref-roads1996computer" class="csl-entry"
+role="doc-biblioentry">
+Roads, Curtis. 1996. <em>The Computer Music Tutorial</em>. MIT press.
+</div>
+<div id="ref-roberts2019bringing" class="csl-entry"
+role="doc-biblioentry">
+Roberts, Charles, and Mariana Pachon-Puentes. 2019. <span>“Bringing the
+Tidalcycles Mini-Notation to the Browser.”</span> In <em>Proceedings of
+the Web Audio Conference</em>.
+</div>
+<div id="ref-roberts2018tensions" class="csl-entry"
+role="doc-biblioentry">
+Roberts, Charlie, and Graham Wakefield. 2018. <span>“Tensions and
+Techniques in Live Coding Performance.”</span>
+</div>
+<div id="ref-rohrhuber2018algorithmic" class="csl-entry"
+role="doc-biblioentry">
+Rohrhuber, Julian, RT Dean, and A McLean. 2018. <span>“Algorithmic Music
+and the Philosophy of Time.”</span>
+</div>
+<div id="ref-rousseau1781projet" class="csl-entry"
+role="doc-biblioentry">
+Rousseau, Jean-Jacques. 1781. <em>Projet Concernant de Nouveaux Signes
+Pour La Musique</em>. <span>é</span>diteur non identifi<span>é</span>.
+</div>
+<div id="ref-slonimsky1986thesaurus" class="csl-entry"
+role="doc-biblioentry">
+Slonimsky, Nicolas. 1986. <em>Thesaurus of Scales and Melodic
+Patterns</em>. Schirmer Trade Books.
+</div>
+<div id="ref-spiegel1981manipulations" class="csl-entry"
+role="doc-biblioentry">
+Spiegel, Laurie. 1981. <span>“Manipulations of Musical Patterns.”</span>
+In <em>Proceedings of the Symposium on Small Computers and the
+Arts</em>, 19–22.
+</div>
+<div id="ref-awesome2022" class="csl-entry" role="doc-biblioentry">
+Toplap. 2022. <span>“Awesome Live Coding - a Curated List of Live Coding
+Languages and Tools.”</span> <a
+href="https://github.com/toplap/awesome-livecoding">https://github.com/toplap/awesome-livecoding</a>.
+</div>
+<div id="ref-bridges2005" class="csl-entry" role="doc-biblioentry">
+Toussaint, Godfried. 2005. <span>“The Euclidean Algorithm Generates
+Traditional Musical Rhythms.”</span> In <em>Renaissance Banff:
+Mathematics, Music, Art, Culture</em>, edited by Reza Sarhangi and
+Robert V. Moody, 47–56. Southwestern College, Winfield, Kansas: Bridges
+Conference. <a
+href="http://archive.bridgesmathart.org/2005/bridges2005-47.html">http://archive.bridgesmathart.org/2005/bridges2005-47.html</a>.
+</div>
+<div id="ref-walshaw2011abc" class="csl-entry" role="doc-biblioentry">
+Walshaw, Christopher. 2011. <span>“The Abc Music Standard 2.1.”</span>
+<em>URL: Http://Abcnotation.com/Wiki/Abc: Standard: V2</em> 1.
+</div>
+<div id="ref-warkentin2022story" class="csl-entry"
+role="doc-biblioentry">
+Warkentin, Emily Grace. 2022. <span>“The Story of the Ziffersystem and
+the Russian Mennonites: Counting Blessings.”</span>
+</div>
+</div>
+</body>
+</html>
