@@ -34,7 +34,7 @@ The Ziffers music notation project initially started as an experiment to confron
 
 Numerical systems for score, harmonic or melodic writing – less commonly encountered than their staff-based counterparts – have historically served as compositional tools for polyphonic contrapuntal notation [@davantes1560], early theoretical endeavours in algorithmic composition [@kircher1650] or in pedagogy and teaching [@rousseau1781projet]. Finding a new breath during the late nineteenth-century through the Galin-Paris-Chevré notation [@dauphin2012devenir], the practice spread to Asia where it is widely used, known and practiced, sometimes concurrently with standard staff notation. Some specialized applications of numbered notation can also be found in the toolset of contemporary ethnomusicologists and ethnomathematicians that often take advantage of the versatility of symbolic cipher notation to devise notation systems capable of formalizing musical systems or previously non-written musical practices [@chemillier2002ethnomusicology].
 
-We perceive – as a thought experiment – the use of mininotations [@magnusson2018performing] as modern live coding analogues to previously mentioned numerical music notation systems. In that regard, with their conciseness and economy of expression, we observe that older non-computer based numerical notations systems are adequate fits for the domain but have never been fully transposed and applied to the realm of live coding performance. Strikingly, we see them being used by musicians and music theorists alike as pragmatic and practical tools for draft notation and information sharing. In our opinion, the versatility of pitch-based number notations as well as their adequacy to the traditional way of inputting complex data structures (as lists, arrays or ordered data) in the most music programming languages [@roads1996computer;@dannenberg2018languages] make this type of notation a fruitful exploration domain for live coding and computer-based music notation alike. Generative numeric notation can also mitigate the separation between static and dynamic music notation languages as defined by Dannenberg's typology of the domain. Examples such as Adagio [@dannenberg1986cmu], ABC [@walshaw2011abc],  Guido [@hoos1998guido], MML [@mml2001], MusicXML [@good2001musicxml], Lilypond [@nienhuys2003lilypond] or MusicTXT [@li2021musictxt], as static languages, focus on the encoding of musical information on fixed medium while other dynamic languages such as Nyquist [@dannenberg1997machine], SuperCollider [@mccartney2002rethinking], Sonic Pi [@aaron2016sonic], TidalCycles [@mclean2010tidal], Open Music [@bresson2017next], OpusModus [@opusmodus2022], often extends musical notation by blending it with computational models of control flow, sound processing capabilities or binding different means of sonic writing: "The instrument incorporates notational elements, but conversely the notational is becoming increasingly instrumental and systematic" [@magnusson2019sonic].
+We perceive – as a thought experiment – the use of mininotations [@magnusson2018performing] as modern live coding analogues to previously mentioned numerical music notation systems. In that regard, with their conciseness and economy of expression, we observe that older non-computer based numerical notations systems are adequate fits for the domain but have never been fully transposed and applied to the realm of live coding performance. Strikingly, we see them being used by musicians and music theorists alike as pragmatic and practical tools for draft notation and information sharing. In our opinion, the versatility of pitch-based number notations as well as their adequacy to the traditional way of inputting complex data structures (as lists, arrays or ordered data) in the most music programming languages [@roads1996computer;@dannenberg2018languages] make this type of notation a fruitful exploration domain for live coding and computer-based music notation alike. Generative numeric notation can also mitigate the separation between static and dynamic music notation languages as defined by Dannenberg's typology of the domain. Examples such as Adagio [@dannenberg1986cmu], ABC [@walshaw2011abc],  Guido [@hoos1998guido], MML [@mml2001], MusicXML [@good2001musicxml], HumDrum [@huron2002music], Lilypond [@nienhuys2003lilypond] or MusicTXT [@li2021musictxt], as static languages, focus on the encoding of musical information on fixed medium while other dynamic languages such as Nyquist [@dannenberg1997machine], SuperCollider [@mccartney2002rethinking], Sonic Pi [@aaron2016sonic], TidalCycles [@mclean2010tidal], Open Music [@bresson2017next], OpusModus [@opusmodus2022], often extends musical notation by blending it with computational models of control flow, sound processing capabilities or binding different means of sonic writing: "The instrument incorporates notational elements, but conversely the notational is becoming increasingly instrumental and systematic" [@magnusson2019sonic].
 
 # OBJECTIVES: SPECIFICATION OF A CROSS-PLATFORM NOTATION SYSTEM
 
@@ -72,18 +72,16 @@ ziffers " // Aphex Twin - Avril 14th with added transformations
 
 ## Main methods
 
-The **zplay**, **zloop** (z0…z20) and **zparse** methods are the main entry points to interact with Ziffers. The multiline methods, **ziff** for single play and **ziffers** for looping, allow vertical writing of polyphonic patterns (as in Aphex Twin example above). A slightly different version, **ztracker**, emulates the behavior of classic music tracker softwares (e.g. Pro Tracker, Renoise) for multiline horizontal writing. Multiple modes of interaction with the patterning system are detailed in the repository hosting the *Sonic Pi* implementation. Each method has its own specificities, and can be adapted to a particular context of execution. For instance, composing will preferably be supported by the non-looping zplay method while improvisation is preferably handled through the looping and automatically synchronized zloop methods (each loop synchronizing on z0). Being non intrusive, Ziffers can also adapt to the **live_loop** mechanism defined by Sonic Pi to enable quick playback of different inputs and further enhance musical expressivity. The combined usage of **live_loop** and **zplay** methods is supported for musicians willing to use both patterning paradigms.
+The **zplay**, **zloop** (z0…z20) and **zparse** methods are the main entry points to interact with Ziffers. The multiline methods, **ziff** for single play and **ziffers** for looping, allow vertical writing of polyphonic patterns (as in Aphex Twin example above). A slightly different version, **ztracker**, emulates the behavior of classic music tracker softwares (e.g. Pro Tracker, Renoise). Multiple modes of interaction with the patterning system are detailed in the repository hosting the *Sonic Pi* implementation. Each method has its own specificities, and can be adapted to a particular context of execution. For instance, composing will preferably be supported by the non-looping zplay method while improvisation is preferably handled through the looping and automatically synchronized zloop shorthands (each loop synchronizing on z0 unless otherwise stated). There are also various shorthands for manipulating the effects, synth parameters and playback, such as **cycle**, **fade** and **tweak** documented in the [effects section](https://github.com/amiika/ziffers/wiki/Effects) of the documentation. Being non intrusive, Ziffers can also adapt to the **live_loop** mechanism defined by Sonic Pi to enable quick playback of different inputs and further enhance musical expressivity. The combined usage of **live_loop** and **zplay** methods is supported for musicians willing to use both patterning paradigms.
 
 ~~~~ {.js}
 # Example of combining live_loop and zplay in Sonic Pi
-with_fx :reverb, room: 1.0 do
-  with_synth :fm do
-    live_loop :sonic_pi do
-      with_synth_defaults divisor: rrand(0.1,0.15), attack: rrand(0.01,0.1) do
-        pling = rrand_i(1000,3000)
-        4.times do
-          zplay pling, scale: :mixolydian, rhythm: "q.eqe", octave: ->(){rrand_i(-1,1)}
-        end
+with_fx :reverb, room: 1.0 do 
+  live_loop :sonic_pi do
+    with_synth_defaults divisor: rrand(0.1,0.15), attack: rrand(0.01,0.1) do
+      pling = rrand_i(1000,3000)
+      4.times do
+        zplay pling, synth: :fm, scale: :mixolydian, rhythm: "q.eqe", octave: ->(){rrand_i(-1,1)}
       end
     end
   end
@@ -95,16 +93,21 @@ end
 All inputs are normalized to a string, type conversion being applied when necessary. The integer '2468' can be parsed to a sequence of notes or a chord, etc... Adjusting the base behavior of the parser can be done by providing additional keyword arguments defining a context for the parser. In a similar fashion, user input can also be specified as a lambda function or as enumerable defined by the *Ruby* language. This is allowing for the definition and use of infinite note sequences such as the Morse-Thue sequence demonstrated below, one that is commonly used in fractal music composition [@kindermann2001musinum;@gomez2021symbolic].
 
 ~~~~ {.js}
+# zplay is the fastest way to ziffer
 zplay "q 0 236 q.4 e6 3 0 2", key: :g3, scale: :minor, synth: :piano
-zplay 13579, key: :c3, synth: :fm, release: (ring 0.125,0.25,1.0) 
-zplay 13579, key: :c3, synth: :fm, parse_chords: false 
-zplay [1,5,6], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(){rand} 
+zplay 2468, key: :c3, synth: :fm, release: (ring 0.125,0.25,1.0) 
+zplay 2468, key: :c3, synth: :fm, parse_chord: true
+zplay [2,4,6,8], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(){rand} 
 zplay [[1,0.5],[3,0.25],[0,1.0]], key: 60, scale: :aeolian, synth: :blade, res: 0.1
+
+# z0-z20 are shorthands for looping the sequence
 z0 ->(){rrand_i(-9,9)}, scale: :blues_minor, synth: :kalimba, clickiness: ->(){rand}
+
 # Morse-thue sequence using mod 7
 z1 (0..Float::INFINITY).lazy.collect{|n|n.to_s(2).split('').count('1')%7},rhythm:spread(7,9)
-# Built-in enumerable for pi
-z1 pi.take(10),scale: :blues_minor,synth: :hoover,release:->(){rand},res:->(){rand}
+
+# Built-in enumerable for playing the digits of pi
+z1 pi.take(10).to_a, scale: :blues_minor, synth: :tech_saws, rhythm: 1211, cutoff: tweak(:sine,30,100,10).reflect
 ~~~~
 
 ## Parsers
@@ -182,7 +185,7 @@ Alternatively degree based interpretation can be used as a separate option, wher
 
 In degree based notation degrees range from 1 to 9 (depending on the scale length). Compared to pitch class notation the degree based notation does not have the root as a mirroring axis. Pitches can also be sharpened using **#** or flattened with **b** when using diatonic scales.
 
-**Note durations** are denoted with lower case characters which are selected from note length names, for example **w** for whole, **h** for half, **q** for quarter, **e** for the eight note etc. In integer notation, silence is defined using the character **r** for rest. In degree based notation, 0 is also treated as silence, as used in the Galin-Paris-Chevé notation [@dauphin2012devenir]. Characters for nearby triplet notes have been selected on the basis of the close proximity on the qwerty keyboard. See the full list of characters assigned to note lengths in the Ziffers wiki [@zifferswiki]. Alternatively, decimals can be used instead of characters. Dotted lengths are used as in traditional musical notation to increase the note duration. Similarly, decimal notation can be used as an alternative to letter-based durations and dots, especially for venturing outside of the traditional note lengths. For example in children's song row your boat could be notated differently depending on the chosen duration syntax:
+**Note durations** are denoted with lower case characters which are selected from note length names, for example **w** for whole, **h** for half, **q** for quarter, **e** for the eight note etc. In integer notation, silence is defined using the character **r** for rest. In degree based notation, 0 is also treated as silence, as used in the Galin-Paris-Chevé notation [@dauphin2012devenir]. Characters for nearby triplet notes have been selected on the basis of the close proximity on the qwerty keyboard. See the full [list of duration characters](https://github.com/amiika/ziffers/wiki/Melody#list-of-all-note-length-characters) in the documentation. Alternatively, decimals can be used instead of characters. Dotted lengths are used as in traditional musical notation to increase the note duration. Similarly, decimal notation can be used as an alternative to letter-based durations and dots, especially for venturing outside of the traditional note lengths. For example in children's song row your boat could be notated differently depending on the chosen duration syntax:
 
 ~~~~ {.js}
 // Melody using note length characters
