@@ -65,14 +65,22 @@ MuseScore plugin can be used to transform traditional scores (from MusicXML, ABC
 ~~~~ {.js}
 ziffers " // Aphex Twin - Avril 14th with added transformations
 / synth: piano
-| q ^ 2 _ 5 ^ 0 e r s 0  | sq. 5 e 5 ^ 4 3 2 0  | / retrograde: true
-| q 2 _ 5 ^ 0 e r s 0 _  | sq. _ 5 e 5 ^ 4 3 2 0  | / octave: -2
-| e __ 0 5 ^ 0 2 _ 2 ^ 0 2 4  | e __ 3 ^ 0 3 4 _ 1 ^ 0 3 2  | / inverse: 2"
+| q ^ 2 _ 5 ^ 0 e r s 0  | sq. 5 e 5 ^ 4 3 2 0  | / retrograde: [false,true]
+| q 2 _ 5 ^ 0 e r s 0 _  | sq. _ 5 e 5 ^ 4 3 2 0  | / octave: [0,1,-1]
+| e __ 0 5 ^ 0 2 _ 2 ^ 0 2 4  | e __ 3 ^ 0 3 4 _ 1 ^ 0 3 2 | / inverse: [0,1]"
 ~~~~
 
 ## Main methods
 
 The **zplay**, **zloop** (z0…z20) and **zparse** methods are the main entry points to interact with Ziffers. The multiline methods, **ziff** for single play and **ziffers** for looping, allow vertical writing of polyphonic patterns (as in Aphex Twin example above). A slightly different version, **ztracker**, emulates the behavior of classic music tracker softwares (e.g. Pro Tracker, Renoise) for multiline horizontal writing. Multiple modes of interaction with the patterning system are detailed in the repository hosting the *Sonic Pi* implementation. Each method has its own specificities, and can be adapted to a particular context of execution. For instance, composing will preferably be supported by the non-looping zplay method while improvisation is preferably handled through the looping and automatically synchronized zloop methods (each loop synchronizing on z0). Being non intrusive, Ziffers can also adapt to the **live_loop** mechanism defined by Sonic Pi to enable quick playback of different inputs and further enhance musical expressivity. The combined usage of **live_loop** and **zplay** methods is supported for musicians willing to use both patterning paradigms.
+
+~~~~ {.js}
+# Simple example using Sonic Pi live_loop and zplay
+live_loop :sonic_pi do
+  random = rrand_i 1000,3000 
+  zplay random, scale: :mixolydian, rhythm: "q.eqe"
+end
+~~~~
 
 ## Inputs and parameters
 
@@ -140,6 +148,8 @@ z1 "q F e F F", F: :foo # Time the method using ziffers
 
 # NOTATION
 
+Ziffers notation is divided into basic and generative syntax. Basic notation contains the elementary building blocks for sequential and polyphonic melodies. Generative notation builds on the basic notation and includes syntax for arithmetics, logical operations and transformations. Examples in this section are written in implementation independent form and could be performed using different methods.
+
 ## Basic Notation: pitch, rhythm and silence
 
 The Ziffers syntax is supporting many classic musical notation symbols as well as many variations in their writing. For better readability and for the sake of brevity, we have chosen to list and comment only the most commonly accessed tokens, relegating other notation symbols to the example tables. Detailed sections will cover the more advanced and Ziffers specific features.
@@ -167,9 +177,9 @@ In degree based notation degrees range from 1 to 9 (depending on the scale lengt
 **Note durations** are denoted with lower case characters which are selected from note length names, for example **w** for whole, **h** for half, **q** for quarter, **e** for the eight note etc. In integer notation, silence is defined using the character **r** for rest. In degree based notation, 0 is also treated as silence, as used in the Galin-Paris-Chevé notation [@dauphin2012devenir]. Characters for nearby triplet notes have been selected on the basis of the close proximity on the qwerty keyboard. See the full list of characters assigned to note lengths in the Ziffers wiki [@zifferswiki]. Alternatively, decimals can be used instead of characters. Dotted lengths are used as in traditional musical notation to increase the note duration. Similarly, decimal notation can be used as an alternative to letter-based durations and dots, especially for venturing outside of the traditional note lengths. For example in children's song row your boat could be notated differently depending on the chosen duration syntax:
 
 ~~~~ {.js}
-# Melody using note length characters
+// Melody using note length characters
 | q. 0 0 | q0 e1 q.2 | q2 e1 q2 e3 | h.4 | e 7 7 7 4 4 4 2 2 2 0 0 0 | q4 e3 q2 e1 | h. 0 |
-# Melody using decimal notation
+// Melody using decimal notation
 | 0.375 0 0 | 0.25 0 0.125 1 0.375 2 | 0.25 2 0.125 1 0.25 2 0.125 3 | 0.75 4 | …
 ~~~~
 
@@ -197,7 +207,7 @@ Repetition is the simplest form of generative syntax also used by the traditiona
 **Bracket syntax** is alternative notation for durations that subdivides the note lengths using nested brackets. Similar notation is also used by TidalCycles and Alda. Bracket syntax is especially useful for notating triplets or n-tuplets. 
 
 ~~~~ {.js}
-# Frere Jacques again using bracket syntax
+// Frere Jacques again using bracket syntax
 w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 ~~~~
 
@@ -242,9 +252,12 @@ q (0..3){(2x-1)(2x^2-4)} // Using function to transform a list
 **Euclidean rhythms** have gained popularity among music composers [@morrill2022euclidean] for some years after Godfried Toussaint first presented the idea of using euclidean algorithm to generate rhythms from binary sequences [@bridges2005]. *Sonic Pi* also implements the euclidean algorithm as a spread method named after the evenly spread boolean. Ziffer’s has it’s own approach to euclidean patterns and implements an algorithm defined by Thomas Morrill [@morrill2022euclidean] and a novel syntax that can be used to combine both onset and offset values from the binary sequence. Syntax for the euclidean generator is defined as an operator for one or two lists:  `(onset)<beats,total,rotate>(offset)`. Values will be selected from onset or offset list according to the binary sequence generated by the euclidean algorithm. Default offset value is a rest, but it can be replaced with a list of alternative offset values. Both onset and offset lists can include any syntax defined in the numeric notation. Values in the list will overflow to the beginning if there are not enough values for the whole cycle. Inner cycles can also be defined using cyclic syntax, to make more complex structures. 
 
 ~~~~ {.js}
-z1 "s (<0 <3 <5 (-3,3)>>>)<3,6>", synth: :pretty_bell // Spread nested cycles
-z2 "((q 0 3) (q 4 3))<3,5>((e 3 4) (e 1 4))", synth: :kalimba // Spread lists
-z3 "(eX sB)<13,16>(eB sX)", X: :elec_flip, B: :drum_cowbell // Spread samples
+/ synth: :pretty_bell
+s (<0 <3 <5 (-3,3)>>>)<3,6> // Spread nested cycles
+/ synth: :kalimba
+((q 0 3) (q 4 3))<3,5>((e 3 4) (e 1 4))
+/ X: :elec_flip, B: :drum_cowbell
+(eX sB)<13,16>(eB sX)
 ~~~~
 
 Expressions can be **evaluated** using curly braces: `{...}`, which can be used for escaping pitches, arithmetic operations or conditional logic. Using ternary operator syntax `(cond)?(true):(false)` it is possible to define alternative or conditional parts. Generative notation can be stored to **variables** denoted using capital letters to form repetitive random structures from the generated values.
