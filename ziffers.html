@@ -229,9 +229,10 @@ data-cites="walshaw2011abc">(Walshaw 2011)</span>, Guido <span
 class="citation" data-cites="hoos1998guido">(Hoos et al. 1998)</span>,
 MML <span class="citation" data-cites="mml2001">(Izumi 2001)</span>,
 MusicXML <span class="citation" data-cites="good2001musicxml">(Good
-2001)</span>, Lilypond <span class="citation"
-data-cites="nienhuys2003lilypond">(Nienhuys and Nieuwenhuizen
-2003)</span> or MusicTXT <span class="citation"
+2001)</span>, HumDrum <span class="citation"
+data-cites="huron2002music">(Huron 2002)</span>, Lilypond <span
+class="citation" data-cites="nienhuys2003lilypond">(Nienhuys and
+Nieuwenhuizen 2003)</span> or MusicTXT <span class="citation"
 data-cites="li2021musictxt">(Li and Li 2021)</span>, as static
 languages, focus on the encoding of musical information on fixed medium
 while other dynamic languages such as Nyquist <span class="citation"
@@ -349,23 +350,25 @@ class="header-section-number">4.1</span> Main methods</h2>
 <p>The <strong>zplay</strong>, <strong>zloop</strong> (z0…z20) and
 <strong>zparse</strong> methods are the main entry points to interact
 with Ziffers. The multiline methods, <strong>ziff</strong> for single
-play and <strong>ziffers</strong> for looping, allow vertical writing of
-polyphonic patterns (as in Aphex Twin example above). A slightly
-different version, <strong>ztracker</strong>, emulates the behavior of
-classic music tracker softwares (e.g. Pro Tracker, Renoise) for
-multiline horizontal writing. Multiple modes of interaction with the
-patterning system are detailed in the repository hosting the <em>Sonic
-Pi</em> implementation. Each method has its own specificities, and can
-be adapted to a particular context of execution. For instance, composing
-will preferably be supported by the non-looping zplay method while
-improvisation is preferably handled through the looping and
-automatically synchronized zloop shorthands (each loop synchronizing on
-z0 unless otherwise stated). There are also various shorthands for
-manipulating the effects, synth parameters and playback, such as
+playtrough and <strong>ziffers</strong> for looping, allows horizontal
+arrangement of simultanious patterns (as in Aphex Twin example above). A
+slightly different version, <strong>ztracker</strong>, emulates
+behaviour of classic music trackers (e.g. <em>Pro Tracker</em>,
+<em>Renoise</em>) allowing vertical arrangement like in the
+<em>HumDrum</em> notation. Multiple modes of interaction with the
+patterning system are detailed in the <a
+href="https://github.com/amiika/ziffers/wiki/Play">documentation</a>
+hosting the <em>Sonic Pi</em> implementation. Each method has its own
+specificities, and can be adapted to a particular context of execution.
+For instance, composing can be supported by the non-looping zplay method
+while improvisation is preferably handled through the automatically
+synchronized zloop shorthands (each loop synchronizing on z0 unless
+stated otherwise). There are also various shorthands for manipulating
+the effects, synth parameters and playback, such as
 <strong>cycle</strong>, <strong>fade</strong> and <strong>tweak</strong>
-documented in the effects
-section](https://github.com/amiika/ziffers/wiki/Effects) of the
-documentation. Being non intrusive, Ziffers can also adapt to the
+documented in the <a
+href="https://github.com/amiika/ziffers/wiki/Effects">effects
+section</a>. Being non intrusive, Ziffers can also adapt to the
 <strong>live_loop</strong> mechanism defined by Sonic Pi to enable quick
 playback of different inputs and further enhance musical expressivity.
 The combined usage of <strong>live_loop</strong> and
@@ -874,6 +877,11 @@ Good, Michael. 2001. <span>“MusicXML for Notation and Analysis.”</span>
 Hoos, Holger H, Keith A Hamel, Kai Renz, and Jürgen Kilian. 1998.
 <span>“The GUIDO Notation Format–a Novel Approach for Adequately
 Representing Score-Level Music.”</span>
+</div>
+<div id="ref-huron2002music" class="csl-entry" role="doc-biblioentry">
+Huron, David. 2002. <span>“Music Information Processing Using the
+Humdrum Toolkit: Concepts, Examples, and Lessons.”</span> <em>Computer
+Music Journal</em> 26 (2): 11–26.
 </div>
 <div id="ref-mml2001" class="csl-entry" role="doc-biblioentry">
 Izumi. 2001. <span>“Music Macro Language.”</span> 2001. <a
