@@ -75,10 +75,18 @@ ziffers " // Aphex Twin - Avril 14th with added transformations
 The **zplay**, **zloop** (z0…z20) and **zparse** methods are the main entry points to interact with Ziffers. The multiline methods, **ziff** for single play and **ziffers** for looping, allow vertical writing of polyphonic patterns (as in Aphex Twin example above). A slightly different version, **ztracker**, emulates the behavior of classic music tracker softwares (e.g. Pro Tracker, Renoise) for multiline horizontal writing. Multiple modes of interaction with the patterning system are detailed in the repository hosting the *Sonic Pi* implementation. Each method has its own specificities, and can be adapted to a particular context of execution. For instance, composing will preferably be supported by the non-looping zplay method while improvisation is preferably handled through the looping and automatically synchronized zloop methods (each loop synchronizing on z0). Being non intrusive, Ziffers can also adapt to the **live_loop** mechanism defined by Sonic Pi to enable quick playback of different inputs and further enhance musical expressivity. The combined usage of **live_loop** and **zplay** methods is supported for musicians willing to use both patterning paradigms.
 
 ~~~~ {.js}
-# Simple example using Sonic Pi live_loop and zplay
-live_loop :sonic_pi do
-  random = rrand_i 1000,3000 
-  zplay random, scale: :mixolydian, rhythm: "q.eqe"
+# Example of combining live_loop and zplay in Sonic Pi
+with_fx :reverb, room: 1.0 do
+  with_synth :fm do
+    live_loop :sonic_pi do
+      with_synth_defaults divisor: rrand(0.1,0.15), attack: rrand(0.01,0.1) do
+        pling = rrand_i(1000,3000)
+        4.times do
+          zplay pling, scale: :mixolydian, rhythm: "q.eqe", octave: ->(){rrand_i(-1,1)}
+        end
+      end
+    end
+  end
 end
 ~~~~
 
@@ -218,12 +226,11 @@ w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 ~~~~ {.js}
 (0.25,0.5) (0,5)            // Random decimal and pitch between defined range
 % ?                         // % = (0.01,1.0) ? = (0,scale length)
-[0.125,0.25,0.5] [0,2,4,6] // Random numbers from selection
--1..1                    // => -1 0 1
-0..3+2                   // => 0 2
-0..3+2                   // => 0 2
-0..3*2                   // => 0 2 4 
-?..(3,5)                 // => 5..3 => 5 2 3
+[0.125,0.25,0.5] [0,2,4,6]  // Random numbers from selection
+-1..1                       // -1 0 1
+0..3+2                      // 0 2
+0..3*2                      // 0 2 4 
+?..(3,5)                    // 5..3 => 5 2 3
 ~~~~
 
 **Lists** syntax can be used to arrange pitches into operable sequences. Arithmetic operations `+ - * ** / ^ % | & << >>` can be applied to list values in a serial manner. Arithmetic operations can also be applied between to lists creating cartesian operations. To produce long alternating patterns arithmetic operations can also be chained together. There are also 5 special methods that have designated short-hand symbols. Combine **&** for creating a chord out of list, separate **$** for creating the sequence from a chord, unique **!** for removing same pitches from the list, pick random **?** for picking 1-n pitches from the list and suffle **~** for suffling and picking unique random values from the list. 
@@ -238,10 +245,10 @@ w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 
 ~~~~ {.js}
 (1 2 3)<retrograde>
-(q e e)<>(0..5) // => q 0 e 1 q 2 e 3 q 4 # Cyclic zip
-(1 2)<+>(3 4 5) // => 1 3 1 4 1 5 2 3 2 4 2 5 # Product of two lists
-(0 5)<*>(0 3 6 9) // => 0 5 3 8 6 {11} 9 {14} # Pitch-class set multiplication
-(1 3)<4>(1 3) // => 2 4 6 1 3 5 # Interval interpolation
+(q e e)<>(0..5) // q 0 e 1 q 2 e 3 q 4 # Cyclic zip
+(1 2)<+>(3 4 5) // 1 3 1 4 1 5 2 3 2 4 2 5 # Product of two lists
+(0 5)<*>(0 3 6 9) //  0 5 3 8 6 {11} 9 {14} # Pitch-class set multiplication
+(1 3)<4>(1 3) // 2 4 6 1 3 5 # Interval interpolation
 (: (1,4) :3) // Generated 3 different random numbers
 q (0..3){(2x-1)(2x^2-4)} // Using function to transform a list
 ((1,5)){x<2?(x+3):(2x)(x-2)} // Applying functions conditionally 
