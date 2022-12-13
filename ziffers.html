@@ -93,10 +93,10 @@ unifying several types of musical notation centred around the use of
 symbols and numbers. It is inspired by the older numbered musical
 notations (<em>Ziffersystem</em>, <em>Jianpu</em>), contemporary music
 theory (pitch-class sets, post-tonal music analysis, serialism) and
-shorthand notations used in live-coding. Ziffers tries to reach a
-balance between fixed media music notation and generative notations for
-live coding performance. Consequently, the Ziffers system has been
-influenced by <em>TidalCycles</em> <span class="citation"
+shorthand notations used in live-coding. Ziffers aims for a balance
+between fixed media music notation and generative notations for live
+coding performance. Consequently, the Ziffers system has been influenced
+by <em>TidalCycles</em> <span class="citation"
 data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span> and
 <em>Ixi Lang</em> <span class="citation"
 data-cites="magnusson2011ixi">(Magnusson 2011)</span>. In their lineage,
@@ -259,17 +259,18 @@ cross-platform notation system</h1>
 <p>Objectives of the Ziffers numerical notation adheres to the cognitive
 dimensions of music notations as defined by <span class="citation"
 data-cites="nash2015cognitive">Nash (2015)</span> and to the subset of
-criterion defined by the Music Notation Project <span class="citation"
-data-cites="MNMA_2022">(MNMA 2022)</span>. The notation must allow users
-of different ages and backgrounds to compose music. The Ziffers
-extension built for Sonic Pi presented in latter sections of this paper
-builds on the accessibility and pedagogical efforts pursued by <span
-class="citation" data-cites="aaron2016sonic">Aaron (2016)</span>. The
-development of the numerical notation aims to remove the exclusivity
-that comes with the music theory and provide a beneficial live coding
-experience for the uninitiated. Use of numeric notation should make it
-possible to write melodic sequences and interval movements using numbers
-regardless of the key and scale.</p>
+criterion relevant for the numbered notations defined by the Music
+Notation Project <span class="citation" data-cites="MNMA_2022">(MNMA
+2022)</span>. The notation must allow users of different ages and
+backgrounds to compose music. The Ziffers extension built for Sonic Pi
+presented in latter sections of this paper builds on the accessibility
+and pedagogical efforts pursued by <span class="citation"
+data-cites="aaron2016sonic">Aaron (2016)</span>. The development of the
+numerical notation aims to remove the exclusivity that comes with the
+music theory and provide a beneficial live coding experience for the
+uninitiated. Use of numeric notation should make it possible to write
+melodic sequences and interval movements using numbers regardless of the
+key and scale.</p>
 <p>The implementation of the Ziffers notation is specific to each
 targeted platform. The notation should also minimal enough to be easily
 manipulated through any writing tool by relying solely on symbols taken
@@ -359,23 +360,10 @@ arrangement of simultanious patterns (as in Aphex Twin example above). A
 slightly different version, <strong>ztracker</strong>, emulates
 behaviour of classic music trackers (e.g. <em>Pro Tracker</em>,
 <em>Renoise</em>) allowing vertical arrangement like in the
-<em>HumDrum</em> notation. Multiple modes of interaction with the
-patterning system are detailed in the <a
-href="https://github.com/amiika/ziffers/wiki/Play">documentation</a>
-hosting the <em>Sonic Pi</em> implementation. Each method has its own
-specificities, and can be adapted to a particular context of execution.
-For instance, composing can be supported by the non-looping zplay method
-while improvisation is preferably handled through the automatically
-synchronized zloop shorthands (each loop synchronizing on z0 unless
-stated otherwise). There are also various shorthands for manipulating
-the effects, synth parameters and playback, such as
-<strong>cycle</strong>, <strong>fade</strong> and <strong>tweak</strong>
-documented in the <a
-href="https://github.com/amiika/ziffers/wiki/Effects">effects
-section</a>. Being non intrusive, Ziffers can also adapt to the
-<strong>live_loop</strong> mechanism defined by Sonic Pi to enable quick
-playback of different inputs and further enhance musical expressivity.
-The combined usage of <strong>live_loop</strong> and
+<em>HumDrum</em> notation. Being non intrusive, Ziffers can also adapt
+to the <strong>live_loop</strong> mechanism defined by Sonic Pi to
+enable quick playback of different inputs and further enhance musical
+expressivity. The combined usage of <strong>live_loop</strong> and
 <strong>zplay</strong> methods is supported for musicians willing to use
 both patterning paradigms.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a># Example <span class="kw">of</span> combining live_loop and zplay <span class="kw">in</span> Sonic Pi</span>
@@ -389,6 +377,20 @@ both patterning paradigms.</p>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    end</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  end</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>end</span></code></pre></div>
+<p>Multiple modes of interaction with the patterning system are detailed
+in the <a
+href="https://github.com/amiika/ziffers/wiki/Play">documentation</a>
+hosting the <em>Sonic Pi</em> implementation. Each method has its own
+specificities, and can be adapted to a particular context of execution.
+For instance, composing can be supported by the non-looping zplay method
+while improvisation is preferably handled through the automatically
+synchronized zloop shorthands (each loop synchronizing on z0 unless
+stated otherwise). There are also various shorthands for manipulating
+the effects, synth parameters and playback, such as
+<strong>cycle</strong>, <strong>fade</strong> and <strong>tweak</strong>
+documented in the <a
+href="https://github.com/amiika/ziffers/wiki/Effects">effects
+section</a>.</p>
 <h2 data-number="4.2" id="inputs-and-parameters"><span
 class="header-section-number">4.2</span> Inputs and parameters</h2>
 <p>All inputs are normalized to a string, type conversion being applied
@@ -771,23 +773,23 @@ interaction is still to be found in the link between Ziffers and the
 underlying logic and flow centered operation of live coding interfaces
 implementing it. Further experimentation is still needed to find the
 perfect balance between the proposed numbered notation and different
-live coding languages.<br />
-For now, Sonic Pi is the only fully supported platform for Ziffers. In
-the future such extensions may become obsolete due to a planned change
-from Ruby to Elixir programming language. By then, the implementation
-needs to be rewritten, but it has also already served its purpose as an
-exploratory medium for prototyping numbered notation in live coding. It
-is also always possible to use Ziffers with the latest <em>Sonic Pi</em>
-version with the Ruby support. As a future work, we intend to develop
-parsers in other live coding libraries such as Sardine (Forment 2022),
-SuperCollider and others. An upgrade for the MuseScore plugin is also
-planned to the upcoming MuseScore version 4.0, as a way to support input
-of the generative numeric notation directly to traditional sheet music
-and create a hybrid algorithmic composition environment for both
-numbered and standard notation. We envision that the proposed notation
-can also be used as a tool for teaching music analysis and pitch-class
-set theory and act as a stepping stone between music theory and live
-coding.</p>
+live coding languages.</p>
+<p>For now, Sonic Pi is the only fully supported platform for Ziffers.
+In the future such extensions may become obsolete due to a planned
+change from Ruby to Elixir programming language. By then, the
+implementation needs to be rewritten, but it has also already served its
+purpose as an exploratory medium for prototyping numbered notation in
+live coding. It is also always possible to use Ziffers with the latest
+<em>Sonic Pi</em> version with the Ruby support.</p>
+<p>As a future work, we intend to develop parsers in other live coding
+libraries such as Sardine (Forment 2022), SuperCollider and others. An
+upgrade for the MuseScore plugin is also planned to the upcoming
+MuseScore version 4.0, as a way to support input of the generative
+numeric notation directly to traditional sheet music and create a hybrid
+algorithmic composition environment for both numbered and standard
+notation. We envision that the proposed notation can also be used as a
+tool for teaching music analysis and pitch-class set theory and act as a
+stepping stone between music theory and live coding.</p>
 <h1 data-number="7" id="acknowledgment"><span
 class="header-section-number">7</span> Acknowledgment</h1>
 <p>Authors would like to thank Sam Aaron and the whole Sonic Pi
