@@ -198,11 +198,12 @@ notation <span class="citation" data-cites="dauphin2012devenir">(Dauphin
 2012)</span>, the practice spread to Asia where it is widely used, known
 and practiced, sometimes concurrently with standard staff notation. Some
 specialized applications of numbered notation can also be found in the
-toolset of contemporary ethnomusicologists and ethnomathematicians that
-often take advantage of the versatility of symbolic cipher notation to
-devise notation systems capable of formalizing musical systems or
-previously non-written musical practices <span class="citation"
-data-cites="chemillier2002ethnomusicology">(Chemillier 2002)</span>.</p>
+toolset of ethnomusicologists and ethnomathematicians that often take
+advantage of the versatility of symbolic cipher notation to devise
+notation systems capable of formalizing musical systems or previously
+non-written musical practices <span class="citation"
+data-cites="Schaffrath1997 chemillier2002ethnomusicology">(Schaffrath
+1997; Chemillier 2002)</span>.</p>
 <p>We perceive – as a thought experiment – the use of mininotations
 <span class="citation" data-cites="magnusson2018performing">(Magnusson
 and McLean 2018)</span> as modern live coding analogues to previously
@@ -574,16 +575,19 @@ context. Pitches in chords can be defined in different octaves combining
 the notation for example <code>024^0 _12&lt;1&gt;4</code>.
 <strong>Whitespace</strong> acts as an separator for different objects,
 like the chords in a sequence. <strong>Chord inversions</strong> can be
-amended using the <code>%</code> symbol like <code>024%2</code>. Roman
-numerals are also supported as part of the extended syntax for chord
-writing based on tonal/diatonic techniques. Definition of
-<strong>Measures</strong> are optional but can prove necessary if there
-is a need to access them in different order. They are denoted using the
-pipe character <code>|</code> and each such character always resets the
-current octave and note length to the default value. This is important
-for both human and a machine to be able to start from any given measure
-without having the need to retrace to the beginning of the
-arrangement.</p>
+amended using the <code>%</code> symbol in combination with a chord
+<code>024%2</code>. Roman numerals are also supported as part of the
+extended syntax for chord writing based on tonal/diatonic techniques.
+<strong>Articulations</strong>, such as staccato ’ and accents ` ´ can
+be used to affect the amplitude and the duration of the pitches.
+Definition of <strong>Measures</strong> are optional but can prove
+necessary if there is a need to access them in different order. They are
+denoted using the pipe character <code>|</code> and each such character
+always resets the current octave and note length to the default value.
+This is important for both human and a machine to be able to start from
+any given measure without having the need to retrace to the beginning of
+the arrangement. <strong>Comments</strong> can added using
+<code>//</code> or <code>/* */</code> characters.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a comment                 // One-line comments in Ziffers notation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* this is a multiline comment */</span>    <span class="co">// Multiline comments</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>d3<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span> <span class="op">&lt;</span>minor<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span>             <span class="co">// Inline key and scale</span></span>
@@ -1016,6 +1020,11 @@ and the Philosophy of Time.”</span>
 role="doc-biblioentry">
 Rousseau, Jean-Jacques. 1781. <em>Projet Concernant de Nouveaux Signes
 Pour La Musique</em>. <span>é</span>diteur non identifi<span>é</span>.
+</div>
+<div id="ref-Schaffrath1997" class="csl-entry" role="doc-biblioentry">
+Schaffrath, Helmut. 1997. <span>“The Essen Associative Code: A Code for
+Folksong Analysis.”</span> In <em>Beyond MIDI: The Handbook of Musical
+Codes</em>, 343–61. Cambridge, MA, USA: MIT Press.
 </div>
 <div id="ref-slonimsky1986thesaurus" class="csl-entry"
 role="doc-biblioentry">
