@@ -86,34 +86,32 @@ Composition</h1>
 
 <h2 class="abstract">Abstract</h2>
 <div id="abstract">
-<p>Ziffers is a number based algorithmic musical notation system. It
-offers a concise syntax to support improvisation and composition with
-complex melodies and rhythms. Ziffers is the result of experiments aimed
-at unifying and making compatible several types of musical notation
-centered around the use of symbols or numbers. The Ziffers syntax
-evolved from experiments aiming to close the gap between several
-similar-looking number and symbol based systems for music notation. It
-borrows from <em>Jianpu notation</em>, contemporary music theory
-(pitch-class sets, post-tonal music) and from other live-coding
-shorthand notations. Ziffers tries to reach a balance between fixed
-media music notation and notation for live coding performance.
-Consequently, the Ziffers system has been influenced by
-<em>TidalCycles</em> <span class="citation"
+<p>Ziffers is an algorithmic number based musical notation system. It
+offers concise syntax to support composition and improvisation with
+complex melodies and rhythms. Ziffers is the result of experiments in
+unifying and making compatible several types of musical notation centred
+around the use of symbols and numbers. It is inspired by the older
+numbered musical notations (<em>Ziffersystem</em>, <em>Jianpu</em>),
+contemporary music theory (pitch-class sets, post-tonal music analysis,
+serialism) and shorthand notations used in live-coding. Ziffers tries to
+reach a balance between fixed media music notation and generative
+notations for live coding performance. Consequently, the Ziffers system
+has been influenced by <em>TidalCycles</em> <span class="citation"
 data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span> and
 <em>Ixi Lang</em> <span class="citation"
 data-cites="magnusson2011ixi">(Magnusson 2011)</span>. In their lineage,
 Ziffers intends to propose a powerful mini-notation system allowing the
 on-the-fly alteration of musical patterns.</p>
-<p>In this article, we propose an implementation agnostic presentation
-of the Ziffers musical notation system. As a proof of concept, this
-article will also present the two implementations currently in use. The
-first one is integrated as an unofficial plugin for <em>Sonic Pi</em>
-<span class="citation" data-cites="aaron2016sonic">(Aaron 2016)</span>,
-a live coding platform designed for education and music performance. The
-second is available a plugin for Musescore 3.0, a general purpose
-scorewriter and score playback software. In doing so, we hope to
-highlight the versatility of our approach, which seems to allow the use
-of a unified syntax for different contexts of execution and
+<p>In this article, we propose an implementation of agnostic numbered
+notation for algorithmic composition and live coding. As a proof of
+concept, this article will also present two implementations currently in
+use. The first one is integrated as an unofficial plugin for <em>Sonic
+Pi</em> <span class="citation" data-cites="aaron2016sonic">(Aaron
+2016)</span>, a live coding platform designed for education and music
+performance. The second is available a plugin for Musescore 3.0, a
+general purpose scorewriter and score playback software. In doing so, we
+hope to highlight the versatility of our approach, which seems to allow
+the use of a unified syntax for different contexts of execution and
 interpretation.</p>
 </div>
 
@@ -130,66 +128,66 @@ musical patterns <span class="citation"
 data-cites="mccormack1996grammar mclean2020algorithmic">(McCormack et
 al. 1996; McLean 2020)</span> in minimal amounts of time and typing. To
 do so, Ziffers uses a text-based syntax for representing various
-short-hand symbolic notations used in music theory and concepts in
-programming languages. The need for concise and succinct notation in the
-context of live coding performance is a well-known constraint <span
-class="citation" data-cites="roberts2018tensions">(Charlie Roberts and
-Wakefield 2018)</span> that gave rise to many practices and techniques
-aiming to reduce frictions in the conversational feedback loop between
-the musician and its programming interface (REFERENCE). Domain specific
+short-hand symbolic notations used in music theory. It also includes
+various syntactic-sugar constructs from different programming languages,
+like the ternary operator and the lisp-like syntax for lists. The need
+for a concise and succinct notation in the context of live coding
+performance is a well-known constraint <span class="citation"
+data-cites="roberts2018tensions">(Charlie Roberts and Wakefield
+2018)</span>. It gave rise, in the past decades, to many practices and
+techniques aiming to reduce frictions in the conversational feedback
+loop between the musician and its programming interface. Domain specific
 languages (DSLs) and the use of terse mini notations have become an
 important design pattern in the conception of live coding interfaces
-(Hoogland 2019; ADD OTHER), and can also be noted to be a key concept in
-the larger realm of exploratory or conversational open-ended programming
-where reactivity and fast decision-making is of prime importance to
-achieve a creative state of flow <span class="citation"
+<span class="citation" data-cites="hoogland2019mercury">(Hoogland
+2019)</span>. They can also be noted to be a key concept in the larger
+realm of exploratory or conversational open-ended programming where
+reactivity and fast decision-making is of prime importance to achieve a
+creative state of flow <span class="citation"
 data-cites="nash2015cognitive kery2017exploring">(Nash 2015; Kery and
 Myers 2017)</span>.</p>
 <p>Ziffers is designed as a terse and platform independent syntax
 capable of embedding algorithmic and generative processes at the
-notational level. Basic notation tokens denoting pitch, rhythm or
-expression marks form the base notation, enriched by a set of generative
-operators and tokens denoting algorithmic transformations of that first
-layer of notation. Implementation of the Ziffers system is specific to
-each targeted platform, in conformity with the notation described in
-this article and the documentation for the prototype implementation. The
-first prototype of Ziffers has been created in 2018 <span
-class="citation" data-cites="Ziffers_2018">(Alonen 2018)</span> as an
-inline parser for <em>Sonic Pi</em>. It was thought as an attempt to
-speed up the process of writing melodic lines on-the-fly, taking
-advantage of the large number of predefined methods and compositional
-helpers offered by <em>Sonic Pi’s</em> rich internal library. Its design
-aimed at resolving the dissociation between pitch and rhythm imposed by
-<em>Sonic Pi</em> data structure and imperative-oriented programming
-model. After a few years of evolutionary prototyping, Ziffers 2.0 was
-released in 2022 <span class="citation"
-data-cites="Ziffers_2022">(Alonen 2022)</span>, including a new parser
-aiming at extending Ziffers capabilities with new operators, nested
-structures and better support for stochastic and aleatoric
-composition.</p>
+notational level. Basic tokens denoting pitch, rhythm or expression
+marks form the base notation. They have subsequently been enriched by
+operators and generative constructs denoting algorithmic transformations
+built upon that first layer. The implementation of the Ziffers system is
+specific to each targeted platform. The first prototype of Ziffers has
+been created since 2018 <span class="citation"
+data-cites="Ziffers_2018">(Alonen 2018)</span> as an inline parser for
+<em>Sonic Pi</em>. It initially took form as an attempt to speed up the
+process of writing melodic lines by taking advantage of the large number
+of predefined methods and compositional helpers offered by <em>Sonic
+Pi’s</em> rich internal library. The dissociation between pitch and
+rhythm imposed by <em>Sonic Pi</em> data structure and
+imperative-oriented programming model has been felt an hinderance when
+writing and prototyping complex melodies. After a few years of
+prototyping, Ziffers 2.0 was released in 2022 <span class="citation"
+data-cites="Ziffers_2022">(Alonen 2022)</span>. It includes a new parser
+that extends Ziffers capabilities with new operators, nested structures
+and better support for stochastic and aleatoric composition.</p>
 <h1 data-number="2"
 id="method-designing-by-drawing-from-music-notation-history"><span
-class="header-section-number">2</span> METHOD: DESIGNING BY DRAWING FROM
-MUSIC NOTATION HISTORY</h1>
-<p>The Ziffers music notation project initially started as an experiment
-to confront historical numeric pitch-based music notation practices with
-the kairotic notations <span class="citation"
-data-cites="cocker2013live">(Cocker 2013)</span> typically found in live
-coding and algorithmic music performance systems <span class="citation"
-data-cites="blackwell2022live">(Blackwell et al. 2022)</span>.
-Therefore, the system has been designed iteratively in conversation with
-the diverse and complex historical legacy of said practices. Documents
-pertaining to the systems of numeric pitch notation in common practice
-can be traced back as early as the European baroque up to the
-contemporan era through examples as varied as the American Nashville
-system, the Chinese Jianpu simplified notation <span class="citation"
-data-cites="kaminski2022jianpu MNMA_2022">(Kaminski 2022; MNMA
-2022)</span> or the theoretical pitch-class set numbering of musical
-structures and chords used in post-tonal music theory <span
+class="header-section-number">2</span> Method: Designing by drawing from
+music notation history</h1>
+<p>The Ziffers music notation is confronting historical numeric
+pitch-based music notation practices with the kairotic notations <span
+class="citation" data-cites="cocker2013live">(Cocker 2013)</span>
+typically found in live coding and algorithmic music performance systems
+<span class="citation" data-cites="blackwell2022live">(Blackwell et al.
+2022)</span>. Therefore, the system has been designed iteratively, in
+conversation with the diverse and complex historical legacy of said
+practices. Documents pertaining to the systems of numeric pitch notation
+in common practice can be traced back as early as the European baroque
+up to the contemporan era through examples as varied as the American
+Nashville system, the Chinese Jianpu simplified notation <span
+class="citation" data-cites="kaminski2022jianpu MNMA_2022">(Kaminski
+2022; MNMA 2022)</span> or the theoretical pitch-class set numbering of
+musical structures and chords used in post-tonal music theory <span
 class="citation" data-cites="forte1973structure">(Forte
 1973)</span>.</p>
-<p>Numerical systems for score, harmonic or melodic writing – less
-commonly encountered than their staff-based counterparts – have
+<p>Numerical systems for score, harmonic or melodic writing –– less
+commonly encountered than their staff-based counterparts –– have
 historically served as compositional tools for polyphonic contrapuntal
 notation <span class="citation" data-cites="davantes1560">(Davantès
 1560)</span>, early theoretical endeavours in algorithmic composition
@@ -207,7 +205,7 @@ notation systems capable of formalizing musical systems or previously
 non-written musical practices <span class="citation"
 data-cites="Schaffrath1997 chemillier2002ethnomusicology">(Schaffrath
 1997; Chemillier 2002)</span>.</p>
-<p>We perceive – as a thought experiment – the use of mininotations
+<p>We perceive –– as a thought experiment –– the use of mininotations
 <span class="citation" data-cites="magnusson2018performing">(Magnusson
 and McLean 2018)</span> as modern live coding analogues to previously
 mentioned numerical music notation systems. In that regard, with their
@@ -244,20 +242,22 @@ data-cites="dannenberg1997machine">(Dannenberg 1997)</span>,
 SuperCollider <span class="citation"
 data-cites="mccartney2002rethinking">(McCartney 2002)</span>, Sonic Pi
 <span class="citation" data-cites="aaron2016sonic">(Aaron 2016)</span>,
-TidalCycles <span class="citation" data-cites="mclean2010tidal">(McLean
-and Wiggins 2010)</span>, Open Music <span class="citation"
-data-cites="bresson2017next">(Bresson et al. 2017)</span>, OpusModus
+Open Music <span class="citation" data-cites="bresson2017next">(Bresson
+et al. 2017)</span>, TidalCycles <span class="citation"
+data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span>, OpusModus
 <span class="citation" data-cites="opusmodus2022">(Opusmodus
-2022)</span>, often extends musical notation by blending it with
-computational models of control flow, sound processing capabilities or
-binding different means of sonic writing: “The instrument incorporates
-notational elements, but conversely the notational is becoming
-increasingly instrumental and systematic” <span class="citation"
+2022)</span> and Mercury <span class="citation"
+data-cites="hoogland2019mercury">(Hoogland 2019)</span> often extends
+musical notation by blending it with computational models of control
+flow, sound processing capabilities or binding different means of sonic
+writing: <em>“The instrument incorporates notational elements, but
+conversely the notational is becoming increasingly instrumental and
+systematic”</em> <span class="citation"
 data-cites="magnusson2019sonic">(Magnusson 2019)</span>.</p>
 <h1 data-number="3"
 id="objectives-specification-of-a-cross-platform-notation-system"><span
-class="header-section-number">3</span> OBJECTIVES: SPECIFICATION OF A
-CROSS-PLATFORM NOTATION SYSTEM</h1>
+class="header-section-number">3</span> Objectives: Specification of a
+cross-platform notation system</h1>
 <p>Objectives of the Ziffers numerical notation adheres to the cognitive
 dimensions of music notations as defined by <span class="citation"
 data-cites="nash2015cognitive">Nash (2015)</span> and to the criterion
@@ -423,22 +423,21 @@ class="header-section-number">4.3</span> Parsers</h2>
 the Ruby-based Treetop library (Treetop 2022). Ziffers is constituted of
 three parsers, each one handling specific use cases depending on the
 nature of the input. The <strong>Parameter parser</strong> is used for
-multiline parsing where notation can include supplementary information
-for the parsing, such as the key, scale, synth, MIDI port, MIDI channel
-and other context or environment specific parameters. <strong>Generative
-parser</strong> has been specialized to parse random number generators,
-sequence generators relying on various conditional statements and
-mathematical operations. Furthermore, an optional string rewrite loop
-can be used to extend these generative capabilities by transforming the
-input through recursive substitution of some parts of the initial input.
-One can think of the Ziffers parsing system as a multi-layered
-conditional parsing operation. After a first part of context specific or
-generative parsing operations, the resulting string is parsed again
-using the <strong>Basic parser</strong>, which includes only the static
-definitions of pitches, octaves and durations. The relevant data
-structures for the parsed notation is implemented as subclasses of array
-and hash which implements all of the necessary methods for the
-transformations.</p>
+multiline parsing where notation can include supplementary information,
+such as the key, scale, synth, MIDI port, MIDI channel and other context
+or environment specific parameters. <strong>Generative parser</strong>
+has been specialized to parse random number generators, sequence
+generators relying on various conditional statements and mathematical
+operations. Furthermore, an optional string rewrite loop can be used to
+extend these generative capabilities by transforming the input through
+recursive substitution of some parts of the initial input. One can think
+of the Ziffers parsing system as a multi-layered conditional parsing
+operation. After a first part of context specific or generative parsing
+operations, the resulting string is parsed again using the <strong>Basic
+parser</strong>, which includes only the static definitions of pitches,
+octaves and durations. The relevant data structures for the parsed
+notation is implemented as subclasses of array and hash which implements
+all of the necessary methods for the transformations.</p>
 <h2 data-number="4.4" id="transformations"><span
 class="header-section-number">4.4</span> Transformations</h2>
 <p>The Transformation phase is an optional step for the manipulation of
@@ -507,14 +506,14 @@ symbols as well as many variations in their writing. For better
 readability and for the sake of brevity, we have chosen to list and
 comment only the most commonly accessed tokens, relegating other
 notation symbols to the example tables. Detailed sections will cover the
-more advanced and Ziffers specific features.</p>
-<p>Basic notation contains all static symbols, which can be parsed
-without additional processing. By default, Ziffers interprets numbers as
-in pitch class notation <code>[0-9TE]</code>, extending numbers to
-capital characters <code>T</code> for <code>10</code> and <code>E</code>
-for <code>11</code> to support faster input for 12-tone compositions.
-Pitch classes higher than <code>9</code> or lower than <code>-9</code>
-can also be escaped using curly braces. For example pitch classes
+more advanced and Ziffers specific features. Basic notation contains all
+static symbols, which can be parsed without additional processing. By
+default, Ziffers interprets numbers as in pitch class notation
+<code>[0-9TE]</code>, extending numbers to capital characters
+<code>T</code> for <code>10</code> and <code>E</code> for
+<code>11</code> to support faster input for 12-tone compositions. Pitch
+classes higher than <code>9</code> or lower than <code>-9</code> can
+also be escaped using curly braces. For example pitch classes
 <code>-12</code> and <code>24</code> could be notated as
 <code>{-12 23}</code>, which is then interpreted to the right octave
 depending on the scale. For example in major scale number
@@ -529,8 +528,8 @@ calculation and knowledge of the given scale.</p>
 option, where integers from 1-9 are interpreted as scale degrees. Use of
 degree based notation can be easier for those who are only familiar with
 scale degrees and not accustomed to pitch class notation.</p>
-<p>In degree based notation degrees range from 1 to 9 (depending on the
-scale length). Compared to pitch class notation the degree based
+<p>In degree based notation, degrees range from 1 to 9 depending on the
+scale length. Compared to pitch class notation, the degree based
 notation does not have the root as a mirroring axis. Pitches can also be
 sharpened using <strong>#</strong> or flattened with <strong>b</strong>
 when using diatonic scales.</p>
@@ -571,16 +570,17 @@ to minor pentatonic. Consider following pattern both key:
 <code>| 0 3 -1 2 | 0 3 _6 2 |</code> In minor scale both measures are
 exactly the same, but since minor pentatonic has only 5 scale degrees
 there is a difference in how the <code>_6</code> is interpreted compared
-to <code>-1</code>. <strong>Chords</strong> are typically represented by
-using number groups. The basic diatonic major chord can thus be
-represented as 024 in diatonic context, and as 047 in a chromatic
-context. Pitches in chords can be defined in different octaves combining
-the notation for example <code>024^0 _12&lt;1&gt;4</code>.
-<strong>Whitespace</strong> acts as an separator for different objects,
-like the chords in a sequence. <strong>Chord inversions</strong> can be
-amended using the <code>%</code> symbol in combination with a chord
-<code>024%2</code>. Roman numerals are also supported as part of the
-extended syntax for chord writing based on tonal/diatonic techniques.
+to <code>-1</code>.</p>
+<p><strong>Chords</strong> are typically represented by using number
+groups. The basic diatonic major chord can thus be represented as 024 in
+diatonic context, and as 047 in a chromatic context. Pitches in chords
+can be defined in different octaves combining the notation for example
+<code>024^0 _12&lt;1&gt;4</code>. <strong>Whitespace</strong> acts as an
+separator for different objects, like the chords in a sequence.
+<strong>Chord inversions</strong> can be amended using the
+<code>%</code> symbol in combination with a chord <code>024%2</code>.
+Roman numerals are also supported as part of the extended syntax for
+chord writing based on tonal/diatonic techniques.
 <strong>Articulations</strong>, such as staccato ’ and accents ` ´ can
 be used to affect the amplitude and the duration of the pitches.
 Definition of <strong>Measures</strong> are optional but can prove
@@ -659,24 +659,24 @@ list syntax and escape notation for built-in methods:
 <code>(list)&lt;method&gt;(optional-list)</code>. Ziffers also
 implements numerous shorthand notations for useful transformations, like
 <strong>cyclic zip</strong> for combining values from two lists,
-notation for <strong>pitch-class set multiplication</strong>
-[heinemann1998pitch] and <strong>sequence interpolation</strong>
-inspired by the Thesaurus of scales and melodic patterns <span
-class="citation" data-cites="slonimsky1986thesaurus">(Slonimsky
-1986)</span>. <strong>Generative repeat</strong> syntax can be used to
-generate values multiple times, where as normal repeats are used to
-repeat the generated values and create a sense of repetition.
-<strong>List functions</strong> are inspired by polynomial functions,
-and can be used to transform the values using arithmetic
-expressions.</p>
+notation for <strong>pitch-class set multiplication</strong> <span
+class="citation" data-cites="heinemann1998pitch">(Heinemann 1998)</span>
+and <strong>sequence interpolation</strong> inspired by the Thesaurus of
+scales and melodic patterns <span class="citation"
+data-cites="slonimsky1986thesaurus">(Slonimsky 1986)</span>.
+<strong>Generative repeat</strong> syntax can be used to generate values
+multiple times, where as normal repeats are used to repeat the generated
+values and create a sense of repetition. <strong>List functions</strong>
+are inspired by polynomial functions, and can be used to transform the
+values using arithmetic expressions.</p>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>(q e e)<span class="op">&lt;&gt;</span>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>) <span class="co">// q 0 e 1 q 2 e 3 q 4 # Cyclic zip</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">&lt;+&gt;</span>(<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>) <span class="co">// 1 3 1 4 1 5 2 3 2 4 2 5 # Product of two lists</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">5</span>)<span class="op">&lt;*&gt;</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>) <span class="co">//  0 5 3 8 6 {11} 9 {14} # Pitch-class set multiplication</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">3</span>)<span class="op">&lt;</span><span class="dv">4</span><span class="op">&gt;</span>(<span class="dv">1</span> <span class="dv">3</span>) <span class="co">// 2 4 6 1 3 5 # Interval interpolation</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">4</span>) <span class="op">:</span><span class="dv">3</span>) <span class="co">// Generated 3 different random numbers</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span> (<span class="fl">0.</span><span class="op">.</span><span class="dv">3</span>){(<span class="dv">2</span><span class="er">x</span><span class="op">-</span><span class="dv">1</span>)(<span class="dv">2</span><span class="er">x</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span>)} <span class="co">// Using function to transform a list</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>(q e e)<span class="op">&lt;&gt;</span>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>)   <span class="co">// Cyclic zip: q 0 e 1 q 2 e 3 q 4 </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">&lt;+&gt;</span>(<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>)   <span class="co">// Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">5</span>)<span class="op">&lt;*&gt;</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>) <span class="co">// Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">3</span>)<span class="op">&lt;</span><span class="dv">4</span><span class="op">&gt;</span>(<span class="dv">1</span> <span class="dv">3</span>)     <span class="co">// Interval interpolation: 2 4 6 1 3 5 </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">4</span>) <span class="op">:</span><span class="dv">3</span>)      <span class="co">// Generate 3 different random numbers</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span> (<span class="fl">0.</span><span class="op">.</span><span class="dv">3</span>){(<span class="dv">2</span><span class="er">x</span><span class="op">-</span><span class="dv">1</span>)(<span class="dv">2</span><span class="er">x</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span><span class="dv">4</span>)}     <span class="co">// Using function to transform a list</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>((<span class="dv">1</span><span class="op">,</span><span class="dv">5</span>)){x<span class="op">&lt;</span><span class="dv">2</span><span class="op">?</span>(x<span class="op">+</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">2</span><span class="er">x</span>)(x<span class="op">-</span><span class="dv">2</span>)} <span class="co">// Applying functions conditionally </span></span></code></pre></div>
 <p><strong>Chords</strong> can be generated using roman numerals
 <code>(i-vii)</code> and further modified using chord names, inversions
@@ -728,12 +728,12 @@ notation. Values in the list will overflow to the beginning if there are
 not enough values for the whole cycle. Inner cycles can also be defined
 using cyclic syntax, to make more complex structures.</p>
 <div class="sourceCode" id="cb15"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ss">/ synth: :pretty_bell</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ss">s </span><span class="sc">(</span><span class="ss">&lt;0 &lt;3 &lt;5 </span><span class="sc">(</span><span class="ss">-3,3</span><span class="sc">)</span><span class="ss">&gt;&gt;&gt;</span><span class="sc">)</span><span class="ss">&lt;3,6&gt; // Spread nested cycles</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ss">/</span> synth<span class="op">:</span> <span class="op">:</span>kalimba</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>((q <span class="dv">0</span> <span class="dv">3</span>) (q <span class="dv">4</span> <span class="dv">3</span>))<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="op">/</span> X<span class="op">:</span> <span class="op">:</span>elec_flip<span class="op">,</span> B<span class="op">:</span> <span class="op">:</span>drum_cowbell</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">&gt;</span>(eB sX)</span></code></pre></div>
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ss">/ synth: :pretty_bell             // Change the synth</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ss">s </span><span class="sc">(</span><span class="ss">&lt;0 &lt;3 &lt;5 </span><span class="sc">(</span><span class="ss">-3,3</span><span class="sc">)</span><span class="ss">&gt;&gt;&gt;</span><span class="sc">)</span><span class="ss">&lt;3,6&gt;       // Spread nested cycles</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ss">/</span> synth<span class="op">:</span> <span class="op">:</span>kalimba                 <span class="co">// Change synth again</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))     <span class="co">// Spread pitches and lists</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ss">/ X: :elec_flip, B: :drum_cowbell // Assign samples</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="sc">(</span><span class="ss">eX sB</span><span class="sc">)</span><span class="ss">&lt;13,16&gt;</span><span class="sc">(</span><span class="ss">eB sX</span><span class="sc">)</span><span class="ss">             // Spread samples</span></span></code></pre></div>
 <p>Expressions can be <strong>evaluated</strong> using curly braces:
 <code>{...}</code>, which can be used for escaping pitches, arithmetic
 operations or conditional logic. Using ternary operator syntax
@@ -746,7 +746,7 @@ class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a h
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">=</span>{<span class="dv">10</span> (<span class="dv">10</span><span class="op">,</span><span class="dv">20</span>) <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}       <span class="co">// Evaluates as chords</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">3</span>}               <span class="co">// Conditional evalution</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>{(<span class="dv">0</span><span class="op">,</span><span class="dv">9</span>)<span class="op">&gt;</span><span class="dv">4</span><span class="op">?</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">6</span>)}   <span class="co">// Random numbers based on condition</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span> <span class="op">%&gt;</span><span class="fl">0.2</span><span class="op">?</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>}    <span class="co">// Multiple conditionals </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span> <span class="op">%&gt;</span><span class="fl">0.2</span><span class="op">?</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>}     <span class="co">// Multiple conditionals </span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Assign Ziffers patterns to variables</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">1</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>)) B<span class="op">=</span>(<span class="dv">0</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span><span class="dv">6</span>] <span class="dv">3</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span><span class="dv">5</span>]) A B A B A</span>
@@ -884,6 +884,19 @@ Shift.”</span> <em>Journal of Mathematics and Music</em> 15 (3): 247–66.
 Good, Michael. 2001. <span>“MusicXML for Notation and Analysis.”</span>
 <em>The Virtual Score: Representation, Retrieval, Restoration</em> 12
 (113-124): 160.
+</div>
+<div id="ref-heinemann1998pitch" class="csl-entry"
+role="doc-biblioentry">
+Heinemann, Stephen. 1998. <span>“Pitch-Class Set Multiplication in
+Theory and Practice.”</span> <em>Music Theory Spectrum</em> 20 (1):
+72–96.
+</div>
+<div id="ref-hoogland2019mercury" class="csl-entry"
+role="doc-biblioentry">
+Hoogland, Timo. 2019. <span>“Mercury: A Live Coding Environment Focussed
+on Quick Expression for Composing, Performing and Communicating.”</span>
+In <em>Proceedings of the Fourth International Conference on Live
+Coding</em>, 353–64.
 </div>
 <div id="ref-hoos1998guido" class="csl-entry" role="doc-biblioentry">
 Hoos, Holger H, Keith A Hamel, Kai Renz, and Jürgen Kilian. 1998.
