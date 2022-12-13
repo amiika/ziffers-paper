@@ -89,14 +89,14 @@ Composition</h1>
 <p>Ziffers is an algorithmic number based musical notation system. It
 offers concise syntax to support composition and improvisation with
 complex melodies and rhythms. Ziffers is the result of experiments in
-unifying and making compatible several types of musical notation centred
-around the use of symbols and numbers. It is inspired by the older
-numbered musical notations (<em>Ziffersystem</em>, <em>Jianpu</em>),
-contemporary music theory (pitch-class sets, post-tonal music analysis,
-serialism) and shorthand notations used in live-coding. Ziffers tries to
-reach a balance between fixed media music notation and generative
-notations for live coding performance. Consequently, the Ziffers system
-has been influenced by <em>TidalCycles</em> <span class="citation"
+unifying several types of musical notation centred around the use of
+symbols and numbers. It is inspired by the older numbered musical
+notations (<em>Ziffersystem</em>, <em>Jianpu</em>), contemporary music
+theory (pitch-class sets, post-tonal music analysis, serialism) and
+shorthand notations used in live-coding. Ziffers tries to reach a
+balance between fixed media music notation and generative notations for
+live coding performance. Consequently, the Ziffers system has been
+influenced by <em>TidalCycles</em> <span class="citation"
 data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span> and
 <em>Ixi Lang</em> <span class="citation"
 data-cites="magnusson2011ixi">(Magnusson 2011)</span>. In their lineage,
@@ -110,9 +110,8 @@ Pi</em> <span class="citation" data-cites="aaron2016sonic">(Aaron
 2016)</span>, a live coding platform designed for education and music
 performance. The second is available a plugin for Musescore 3.0, a
 general purpose scorewriter and score playback software. In doing so, we
-hope to highlight the versatility of our approach, which seems to allow
-the use of a unified syntax for different contexts of execution and
-interpretation.</p>
+hope to highlight the versatility of our approach in using unified
+syntax for different contexts of execution and interpretation.</p>
 </div>
 
 <h1 data-number="1"
@@ -151,21 +150,19 @@ capable of embedding algorithmic and generative processes at the
 notational level. Basic tokens denoting pitch, rhythm or expression
 marks form the base notation. They have subsequently been enriched by
 operators and generative constructs denoting algorithmic transformations
-built upon that first layer. The implementation of the Ziffers system is
-specific to each targeted platform. The first prototype of Ziffers has
-been created since 2018 <span class="citation"
-data-cites="Ziffers_2018">(Alonen 2018)</span> as an inline parser for
-<em>Sonic Pi</em>. It initially took form as an attempt to speed up the
-process of writing melodic lines by taking advantage of the large number
-of predefined methods and compositional helpers offered by <em>Sonic
-Pi’s</em> rich internal library. The dissociation between pitch and
-rhythm imposed by <em>Sonic Pi</em> data structure and
-imperative-oriented programming model has been felt an hinderance when
-writing and prototyping complex melodies. After a few years of
-prototyping, Ziffers 2.0 was released in 2022 <span class="citation"
-data-cites="Ziffers_2022">(Alonen 2022)</span>. It includes a new parser
-that extends Ziffers capabilities with new operators, nested structures
-and better support for stochastic and aleatoric composition.</p>
+built upon that first layer. Ziffers initially took form as an attempt
+to speed up the process of writing melodic lines by taking advantage of
+the large number of predefined methods and compositional helpers offered
+by <em>Sonic Pi’s</em> rich internal library. The dissociation between
+pitch and rhythm imposed by <em>Sonic Pi</em> data structures and
+imperative-oriented programming model lead to the development of the
+first prototype of Ziffers <span class="citation"
+data-cites="Ziffers_2018">(Alonen 2018)</span>. After a few years of
+research and prototyping, Ziffers 2.0 was released in 2022 <span
+class="citation" data-cites="Ziffers_2022">(Alonen 2022)</span>. It
+includes a new parser that extends Ziffers capabilities with new
+operators, nested structures and better support for stochastic and
+aleatoric composition.</p>
 <h1 data-number="2"
 id="method-designing-by-drawing-from-music-notation-history"><span
 class="header-section-number">2</span> Method: Designing by drawing from
@@ -226,27 +223,28 @@ alike. Generative numeric notation can also mitigate the separation
 between static and dynamic music notation languages as defined by
 Dannenberg’s typology of the domain. Examples such as Adagio <span
 class="citation" data-cites="dannenberg1986cmu">(Dannenberg
-1986)</span>, ABC <span class="citation"
-data-cites="walshaw2011abc">(Walshaw 2011)</span>, Guido <span
-class="citation" data-cites="hoos1998guido">(Hoos et al. 1998)</span>,
-MML <span class="citation" data-cites="mml2001">(Izumi 2001)</span>,
-MusicXML <span class="citation" data-cites="good2001musicxml">(Good
-2001)</span>, HumDrum <span class="citation"
-data-cites="huron2002music">(Huron 2002)</span>, Lilypond <span
-class="citation" data-cites="nienhuys2003lilypond">(Nienhuys and
-Nieuwenhuizen 2003)</span> or MusicTXT <span class="citation"
+1986)</span>, ESAC <span class="citation"
+data-cites="Schaffrath1997">(Schaffrath 1997)</span>, ABC <span
+class="citation" data-cites="walshaw2011abc">(Walshaw 2011)</span>,
+Guido <span class="citation" data-cites="hoos1998guido">(Hoos et al.
+1998)</span>, MML <span class="citation" data-cites="mml2001">(Izumi
+2001)</span>, MusicXML <span class="citation"
+data-cites="good2001musicxml">(Good 2001)</span>, HumDrum <span
+class="citation" data-cites="huron2002music">(Huron 2002)</span>,
+Lilypond <span class="citation"
+data-cites="nienhuys2003lilypond">(Nienhuys and Nieuwenhuizen
+2003)</span> or MusicTXT <span class="citation"
 data-cites="li2021musictxt">(Li and Li 2021)</span> as static languages,
 focus on the encoding of musical information on fixed medium while other
 dynamic languages such as Nyquist <span class="citation"
 data-cites="dannenberg1997machine">(Dannenberg 1997)</span>,
 SuperCollider <span class="citation"
-data-cites="mccartney2002rethinking">(McCartney 2002)</span>, Sonic Pi
-<span class="citation" data-cites="aaron2016sonic">(Aaron 2016)</span>,
-Open Music <span class="citation" data-cites="bresson2017next">(Bresson
-et al. 2017)</span>, TidalCycles <span class="citation"
-data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span>, OpusModus
-<span class="citation" data-cites="opusmodus2022">(Opusmodus
-2022)</span> and Mercury <span class="citation"
+data-cites="mccartney2002rethinking">(McCartney 2002)</span>,
+TidalCycles <span class="citation" data-cites="mclean2010tidal">(McLean
+and Wiggins 2010)</span>, Sonic Pi <span class="citation"
+data-cites="aaron2016sonic">(Aaron 2016)</span>, OpusModus <span
+class="citation" data-cites="opusmodus2022">(Opusmodus 2022)</span> and
+Mercury <span class="citation"
 data-cites="hoogland2019mercury">(Hoogland 2019)</span> often extends
 musical notation by blending it with computational models of control
 flow, sound processing capabilities or binding different means of sonic
@@ -260,8 +258,8 @@ class="header-section-number">3</span> Objectives: Specification of a
 cross-platform notation system</h1>
 <p>Objectives of the Ziffers numerical notation adheres to the cognitive
 dimensions of music notations as defined by <span class="citation"
-data-cites="nash2015cognitive">Nash (2015)</span> and to the criterion
-defined by the Music Notation Project <span class="citation"
+data-cites="nash2015cognitive">Nash (2015)</span> and to the subset of
+criterion defined by the Music Notation Project <span class="citation"
 data-cites="MNMA_2022">(MNMA 2022)</span>. The notation must allow users
 of different ages and backgrounds to compose music. The Ziffers
 extension built for Sonic Pi presented in latter sections of this paper
@@ -271,16 +269,18 @@ development of the numerical notation aims to remove the exclusivity
 that comes with the music theory and provide a beneficial live coding
 experience for the uninitiated. Use of numeric notation should make it
 possible to write melodic sequences and interval movements using numbers
-regardless of the key and scale. The notation should also be minimal
-enough to be easily manipulated through any writing tool by relying
-solely on symbols taken from the ASCII table. To easily conceptualize
-pitches in time, defining a combination of pitch and duration should be
-as straightforward as possible. The notation should be able to function
-as an educational tool for teaching music theory and composition.
-Furthermore, by making the user aware of the relationship between
-musical and mathematical notation, the system should also support
-teaching advanced music theory concepts such as musical set theory and
-the manipulation of pitch-sets or any complex musical objects.</p>
+regardless of the key and scale.</p>
+<p>The implementation of the Ziffers notation is specific to each
+targeted platform. The notation should also minimal enough to be easily
+manipulated through any writing tool by relying solely on symbols taken
+from the ASCII table. To easily conceptualize pitches in time, defining
+a combination of pitch and duration should be as straightforward as
+possible. The notation should be able to function as an educational tool
+for teaching music theory and composition. Furthermore, by making the
+user aware of the relationship between musical and mathematical
+notation, the system should also support teaching advanced music theory
+concepts such as musical set theory and the manipulation of pitch-sets
+or any complex musical objects.</p>
 <p>The number of live coding environments have steadily increased in
 recent years <span class="citation" data-cites="awesome2022">(Toplap
 2022)</span>. We argue that there is now a need for some amount of
@@ -554,7 +554,7 @@ differently depending on the chosen duration syntax:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Melody using note length characters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">|</span> q2 e1 q2 e3 <span class="op">|</span> h<span class="op">.</span><span class="dv">4</span> <span class="op">|</span> e <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q4 e3 q2 e1 <span class="op">|</span> h<span class="op">.</span> <span class="dv">0</span> <span class="op">|</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Melody using decimal notation</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.75</span> <span class="dv">4</span> <span class="op">|</span> …</span></code></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.75</span> <span class="dv">4</span> <span class="op">|</span> <span class="co">// …</span></span></code></pre></div>
 <p><strong>Key</strong> is determined from given parameters or from
 inline notation denoted by either MIDI notes, note names or scientific
 pitch notation. <strong>Scale</strong> is determined from the predefined
@@ -819,12 +819,6 @@ href="https://github.com/amiika/ziffers">https://github.com/amiika/ziffers</a>.
 role="doc-biblioentry">
 Blackwell, Alan F, Emma Cocker, Geoff Cox, Alex McLean, and Thor
 Magnusson. 2022. <em>Live Coding: A User’s Manual</em>. MIT Press.
-</div>
-<div id="ref-bresson2017next" class="csl-entry" role="doc-biblioentry">
-Bresson, Jean, Dimitri Bouche, Thibaut Carpentier, Diemo Schwarz, and
-Jérémie Garcia. 2017. <span>“Next-Generation Computer-Aided Composition
-Environment: A New Implementation of OpenMusic.”</span> In
-<em>International Computer Music Conference (ICMC’17)</em>.
 </div>
 <div id="ref-chemillier2002ethnomusicology" class="csl-entry"
 role="doc-biblioentry">
