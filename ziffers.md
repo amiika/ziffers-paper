@@ -10,9 +10,9 @@ author:
     affiliation: ECLLA. Université Jean Monnet, France
     email: raphael.forment@gmail.com
 abstract: |
-    Ziffers is a number based algorithmic musical notation system. It offers a concise syntax to support improvisation and composition with complex melodies and rhythms. Ziffers is the result of experiments aimed at unifying and making compatible several types of musical notation centered around the use of symbols or numbers. The Ziffers syntax evolved from experiments aiming to close the gap between several similar-looking number and symbol based systems for music notation. It borrows from *Jianpu notation*, contemporary music theory (pitch-class sets, post-tonal music) and from other live-coding shorthand notations. Ziffers tries to reach a balance between fixed media music notation and notation for live coding performance. Consequently, the Ziffers system has been influenced by *TidalCycles* [@mclean2010tidal] and *Ixi Lang* [@magnusson2011ixi]. In their lineage, Ziffers intends to propose a powerful mini-notation system allowing the on-the-fly alteration of musical patterns.
+    Ziffers is a number based algorithmic musical notation system. It offers a concise syntax to support composition and improvisation with complex melodies and rhythms. Ziffers is the result of experiments aimed at unifying and making compatible several types of musical notation centered around the use of symbols or numbers. It is inspired by different numbered notations (*Ziffersystem*, *Jianpu*), contemporary music theory (pitch-class sets, post-tonal music) and from other live-coding shorthand notations. Ziffers tries to reach a balance between fixed media music notation and generative notations for live coding performance. Consequently, the Ziffers system has been influenced by *TidalCycles* [@mclean2010tidal] and *Ixi Lang* [@magnusson2011ixi]. In their lineage, Ziffers intends to propose a powerful mini-notation system allowing the on-the-fly alteration of musical patterns.
 
-    In this article, we propose an implementation agnostic presentation of the Ziffers musical notation system. As a proof of concept, this article will also present the two implementations currently in use. The first one is integrated as an unofficial plugin for *Sonic Pi* [@aaron2016sonic], a live coding platform designed for education and music performance. The second is available a plugin for Musescore 3.0, a general purpose scorewriter and score playback software. In doing so, we hope to highlight the versatility of our approach, which seems to allow the use of a unified syntax for different contexts of execution and interpretation.
+    In this article, we propose an implementation agnostic numbered notation for algorithmic composition and live coding. As a proof of concept, this article will also present the two implementations currently in use. The first one is integrated as an unofficial plugin for *Sonic Pi* [@aaron2016sonic], a live coding platform designed for education and music performance. The second is available a plugin for Musescore 3.0, a general purpose scorewriter and score playback software. In doing so, we hope to highlight the versatility of our approach, which seems to allow the use of a unified syntax for different contexts of execution and interpretation.
 fontsize: 11pt
 geometry: margin=2cm
 fontfamily: libertine
@@ -25,7 +25,7 @@ header-includes:
 ...
 # INTRODUCTION: ZIFFERS, QUICKLY EDITABLE NUMBER BASED NOTATION
 
-**Ziffers** — named and inspired by the older *Ziffersystem* [@warkentin2022story] — proposes a system focused on the conciseness and expressiveness of musical notation. Ziffers is designed to enable generation and transformation of musical patterns [@mccormack1996grammar;@mclean2020algorithmic] in minimal amounts of time and typing. To do so, Ziffers uses a text-based syntax for representing various short-hand symbolic notations used in music theory. It also borrows various syntactic-sugar constructs typically found in other computer programming languages (WHICH ONES??). The need for a concise and succinct notation in the context of live coding performance is a well-known constraint [@roberts2018tensions]. It gave rise, in the past decades, to many practices and techniques aiming to reduce frictions in the conversational feedback loop between the musician and its programming interface. Domain specific languages (DSLs) and the use of terse mini notations have become an important design pattern in the conception of live coding interfaces [@hoogland2019mercury]. They can also be noted to be a key concept in the larger realm of exploratory or conversational open-ended programming where reactivity and fast decision-making is of prime importance to achieve a creative state of flow [@nash2015cognitive;@kery2017exploring].
+**Ziffers** — named and inspired by the older *Ziffersystem* [@warkentin2022story] — proposes a system focused on the conciseness and expressiveness of musical notation. Ziffers is designed to enable generation and transformation of musical patterns [@mccormack1996grammar;@mclean2020algorithmic] in minimal amounts of time and typing. To do so, Ziffers uses a text-based syntax for representing various short-hand symbolic notations used in music theory. It also includes various syntactic-sugar constructs from different programming languages, like the ternary operator and the lisp-like syntax for lists. The need for a concise and succinct notation in the context of live coding performance is a well-known constraint [@roberts2018tensions]. It gave rise, in the past decades, to many practices and techniques aiming to reduce frictions in the conversational feedback loop between the musician and its programming interface. Domain specific languages (DSLs) and the use of terse mini notations have become an important design pattern in the conception of live coding interfaces [@hoogland2019mercury]. They can also be noted to be a key concept in the larger realm of exploratory or conversational open-ended programming where reactivity and fast decision-making is of prime importance to achieve a creative state of flow [@nash2015cognitive;@kery2017exploring].
 
 Ziffers is designed as a terse and platform independent syntax capable of embedding algorithmic and generative processes at the notational level. Basic tokens denoting pitch, rhythm or expression marks form the base notation. They have subsequently been enriched by operators and generative constructs denoting algorithmic transformations built upon that first layer. The implementation of the Ziffers system is specific to each targeted platform. The first prototype of Ziffers has been created since 2018 [@Ziffers_2018] as an inline parser for *Sonic Pi*. It initially took form as an attempt to speed up the process of writing melodic lines by taking advantage of the large number of predefined methods and compositional helpers offered by *Sonic Pi's* rich internal library. The dissociation between pitch and rhythm imposed by *Sonic Pi* data structure and imperative-oriented programming model has been felt an hinderance when writing and prototyping complex melodies. After a few years of prototyping, Ziffers 2.0 was released in 2022 [@Ziffers_2022]. It includes a new parser that extends Ziffers capabilities with new operators, nested structures and better support for stochastic and aleatoric composition.
 
@@ -246,16 +246,16 @@ w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 (q 0  e 1 2 q 3 5)+(3 0 -2 3)-(2 1 3 4) // Lists and operations can be chained
 ~~~~
 
-**Transformations** can also be notated inline using the list syntax and escape notation for built-in methods: `(list)<method>(optional-list)`. Ziffers also implements numerous shorthand notations for useful transformations, like **cyclic zip** for combining values from two lists, notation for **pitch-class set multiplication** [heinemann1998pitch] and **sequence interpolation** inspired by the Thesaurus of scales and melodic patterns [@slonimsky1986thesaurus]. **Generative repeat** syntax can be used to generate values multiple times, where as normal repeats are used to repeat the generated values and create a sense of repetition. **List functions** are inspired by polynomial functions, and can be used to transform the values using arithmetic expressions. 
+**Transformations** can also be notated inline using the list syntax and escape notation for built-in methods: `(list)<method>(optional-list)`. Ziffers also implements numerous shorthand notations for useful transformations, like **cyclic zip** for combining values from two lists, notation for **pitch-class set multiplication** [@heinemann1998pitch] and **sequence interpolation** inspired by the Thesaurus of scales and melodic patterns [@slonimsky1986thesaurus]. **Generative repeat** syntax can be used to generate values multiple times, where as normal repeats are used to repeat the generated values and create a sense of repetition. **List functions** are inspired by polynomial functions, and can be used to transform the values using arithmetic expressions. 
 
 ~~~~ {.js}
 (1 2 3)<retrograde>
-(q e e)<>(0..5) // q 0 e 1 q 2 e 3 q 4 # Cyclic zip
-(1 2)<+>(3 4 5) // 1 3 1 4 1 5 2 3 2 4 2 5 # Product of two lists
-(0 5)<*>(0 3 6 9) //  0 5 3 8 6 {11} 9 {14} # Pitch-class set multiplication
-(1 3)<4>(1 3) // 2 4 6 1 3 5 # Interval interpolation
-(: (1,4) :3) // Generated 3 different random numbers
-q (0..3){(2x-1)(2x^2-4)} // Using function to transform a list
+(q e e)<>(0..5)   // Cyclic zip: q 0 e 1 q 2 e 3 q 4 
+(1 2)<+>(3 4 5)   // Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 
+(0 5)<*>(0 3 6 9) // Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}
+(1 3)<4>(1 3)     // Interval interpolation: 2 4 6 1 3 5 
+(: (1,4) :3)      // Generate 3 different random numbers
+q (0..3){(2x-1)(2x^2-4)}     // Using function to transform a list
 ((1,5)){x<2?(x+3):(2x)(x-2)} // Applying functions conditionally 
 ~~~~
 
@@ -272,12 +272,12 @@ i v%1 vi%-1 iv%-1                // Chords with inversions
 **Euclidean rhythms** have gained popularity among music composers [@morrill2022euclidean] for some years after Godfried Toussaint first presented the idea of using euclidean algorithm to generate rhythms from binary sequences [@bridges2005]. *Sonic Pi* also implements the euclidean algorithm as a spread method named after the evenly spread boolean. Ziffer’s has it’s own approach to euclidean patterns and implements an algorithm defined by Thomas Morrill [@morrill2022euclidean] and a novel syntax that can be used to combine both onset and offset values from the binary sequence. Syntax for the euclidean generator is defined as an operator for one or two lists:  `(onset)<beats,total,rotate>(offset)`. Values will be selected from onset or offset list according to the binary sequence generated by the euclidean algorithm. Default offset value is a rest, but it can be replaced with a list of alternative offset values. Both onset and offset lists can include any syntax defined in the numeric notation. Values in the list will overflow to the beginning if there are not enough values for the whole cycle. Inner cycles can also be defined using cyclic syntax, to make more complex structures. 
 
 ~~~~ {.js}
-/ synth: :pretty_bell
-s (<0 <3 <5 (-3,3)>>>)<3,6> // Spread nested cycles
-/ synth: :kalimba
-((q 0 3) (q 4 3))<3,5>((e 3 4) (e 1 4))
-/ X: :elec_flip, B: :drum_cowbell
-(eX sB)<13,16>(eB sX)
+/ synth: :pretty_bell             // Change the synth
+s (<0 <3 <5 (-3,3)>>>)<3,6>       // Spread nested cycles
+/ synth: :kalimba                 // Change synth again
+(q0 q2)<3,5>((e 3 4) (e 1 4))     // Spread pitches and lists
+/ X: :elec_flip, B: :drum_cowbell // Assign samples
+(eX sB)<13,16>(eB sX)             // Spread samples
 ~~~~
 
 Expressions can be **evaluated** using curly braces: `{...}`, which can be used for escaping pitches, arithmetic operations or conditional logic. Using ternary operator syntax `(cond)?(true):(false)` it is possible to define alternative or conditional parts. Generative notation can be stored to **variables** denoted using capital letters to form repetitive random structures from the generated values.
@@ -287,7 +287,7 @@ Expressions can be **evaluated** using curly braces: `{...}`, which can be used 
 ={10 (10,20) 3*5}       // Evaluates as chords
 {%>0.5?3}               // Conditional evalution
 {(0,9)>4?(1,3):(3,6)}   // Random numbers based on condition
-{%>0.5?4 %>0.2?5:3}    // Multiple conditionals 
+{%>0.5?4 %>0.2?5:3}     // Multiple conditionals 
 
 // Assign Ziffers patterns to variables
 A=(0 1 (1,6)) B=(0 [-2,6] 3 [-5,5]) A B A B A
