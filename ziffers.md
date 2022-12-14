@@ -100,17 +100,17 @@ All inputs are normalized to a string, type conversion being applied when necess
 ~~~~ {.js}
 # zplay is the fastest way to ziffer
 zplay "q 0 236 q.4 e6 3 0 2", key: :g3, scale: :minor, synth: :piano
-zplay 2468, key: :c3, synth: :fm, rhythm: [0.25,0.125,0.5]
-zplay 2468, key: :c3, synth: :fm, parse_chord: true
+zplay 2468, key: :c3, synth: :fm, rhythm: [0.25,0.125,0.5] # Parse as a sequence
+zplay 2468, key: :c3, synth: :fm, parse_chord: true # Parse as a chord
 zplay [2,4,6,8], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(){rand} 
 zplay [[1,0.5],[3,0.25],[0,1.0]], key: 60, scale: :aeolian, synth: :blade, res: 0.1
 
-# z0-z20 are shorthands for looping the sequence
+# z0-z20 are shorthands for looping the defined sequence
+z0 "q 0 e 3 2 q 4 2", synth: :fm, divisor: [0.25,0.35,0.45]
+# Lambdas can be evaluated for each loop cycle
 z0 ->(){rrand_i(-9,9)}, scale: :blues_minor, synth: :kalimba, clickiness: ->(){rand}
-
-# Morse-thue sequence using mod 7
-z1 (0..Float::INFINITY).lazy.collect{|n|n.to_s(2).split('').count('1')%7},rhythm:spread(7,9)
-
+# Morse-thue sequence defined as infinite enumerable using mod 7
+z1 (0..Float::INFINITY).lazy.collect{|n|n.to_s(2).split('').count('1')%7}, rhythm:spread(7,9)
 # Built-in enumerable for playing the digits of pi
 z1 pi.take(10), scale: :kumoi, synth: :tb303, rhythm: 0.125, cutoff: tweak(:sine,60,100,10).reflect
 ~~~~
@@ -191,9 +191,9 @@ In degree based notation, degrees range from 1 to 9 depending on the scale lengt
 **Note durations** are denoted with lower case characters which are selected from note length names, for example **w** for whole, **h** for half, **q** for quarter, **e** for the eight note etc. In integer notation, silence is defined using the character **r** for rest. In degree based notation, 0 is also treated as silence, as used in the Galin-Paris-Chevé notation [@dauphin2012devenir]. Characters for nearby triplet notes have been selected on the basis of the close proximity on the qwerty keyboard. See the full [list of duration characters](https://github.com/amiika/ziffers/wiki/Melody#list-of-all-note-length-characters) in the documentation. Alternatively, decimals can be used instead of characters. Dotted lengths are used as in traditional musical notation to increase the note duration. Similarly, decimal notation can be used as an alternative to letter-based durations and dots, especially for venturing outside of the traditional note lengths. For example, famous nursery rhyme *Row row row your boat* could be notated differently depending on the chosen duration syntax:
 
 ~~~~ {.js}
-// Row row row your boat using note length characters
-| q. 0 0 | q0 e1 q.2 | q2 e1 q2 e3 | h4 qr | e 7 7 7 4 4 4 2 2 2 0 0 0 | q4 e3 q2 e1 | h. 0 |
-// Row row row your boat using decimal notation
+// Use of note length characters and dots for durations
+| q. 0 0 | q0 e1 q.2 | q2 e1 q2 e3 | h4 qr | e 7 7 7 4 4 4 | 2 2 2 0 0 0 | q4 e3 q2 e1 | h. 0 |
+// Use of decimal notation for durations
 | 0.375 0 0 | 0.25 0 0.125 1 0.375 2 | 0.25 2 0.125 1 0.25 2 0.125 3 | 0.5 4 0.25 r | // …
 ~~~~
 
@@ -202,16 +202,16 @@ In degree based notation, degrees range from 1 to 9 depending on the scale lengt
 **Chords** are typically represented by using number groups. The basic diatonic major chord can thus be represented as 024 in diatonic context, and as 047 in a chromatic context. Pitches in chords can be defined in different octaves combining the notation for example `024^0 _12<1>4`. **Whitespace** acts as an separator for different objects, like the chords in a sequence. **Chord inversions** can be amended using the `%` symbol in combination with a chord `024%2`. Roman numerals are also supported as part of the extended syntax for chord writing based on tonal/diatonic techniques. 
 
 ~~~~ {.js}
-// Example of harmonizing Row row row your boat with various chord notations
-| q. 047%-1 0           | q0 e1 q.2      | q047 e1 q2 e3          | h4 qr  |
-| e 04^0 ^ 0 0 _ 4 4 4  | e 2 2 2 0 0 0  | q<-2>4<-1>44 e3 q2 e1  | h._040 |
+// Example harmonization of 'Row row row your boat' using different symbols to modify pitches
+| q. 047 0                | q0 e1 q.2      | q0247 e1 q2 e3         | h4 qr      |
+| e 0b24^0 ^ 0 0 _ 4 4 4  | e 2 2 2 0 0 0  | q<-2>4<-1>44 e3 q2 e1  | h._0024%-1 |
 ~~~~
 
 **Articulations**, such as staccato ' and accents \` ´ can be used to affect the amplitude and the duration of the pitches. Definition of **Measures** are optional but can prove necessary if there is a need to access them in different order. They are denoted using the pipe character `|` and each such character always resets the current octave and note length to the default value. This is important for both human and a machine to be able to start from any given measure without having the need to retrace to the beginning of the arrangement. **Comments** can be included using `//` or `/* */` characters. 
 
 ~~~~ {.js}
 // This is a comment                 // One-line comments in Ziffers notation
-/* this is a multiline comment */    // Multiline comments
+/* This is a multiline comment */    // Multiline comments
 <d3> 0 2 3 <minor> 0 2 3             // Inline key and scale
 | h 0 ^ q. 4 e 2 | q. 4 h 6 e 2 |    // Measures
 024 146 025%-1 35^0                  // Chords (i v vi iv)
@@ -223,17 +223,20 @@ In degree based notation, degrees range from 1 to 9 depending on the scale lengt
 
 ## Generative notation
 
-Repetition is the simplest form of generative syntax also used by the traditional staff notation. **Repeats** are denoted using dotted list notation and can also be nested as exemplified here with the tune *Frère Jacques*:
+Repetition is the simplest form of generative syntax also used by the traditional staff notation. **Repeats** are denoted using dotted list notation `[:  :]` which is by default repeated two times. Repeats can also be nested which is useful for creating minimal representation of some repeating tunes like the *Frère Jacques*.
 
 ~~~~ {.js}
-[: q 0 1 2 0 :] [: q 2 3 h4 :] [: [: e 4 5 4 3 q 2 0 :] [: q 0 _4 h0 :] :]
+[: q 0 1 2 0 :] [: q 2 3 h4 :] [: [: e 4 5 4 3 q 2 0 :] [: q 0 _4 h0 :] :] // Frère Jacques
+[: q0 e1 q.2 :4]     // Repeat 4-times
+[: (0,3) (4,6) :6]   // Repeat the same generated sequence 6-times
 ~~~~
 
 **Bracket syntax** is alternative notation for durations that subdivides the note lengths using nested brackets. Similar notation is also used by TidalCycles and Alda. Bracket syntax is especially useful for notating triplets or n-tuplets. 
 
 ~~~~ {.js}
-// Frere Jacques again using bracket syntax
+// Frere Jacques again using the bracket syntax
 w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
+q [0 2 [3 [5 [2 0]]]] // Nested brackets
 ~~~~
 
 **Cyclic notation** for events has been previously introduced by TidalCycles. Cyclic structures can be defined by enclosing the sequence to nested angle brackets such as `<1 2 <3 <4 5>>>`. Ziffers enables the use of cyclic notation in loops or as part of repeat notation as alternative endings also used in the traditional staff notation. When cycles are defined within a repeat notation, the cycles are evaluated within the context of the repeat, for example `[: 1 2 <3 4> :]`.
@@ -256,17 +259,18 @@ w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 (q 0  e 1 2 q 3 5)+1*4%7                // Applying multiple operations to a list
 (1 2)+(3 4)                             // Same as: 1+3 1+4 2+3 2+4
 (q 0  e 1 2 q 3 5)+(3 0 -2 3)-(2 1 3 4) // Lists and operations can be chained
+(: (1,4) :3)                            // Generate 3 different random numbers
 ~~~~
 
 **Transformations** can also be notated inline using the list syntax and escape notation for built-in methods: `(list)<method>(optional-list)`. Ziffers also implements numerous shorthand notations for useful transformations, like **cyclic zip** for combining values from two lists, notation for **pitch-class set multiplication** [@heinemann1998pitch] and **sequence interpolation** inspired by the Thesaurus of scales and melodic patterns [@slonimsky1986thesaurus]. **Generative repeat** syntax can be used to generate values multiple times, whereas normal repeats are used to repeat the generated values and create a sense of repetition. **List functions** are inspired by polynomial functions, and can be used to transform the values using arithmetic expressions. 
 
 ~~~~ {.js}
-(1 2 3)<retrograde>
-(q e e)<>(0..5)   // Cyclic zip: q 0 e 1 q 2 e 3 q 4 
-(1 2)<+>(3 4 5)   // Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 
-(0 5)<*>(0 3 6 9) // Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}
-(1 3)<4>(1 3)     // Interval interpolation: 2 4 6 1 3 5 
-(: (1,4) :3)      // Generate 3 different random numbers
+(1 2 3)<retrograde>          // Inline transformation
+(1 2 3)<inverse>(-1 2 0)   	 // Multiple chained transformations
+(q e e)<>(0..5)              // Cyclic zip: q 0 e 1 q 2 e 3 q 4 
+(1 2)<+>(3 4 5)              // Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 
+(0 5)<*>(0 3 6 9)            // Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}
+(1 3)<4>(1 3)                // Interval interpolation: 2 4 6 1 3 5 
 q (0..3){(2x-1)(2x^2-4)}     // Using function to transform a list
 ((1,5)){x<2?(x+3):(2x)(x-2)} // Applying functions conditionally 
 ~~~~
@@ -313,7 +317,7 @@ A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}
 
 In this paper, we have presented a novel numeric notation and a pattern language usable in a live coding context. The presented notation is designed as a bridge from the old to the new, linking and facilitating exploration between different forms of computer and staff-based musical notation; from pitch-based staff writing to generative and improvised performance. The Ziffers notation is designed to be platform independent, making it possible to share generative melodies and patterns between different live coding languages and more traditional composition tools. Even though Ziffers as a language is expressive enough to describe arbitrarily complex musical sequences using mathematical and generative operations, profound and meaningful interaction is still to be found in the link between Ziffers and the underlying logic and flow centered operation of live coding interfaces implementing it. Further experimentation is still needed to find the perfect balance between the proposed numbered notation and different live coding languages.
 
-For now, Sonic Pi is the only fully supported platform for Ziffers. In the future such extensions may become obsolete due to a planned change from Ruby to Elixir programming language. By then, the implementation needs to be rewritten, but it has also already served its purpose as an exploratory medium for prototyping numbered notation in live coding. It is also always possible to use Ziffers with the latest *Sonic Pi* version with the Ruby support.
+For now, Sonic Pi is the only fully supported platform for Ziffers. Due to a planned change from Ruby to Elixir programming language, the current implementation might become unsupported in the future. By then, the implementation needs to be rewritten, but it has also already served its purpose as an exploratory medium for prototyping numbered notation in live coding. It is also always possible to use Ziffers with the latest *Sonic Pi* version with the *Ruby* support.
 
 As a future work, we intend to develop parsers in other live coding libraries such as Sardine (Forment 2022), SuperCollider and others. An upgrade for the MuseScore plugin is also planned to the upcoming MuseScore version 4.0, as a way to support input of the generative numeric notation directly to traditional sheet music and create a hybrid algorithmic composition environment for both numbered and standard notation. We envision that the proposed notation can also be used as a tool for teaching music analysis and pitch-class set theory and act as a stepping stone between music theory and live coding.  
 
