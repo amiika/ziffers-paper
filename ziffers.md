@@ -223,7 +223,7 @@ In degree based notation, degrees range from 1 to 9 depending on the scale lengt
 
 ## Generative notation
 
-Repetition is the simplest form of generative syntax also used by the traditional staff notation. **Repeats** are denoted using dotted list notation with optionally nested structure as exemplified here with the tune *Frère Jacques*:
+Repetition is the simplest form of generative syntax also used by the traditional staff notation. **Repeats** are denoted using dotted list notation and can also be nested as exemplified here with the tune *Frère Jacques*:
 
 ~~~~ {.js}
 [: q 0 1 2 0 :] [: q 2 3 h4 :] [: [: e 4 5 4 3 q 2 0 :] [: q 0 _4 h0 :] :]
@@ -236,7 +236,7 @@ Repetition is the simplest form of generative syntax also used by the traditiona
 w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 ~~~~
 
-**Cyclic notation** for events has been previously introduced by TidalCycles. Cyclic structures can be defined by enclosing the sequence using angle brackets to optionally nested structure such as `<1 2 <3 <4 5>>>`. Ziffers enables the use of cyclic notation in loops or as part of repeat notation as alternative endings also used in the traditional staff notation. When cycles are defined within a repeat notation, the cycles are evaluated within the context of the repeat, for example `[: 1 2 <3 4> :]`.
+**Cyclic notation** for events has been previously introduced by TidalCycles. Cyclic structures can be defined by enclosing the sequence to nested angle brackets such as `<1 2 <3 <4 5>>>`. Ziffers enables the use of cyclic notation in loops or as part of repeat notation as alternative endings also used in the traditional staff notation. When cycles are defined within a repeat notation, the cycles are evaluated within the context of the repeat, for example `[: 1 2 <3 4> :]`.
 
 **Random numbers** are the basic building blocks of all aleatoric melodies. There are multiple ways of defining random integers and decimals in the generative syntax and the generated values can be used for different purposes. Number sequences can be generated using range notation inspired by the Ruby syntax which has been updated to be more versatile.
 
