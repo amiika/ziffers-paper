@@ -115,6 +115,22 @@ z1 (0..Float::INFINITY).lazy.collect{|n|n.to_s(2).split('').count('1')%7}, rhyth
 z1 pi.take(10), scale: :kumoi, synth: :tb303, rhythm: 0.125, cutoff: tweak(:sine,60,100,10).reflect
 ~~~~
 
+Parameters can also be used to define **control characters** which reuse the capital letters as placeholders to time different kind of events and implementation specific functions. 
+
+~~~~ {.js}
+# Use of control characters to define samples or midi
+zplay "[: q K H [K K] H :4]", K: :bd_boom, H: :drum_cymbal_closed
+zplay "[: q K H [K K] H :4]", K: 12, H: 90, port: "ext_midi", channel: 1
+# Use of control characters to define a function call
+define :foo do sample :bd_zum end # Define Sonic Pi method
+z1 "q F e F F", F: :foo # Time the method using ziffers
+# Use of control characters to define cue events
+canon = zparse "5 4 A 3 2 B 1 0", synth: :pretty_bell, A: {cue: :c2}, B: {cue: :c3} # Simple canon
+z1 canon
+z2 canon, wait: :c2
+z3 canon, wait: :c3
+~~~~
+
 ## Parsers
 
 Parsing is implemented with parsing expression grammars (PEGs) using the Ruby-based Treetop library (Treetop 2022). Ziffers is constituted of three parsers, each one handling specific use cases depending on the nature of the input. The **Parameter parser** is used for multiline parsing where notation can include supplementary information, such as the key, scale, synth, MIDI port, MIDI channel and other context or environment specific parameters. **Generative parser** has been specialized to parse random number generators, sequence generators relying on various conditional statements and mathematical operations. Furthermore, an optional string rewrite loop can be used to extend these generative capabilities by transforming the input through recursive substitution of some parts of the initial input. One can think of the Ziffers parsing system as a multi-layered conditional parsing operation. After a first part of context specific or generative parsing operations, the resulting string is parsed again using the **Basic parser**, which includes only the static definitions of pitches, octaves and durations. The relevant data structures for the parsed notation is implemented as subclasses of array and hash which implements all of the necessary methods for the transformations.
@@ -151,15 +167,6 @@ z1 "0", rules: {"0"=>"q 0 1", "1"=>"e (1,4) 0" }
 z2 "q0 e2 e1 q4", rules: {"q"=>"e", "e"=>"q"}
 # Stochastic rules using Ziffers notation and regular expressions
 z1 "q0", rules: {"q0"=>"{%>0.5?q3:q0}", "q3"=>"{%>0.25?q(3,7):q0}", /q[1-9]/=>"[q3,q0]"}
-~~~~
-
-Using different input parameters to control the parsing and output can be seen as more implementation specific. Capital characters can be used as place handlers to time different kind of events and implementation specific functions. 
-
-~~~~ {.js}
-zplay "[: q K H [K K] H :4]", K: :bd_boom, H: :drum_cymbal_closed
-zplay "[: q K H [K K] H :4]", K: 12, H: 90, port: "ext_midi", channel: 1
-define :foo do sample :bd_zum end # Define Sonic Pi method
-z1 "q F e F F", F: :foo # Time the method using ziffers
 ~~~~
 
 # NOTATION
