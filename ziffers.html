@@ -95,23 +95,13 @@ notations (<em>Ziffersystem</em>, <em>Jianpu</em>), contemporary music
 theory (pitch-class sets, post-tonal music analysis, serialism) and
 shorthand notations used in live-coding. Ziffers aims for a balance
 between fixed media music notation and generative notations for live
-coding performance. Consequently, the Ziffers system has been influenced
-by <em>TidalCycles</em> <span class="citation"
-data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span> and
-<em>Ixi Lang</em> <span class="citation"
-data-cites="magnusson2011ixi">(Magnusson 2011)</span>. In their lineage,
-Ziffers intends to propose a powerful mini-notation system allowing the
-on-the-fly alteration of musical patterns.</p>
-<p>In this article, we propose an implementation of agnostic numbered
-notation for algorithmic composition and live coding. As a proof of
-concept, this article will also present two implementations currently in
-use. The first one is integrated as an unofficial plugin for <em>Sonic
-Pi</em> <span class="citation" data-cites="aaron2016sonic">(Aaron
-2016)</span>, a live coding platform designed for education and music
-performance. The second is available a plugin for Musescore 3.0, a
-general purpose scorewriter and score playback software. In doing so, we
-hope to highlight the versatility of our approach in using unified
-syntax for different contexts of execution and interpretation.</p>
+coding performance. In this article, we propose an implementation
+agnostic numbered notation for algorithmic composition and live coding.
+As a proof of concept, this article will also present live-coding
+framework for Ziffers notation and an export plugin for a general
+purpose scorewriter. In doing so, we hope to highlight the versatility
+of our approach in using unified syntax for different contexts of
+execution and interpretation.</p>
 </div>
 
 <h1 data-number="1"
@@ -144,22 +134,31 @@ realm of exploratory or conversational open-ended programming where
 reactivity and fast decision-making is of prime importance to achieve a
 creative state of flow <span class="citation"
 data-cites="nash2015cognitive kery2017exploring">(Nash 2015; Kery and
-Myers 2017)</span>.</p>
+Myers 2017)</span>. Consequently, the Ziffers system has been influenced
+by <em>TidalCycles</em> <span class="citation"
+data-cites="mclean2010tidal">(McLean and Wiggins 2010)</span> and
+<em>Ixi Lang</em> <span class="citation"
+data-cites="magnusson2011ixi">(Magnusson 2011)</span>. In their lineage,
+Ziffers intends to propose a powerful mini-notation system allowing the
+on-the-fly alteration of musical patterns.</p>
 <p>Ziffers is designed as a terse and platform independent syntax
 capable of embedding algorithmic and generative processes at the
 notational level. Basic tokens denoting pitch, rhythm or expression
 marks form the base notation. They have subsequently been enriched by
 operators and generative constructs denoting algorithmic transformations
-built upon that first layer. Ziffers initially took form as an attempt
-to speed up the process of writing melodic lines by taking advantage of
-the large number of predefined methods and compositional helpers offered
-by <em>Sonic Pi’s</em> rich internal library. The dissociation between
-pitch and rhythm imposed by <em>Sonic Pi</em> data structures and
-imperative-oriented programming model lead to the development of the
-first prototype of Ziffers <span class="citation"
-data-cites="ziffers2018">(Alonen 2018)</span>. After a few years of
-research and prototyping, Ziffers 2.0 was released in 2022 <span
-class="citation" data-cites="ziffers2022">(Alonen 2022)</span>. It
+built upon that first layer. Ziffers is built as an unofficial extension
+to <em>Sonic Pi</em> <span class="citation"
+data-cites="aaron2016sonic">(Aaron 2016)</span>, a live coding platform
+designed for education and music performance. Ziffers initially took
+form as an attempt to speed up the process of writing melodic lines by
+taking advantage of the large number of predefined methods and
+compositional helpers offered by <em>Sonic Pi’s</em> rich internal
+library. The dissociation between pitch and rhythm imposed by <em>Sonic
+Pi</em> data structures and imperative-oriented programming model lead
+to the development of the first prototype of Ziffers <span
+class="citation" data-cites="ziffers2018">(Alonen 2018)</span>. After a
+few years of research and prototyping, Ziffers 2.0 was released in 2022
+<span class="citation" data-cites="ziffers2022">(Alonen 2022)</span>. It
 includes a new parser that extends Ziffers capabilities with new
 operators, nested structures and better support for stochastic and
 aleatoric composition.</p>
