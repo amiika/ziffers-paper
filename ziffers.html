@@ -782,11 +782,18 @@ class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a h
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">s</span> (<span class="op">&lt;</span><span class="dv">0</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">5</span> (<span class="op">-</span><span class="dv">3</span><span class="op">,</span><span class="dv">3</span>)<span class="op">&gt;&gt;&gt;</span>)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">6</span><span class="op">&gt;</span>       <span class="co">// Nested cycles</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))     <span class="co">// Pitches from the onset and lists from the offset</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">&gt;</span>(eB sX)             <span class="co">// Spread samples or events</span></span></code></pre></div>
-<p>To complete the generated piece as a coherent composition, Ziffers
-definitions can be assigned to inline <strong>variables</strong> denoted
-using capital letters. Defined variables can be used to replace part of
-the syntax or to create repetition, form and contrasting sections to the
-composition.</p>
+<p>Generated patterns can be assigned to <strong>inline
+variables</strong> – denoted using capital letters – for adding
+predictability to the live-coded composition. These variables can be
+used to replace part of the syntax and to create musical form by
+devising reoccurring segments. Extensive repetition will eventually lead
+to boredom, but repeating larger segments supports dynamic
+predictability which can evoke positive responses from the listeners
+<span class="citation" data-cites="huron2008sweet">(Huron 2008)</span>.
+Using the same form for gradual variation – among with carefully planned
+surprises – enables the live-coder to manage the expectations and gives
+the listeners satisfaction from anticipating and successfully predicting
+the outcome.</p>
 <div class="sourceCode" id="cb19"><pre
 class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=%</span> {A<span class="op">&gt;</span><span class="fl">0.5</span><span class="op">?</span>(e <span class="dv">1</span> <span class="dv">2</span>)<span class="op">:</span>(q2)} {A<span class="op">&lt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span>}                             <span class="co">// Use in conditional statements</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">=&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">6</span> <span class="dv">7</span><span class="op">&gt;&gt;&gt;</span> B<span class="op">=</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) B A B B A                              <span class="co">// Define repetition</span></span>
@@ -950,6 +957,10 @@ Representing Score-Level Music.”</span>
 Huron, David. 2002. <span>“Music Information Processing Using the
 Humdrum Toolkit: Concepts, Examples, and Lessons.”</span> <em>Computer
 Music Journal</em> 26 (2): 11–26.
+</div>
+<div id="ref-huron2008sweet" class="csl-entry" role="doc-biblioentry">
+———. 2008. <em>Sweet Anticipation: Music and the Psychology of
+Expectation</em>. MIT press.
 </div>
 <div id="ref-mml2001" class="csl-entry" role="doc-biblioentry">
 Izumi. 2001. <span>“Music Macro Language.”</span> 2001. <a

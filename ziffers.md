@@ -320,7 +320,7 @@ s (<0 <3 <5 (-3,3)>>>)<3,6>       // Nested cycles
 (eX sB)<13,16>(eB sX)             // Spread samples or events
 ~~~~
 
-To complete the generated piece as a coherent composition, Ziffers definitions can be assigned to inline **variables** denoted using capital letters. Defined variables can be used to replace part of the syntax or to create repetition, form and contrasting sections to the composition.
+Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding predictability to the live-coded composition. These variables can be used to replace part of the syntax and to create musical form by devising reoccurring segments. Extensive repetition will eventually lead to boredom, but repeating larger segments supports dynamic predictability which can evoke positive responses from the listeners [@huron2008sweet]. Using the same form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations and gives the listeners satisfaction from anticipating and successfully predicting the outcome.
 
 ~~~~ {.js}
 A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}                             // Use in conditional statements
