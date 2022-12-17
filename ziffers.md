@@ -271,8 +271,8 @@ w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 ~~~~ {.js}
 <1 2 <3 <4 5>>>               // Cyclic notation for loops
 [: 1 <2 4> :]                 // Alternate endings for repeat
-(: (1,7) <2 <4 5>> :3)        // Cyclic notation in list repeat
-(1 [2 <4 5>] 024)+(<2 0> 1 2) // Bracket and cyclic notation in a list
+(: (1,7) <2 <4 5>> :3)        // Cycles in a repeated list
+(1 [2 <4 5>] 024)+(<2 0> 1 2) // Brackets and cycles in a list
 (1 2 3)+<(1 2) (4 6)>         // Operations with cyclic lists
 (0 <1 2>)<+ - *><0 1 2>       // Cyclic everything
 ~~~~
@@ -320,7 +320,7 @@ s (<0 <3 <5 (-3,3)>>>)<3,6>       // Nested cycles
 (eX sB)<13,16>(eB sX)             // Spread samples or events
 ~~~~
 
-Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. Limiting the introduction of new patterns and repeating the segments supports familiarity and evokes positive responses in the listeners [@huron2008sweet]. Using the same musical form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations and gives the listeners satisfaction from anticipating and successfully predicting the patterns.
+Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. The live-coding audience relying on the schematic norms internalized from other types of music can be unsettled by the sudden changes. Repeating the segments and limiting the introduction of new patterns supports familiarity and can evoke positive response in the audience [@huron2008sweet]. Using the same musical form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations dynamically and gives the listeners satisfaction from anticipating and successfully predicting the patterns.
 
 ~~~~ {.js}
 A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}                             // Use in conditional statements
@@ -332,7 +332,7 @@ A=(0 2 [3 2])+<0 <2 1>> B=(0 (1,5) [3 <(2,5) (0,3)>]) A B B A    // Combine ever
 
 # Conclusion and future work
 
-In this paper, we have presented a novel numeric notation and a pattern language usable in a live coding context. The presented notation is designed as a bridge from the old to the new, linking and facilitating exploration between different forms of computer and staff-based musical notation; from pitch-based staff writing to generative and improvised performance. The Ziffers notation is designed to be platform independent, making it possible to share generative melodies and patterns between different live coding languages and more traditional composition tools. Even though Ziffers as a language is expressive enough to describe arbitrarily complex musical sequences using mathematical and generative operations, profound and meaningful interaction is still to be found in the link between Ziffers and the underlying logic and flow centered operation of live coding interfaces implementing it. Further experimentation is still needed to find the perfect balance between the proposed numbered notation and different live coding languages.
+In this paper, we have presented a novel numeric notation and a pattern language usable in a live coding context. The presented notation is designed as a bridge from the old to the new, linking and facilitating exploration between different forms of computer and staff-based musical notation; from pitch-based staff writing to generative and improvised performance. The Ziffers notation is designed to be platform independent, making it possible to share generative melodies and patterns between different live coding languages and more traditional composition tools. Even though Ziffers as a language is expressive enough to describe complex musical sequences using mathematical and generative operations, profound and meaningful interaction is still to be found in the link between Ziffers and the underlying logic and flow of live coding interfaces implementing it. Further experimentation is still needed to find the perfect balance between the proposed numbered notation and different live coding languages.
 
 For now, Sonic Pi is the only fully supported platform for Ziffers. Due to a planned change from Ruby to Elixir programming language, the current implementation might become unsupported in the future. By then, the implementation needs to be rewritten, but it has also already served its purpose as an exploratory medium for prototyping numbered notation in live coding. It is also always possible to use Ziffers with the latest *Sonic Pi* version with the *Ruby* support.
 
