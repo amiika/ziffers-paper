@@ -320,7 +320,7 @@ s (<0 <3 <5 (-3,3)>>>)<3,6>       // Nested cycles
 (eX sB)<13,16>(eB sX)             // Spread samples or events
 ~~~~
 
-Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding predictability to the live-coded composition. These variables can be used to replace part of the syntax and to create musical form by devising reoccurring segments. Extensive repetition will eventually lead to boredom, but repeating larger segments supports dynamic predictability which can evoke positive responses from the listeners [@huron2008sweet]. Using the same form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations and gives the listeners satisfaction from anticipating and successfully predicting the outcome.
+Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. Limiting the introduction of new patterns and repeating the segments supports familiarity and evokes positive responses in the listeners [@huron2008sweet]. Using the same musical form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations and gives the listeners satisfaction from anticipating and successfully predicting the patterns.
 
 ~~~~ {.js}
 A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}                             // Use in conditional statements
