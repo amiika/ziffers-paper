@@ -101,16 +101,17 @@ All inputs are normalized to a string, type conversion being applied when necess
 
 ~~~~ {.js}
 # zplay is the fastest way to ziffer
-zplay "q 0 236 q.4 e6 3 0 2", key: :g3, scale: :minor, synth: :piano
-zplay 2468, key: :c3, synth: :fm, rhythm: [0.25,0.125,0.5] # Parse as a sequence
-zplay 2468, key: :c3, synth: :fm, parse_chord: true # Parse as a chord
-zplay [2,4,6,8], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(){rand} 
-zplay [[1,0.5],[3,0.25],[0,1.0]], key: 60, scale: :aeolian, synth: :blade, res: 0.1
+zplay "q 0 236 q.4 e6 3 0 2", key: :g3, scale: :minor, synth: :piano # Play pattern
+zplay 2468, key: :c3, synth: :fm, rhythm: [0.25,0.125,0.5] # Parse integer as a sequence
+zplay 2468, key: :c3, synth: :fm, parse_chord: true # Parse integer as a chord
+zplay [2,4,6,8], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(){rand} # Parse array
+zplay [[1,0.5],[3,0.25],[0,1.0]], key: 60, scale: :aeolian, synth: :blade, res: 0.1 # Array with durations
 
 # z0-z20 are shorthands for loops
 z0 "q 0 e 3 2 q 4 2", synth: :fm, divisor: [0.25,0.35,0.45]
 # Lambdas can be evaluated for each loop cycle
 z1 ->(){rrand_i(-9,9)}, scale: :blues_minor, synth: :kalimba, clickiness: ->(){rand}
+
 # Morse-thue sequence defined as infinite enumerable using mod 7
 z2 (0..Float::INFINITY).lazy.collect{|n|n.to_s(2).split('').count('1')%7}, rhythm:spread(7,9)
 # Built-in enumerable for playing the digits of pi
@@ -120,22 +121,21 @@ z3 pi.take(10), scale: :kumoi, synth: :tb303, rhythm: 0.125, cutoff: tweak(:sine
 Parameters can also be used to define meaning for **control characters** `A-Z` to act as placeholders for samples or different kind of events and implementation specific functions.
 
 ~~~~ {.js}
-# Use of control characters to define samples or midi
-zplay "[: q K H [K K] H :4]", K: :bd_boom, H: :drum_cymbal_closed
-zplay "[: q K H [K K] H :4]", K: 12, H: 90, port: "ext_midi", channel: 1
-# Use of control characters to define a function call
-define :foo do sample :bd_zum end # Define Sonic Pi method
-z1 "q F e F F", F: :foo # Time the method using ziffers
-# Use of control characters to define cue events
-canon = zparse "5 4 A 3 2 B 1 0", synth: :pretty_bell, A: {cue: :c2}, B: {cue: :c3} # Simple canon
-z1 canon
-z2 canon, wait: :c2 # Wait for A
-z3 canon, wait: :c3 # Wait for B
+zplay "[: q K H [K K] H :4]", K: :bd_boom, H: :drum_cymbal_closed        # Define samples
+zplay "[: q K H [K K] H :4]", K: 12, H: 90, port: "ext_midi", channel: 1 # Define MIDI drumkit
+
+define :foo do sample :bd_zum end # Define Sonic Pi method # Define function
+z1 "q F e F F", F: :foo # Time the call using ziffers
+
+canon = zparse "5 4 A 3 2 B 1 0", synth: :pretty_bell, A: {cue: :c2}, B: {cue: :c3} # Define cues
+z1 canon # Start canon
+z2 canon, wait: :c2 # Wait for cue A
+z3 canon, wait: :c3 # Wait for cue B
 ~~~~
 
 ## Transformations
 
-The Transformation phase is an optional step for the manipulation of the generated musical patterns as defined by @spiegel1981manipulations, for example retrograde, inversion, substitution or by defining custom transformations that can manipulate the order, pitches, durations or any other parameters in the sequence. Transformations can be done in multiple ways and in different phases of the live composition process. Ziffers syntax also includes inline notation for transformations, that can be used for chaining multiple transformations to the defined sequences. Inline notation could also act as mechanism to transfer information about the intended transformations between different implementations. Ziffers prototype for *Sonic Pi* implements many transformations categorized as Order and Object transformations. Order transformations alter the ordering in the sequence, and can be done without modifying the internal structure of the musical objects. Object transformations can be done conditionally for each object including modifying the pitch, duration and articulations. See list of [implemented transformations](https://github.com/amiika/ziffers/wiki/Transformations) in the documentation.
+The Transformation phase is an optional step for the manipulation of the generated musical patterns as defined by @spiegel1981manipulations, for example retrograde, inversion, substitution or by defining custom transformations that can manipulate the order, pitches, durations or any other parameters in the sequence. Transformations can be done in multiple ways and in different phases of the live composition process. Ziffers syntax also includes inline notation for transformations, that can be used for chaining multiple transformations to the defined sequences. Inline notation could also act as mechanism to transfer information about the intended transformations between different implementations. See full list of [implemented transformations](https://github.com/amiika/ziffers/wiki/Transformations) in the documentation.
 
 ~~~~ {.js}
 # Transformations applied on a live sequence
@@ -251,43 +251,43 @@ Repetition is the simplest form of generative syntax also used by the traditiona
 **Lists** syntax can be used to arrange pitches into operable sequences. Arithmetic operations `+ - * ** / ^ % | & << >>` can be applied to list values in a serial manner. Arithmetic operations can also be applied between two lists creating cartesian operations. To produce long alternating patterns arithmetic operations can also be chained together. There are also 5 special methods that have designated short-hand symbols. Combine **&** for creating a chord out of list, separate **$** for creating the sequence from a chord, unique **!** for removing same pitches from the list, pick a random **?** for picking 1-n pitches from the list and shuffle **~** for shuffling and picking unique random values from the list. 
 
 ~~~~ {.js}
-(q 0  e 1 2 q 3 5)+1*4%7                // Applying multiple operations to a list
-(1 2)+(3 4)                             // Same as: 1+3 1+4 2+3 2+4
-(q 0  e 1 2 q 3 5)+(3 0 -2 3)-(2 1 3 4) // Lists and operations can be chained
-(: (1,4) :3)                            // Generate 3 different random numbers
-(:(0,6):3)& 
+(q 0  e 1 2 q 3 5)+1*4%7           // Applying multiple operations to a list
+(1 2)+(3 4)                        // Same as: 1+3 1+4 2+3 2+4
+(q 0 e 1 2 q 3 5)+(0 -2 3)-(2 4)   // Lists and operations can be chained
+(: (1,4) :3) (-3..3)~3 (-3..3)?3   // Different ways to generate random sequences
+(: (0,6) :3)& ((100,300))$         // Combining chords and separating pitches
 ~~~~
 
 **Bracket syntax** is alternative notation for durations that subdivides the note lengths using nested brackets. Similar notation is also used by TidalCycles and Alda. Bracket syntax is especially useful for notating triplets or n-tuplets. 
 
 ~~~~ {.js}
-q [0 2 [3 [5 [2 0]]]] // Nested brackets
-// Frere Jacques using the bracket syntax
+q [0 2 [3 [5 [2 0]]]] // Nested brackets subdividing 0.5
+// Frere Jacques using the brackets subdividing 1.0
 w [: [0 1 2 0] :] [: [[2 3] 4] :] [:[: [[4 5] [4 3] 2 0] :] [: [[0 _4] 0] :]:]
 ~~~~
 
 **Cyclic notation** for events has been previously introduced by TidalCycles. Cyclic structures can be defined by enclosing the sequence in nested angle brackets. Ziffers enables the use of cyclic notation in loops or as part of repeat notation as alternative endings also used in the traditional staff notation. When cycles are defined within a repeat notation, the cycles are evaluated within the context of the repeat.
 
 ~~~~ {.js}
-<1 2 <3 <4 5>>>               // Cyclic notation for loops
-[: 1 <2 4> :]                 // Alternate endings for repeat
-(: (1,7) <2 <4 5>> :3)        // Cycles in a repeated list
-(1 [2 <4 5>] 024)+(<2 0> 1 2) // Brackets and cycles in a list
-(1 2 3)+<(1 2) (4 6)>         // Operations with cyclic lists
-(0 <1 2>)<+ - *><0 1 2>       // Cyclic everything
+<1 2 <3 <4 5>>>                // Cyclic notation for loops
+[: 1 <2 4> :]                  // Alternate endings for repeat
+(: (1,7) <2 <4 5>> :3)         // Cycles in a repeated list
+(1 [2 <4 5>] 024)+(<2 0> 1 2)  // Brackets and cycles in a list
+(1 2 3)+<(1 2) (4 6)>          // Operations with cyclic lists
+(0 <1 2>)<+ - *><0 1 2>        // Cyclic everything
 ~~~~
 
 **Transformations** can also be notated inline using the list syntax and escape notation for built-in methods: `(list)<method>(optional-list)`. Ziffers also implements numerous shorthand notations for useful transformations, like **cyclic zip** for combining values from two lists, notation for **pitch-class set multiplication** [@heinemann1998pitch] and **sequence interpolation** inspired by the Thesaurus of scales and melodic patterns [@slonimsky1986thesaurus]. **Generative repeat** syntax can be used to generate values multiple times, whereas normal repeats are used to repeat the generated values and create a sense of repetition. **List functions** are inspired by polynomial functions and can be used to transform the values using arithmetic expressions. 
 
 ~~~~ {.js}
-(1 2 3)<retrograde>          // Inline transformation
-(1 2 3)<inverse>(-1 2 0)   	 // Multiple chained transformations
-(q e e)<>(0..5)              // Cyclic zip: q 0 e 1 q 2 e 3 q 4 
-(1 2)<+>(3 4 5)              // Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 
-(0 5)<*>(0 3 6 9)            // Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}
-(1 3)<4>(1 3)                // Interval interpolation: 2 4 6 1 3 5 
-q (0..3){(2x-1)(2x^2-4)}     // Using function to transform a list
-((1,5)){x<2?(x+3):(2x)(x-2)} // Applying functions conditionally 
+(1 2 3)<retrograde>           // Inline transformation
+(1 2 3)<inverse>(-1 2 0)   	  // Multiple chained transformations
+(q e e)<>(0..5)               // Cyclic zip: q 0 e 1 q 2 e 3 q 4 
+(1 2)<+>(3 4 5)               // Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 
+(0 5)<*>(0 3 6 9)             // Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}
+(1 3)<4>(1 3)                 // Interval interpolation: 2 4 6 1 3 5 
+(-5..5){-0.5*(x+3)(x-5)}      // Using function to transform a list
+(0..5){x%2==0?(x+3):(2x)}     // Applying functions conditionally 
 ~~~~
 
 **Chords** can be generated using roman numerals `(i-vii)` and further modified using chord names, inversions and modal interchange. **Chord names** are defined using the caret symbol and the corresponding name, for example: `i^dim7`. Chord names are based on Sonic Pi's definitions and further standardization would be needed to include more chord names and to harmonize varying naming practices. Chords can also be inverted using `%` symbol, for example `iv%-2`. Tri-chords can also be built by defining number of pitches `{i-vii}+{number of pitches}`, for example `ii+6`. **Borrowed chords** can be created using shorthand characters for modes `(a-g)` combined with the roman numerals, for example: `iib` (locrian), `iiig` (mixolydian). Chords can also be generated from lists using combine **&** shorthand that transforms sequences to chords, for example: `((10,100) (100,1000))&` or `((4..7)*4)&`. **Arpeggios** can be generated by defining sequences of chords and selecting pitches from the list using the ampersand **@**-operator or by selecting values horizontally from the list using the **#**-operator.
@@ -305,22 +305,22 @@ Expressions can be **evaluated** using curly braces: `{...}`, which can be used 
 
 ~~~~ {.js}
 {10 11 9+2 3*5}         // Evaluate as pitches
-={10 (10,20) 3*5}       // Evaluates as chords
+={10 (10,20) 3*5}       // Evaluate as chords
 {%>0.5?3}               // Single conditional pitch
 {(0,9)>4?(1,3):(3,6)}   // Random numbers based on condition
-{%>0.5?4 %>0.2?5:3}     // Multiple conditionals 
+{%>0.5?4 %>0.2?5:3}     // Nested conditionals 
 ~~~~
 
 **Euclidean rhythms** have gained popularity among music composers [@morrill2022euclidean] for some years after Godfried Toussaint first presented the idea of using euclidean algorithm to generate rhythms from binary sequences [@bridges2005]. *Sonic Pi* also implements the euclidean algorithm as a spread method named after the evenly spread boolean. Ziffers has its own approach to euclidean patterns and implements an algorithm defined by Thomas Morrill [@morrill2022euclidean] and a novel syntax that can be used to combine both onset and offset values from the binary sequence. Syntax for the euclidean generator is defined as an operator for one or two lists:  `(onset)<beats,total,rotate>(offset)`. Values will be selected from onset or offset list according to the binary sequence generated by the euclidean algorithm. Default offset value is a rest, but it can be replaced with a list of alternative offset values. Both onset and offset lists can include any syntax defined in the numeric notation. Values in the list will overflow to the beginning if there are not enough values for the whole cycle. Inner cycles can also be defined using cyclic syntax, to make more complex structures. 
 
 ~~~~ {.js}
-s (0 3 2 5)<5,7>                  // Offset defaults to r 
-s (<0 <3 <5 (-3,3)>>>)<3,6>       // Nested cycles
-(q0 q2)<3,5>((e 3 4) (e 1 4))     // Pitches from the onset and lists from the offset
-(eX sB)<13,16>(eB sX)             // Spread samples or events
+(0 3 2 5)<5,8>                                  // Onset is cycles and offset defaults to r
+(q0 q2)<3,5>((e 3 4) (e 1 4))                   // Pitches from the onset and lists from the offset
+(eX sB)<13,16,3>(eB sX)                         // Rotated by 3 with samples or events
+(0)<<9 13>,<23 <19 21>>,<0 1 2>>(<2 <-2 -3>>)  // Cyclic euclidean cycles with cyclic rotations
 ~~~~
 
-Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. The live-coding audience relying on the schematic norms internalized from other types of music can be unsettled by the sudden changes. Repeating the segments and limiting the introduction of new patterns supports familiarity and can evoke positive response in the audience [@huron2008sweet]. Using the same musical form for gradual variation -- among with carefully planned surprises -- enables the live-coder to manage the expectations dynamically and gives the listeners satisfaction from anticipating and successfully predicting the patterns.
+Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. The live-coding audience can feel unease if they are expecting the performance to follow schematic norms internalized from other types of music. Repeating the segments in consistent order and limiting the introduction of new patterns supports familiarity and can evoke a positive response in the audience [@huron2008sweet]. Using the musical form and gradual variation enables the live-coder to create expectations dynamically which gives satisfaction from anticipating and successfully predicting the structure of the music.
 
 ~~~~ {.js}
 A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}                             // Use in conditional statements
