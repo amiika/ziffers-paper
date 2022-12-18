@@ -108,7 +108,7 @@ zplay [2,4,6,8], key: :E4, scale: :hex_sus, synth: :chiplead, width: 2, pan: ->(
 zplay [[1,0.5],[3,0.25],[0,1.0]], key: 60, scale: :aeolian, synth: :blade, res: 0.1 # Array with durations
 
 # z0-z20 are shorthands for loops
-z0 "q 0 e 3 2 q 4 2", synth: :fm, divisor: [0.25,0.35,0.45]
+z0 "q 0 e 3 2 q 4 2", synth: :fm, divisor: [0.25,0.35,0.45].ring
 # Lambdas can be evaluated for each loop cycle
 z1 ->(){rrand_i(-9,9)}, scale: :blues_minor, synth: :kalimba, clickiness: ->(){rand}
 
@@ -159,8 +159,8 @@ Ziffers also implements a **string rewriting system** that is a non-deterministi
 zplay "0", rules: {"0"=>"1 2", "1"=>"2 1", "2"=>"1 0"}, gen: 6
 # Match using regex, substitute with evaluation and mod by 7
 zplay "1 2 3", rules: {/[1-9]/=>"({$*2} [e,q] {$*3})%7"}, gen: 3
-# Play and mutate generations on-the-fly
-z1 "0", rules: {"0"=>"q 0 1", "1"=>"e (1,4) 0" }
+# Play and mutate generations on-the-fly. First rule for keeping results short.
+z1 "q0", rules: {/([a-z][0-9] ){20}/=>"", /[eq][0]/=>"q0 q1", "q1"=>"e(1,4) e0"}
 # Change durations using rules
 z2 "q0 e2 e1 q4", rules: {"q"=>"e", "e"=>"q"}
 # Stochastic rules using Ziffers notation and regular expressions
