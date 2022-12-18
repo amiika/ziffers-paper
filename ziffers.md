@@ -160,7 +160,7 @@ zplay "0", rules: {"0"=>"1 2", "1"=>"2 1", "2"=>"1 0"}, gen: 6
 # Match using regex, substitute with evaluation and mod by 7
 zplay "1 2 3", rules: {/[1-9]/=>"({$*2} [e,q] {$*3})%7"}, gen: 3
 # Play and mutate generations on-the-fly. First rule for keeping results short.
-z1 "q0", rules: {/([a-z][0-9] ){20}/=>"", /[eq][0]/=>"q0 q1", "q1"=>"e(1,4) e0"}
+z1 "q0", rules: {/([a-z][0-9] ){20}/=>"q0", /[eq][0]/=>"q0 q1", "q1"=>"e(1,4) e0"}
 # Change durations using rules
 z2 "q0 e2 e1 q4", rules: {"q"=>"e", "e"=>"q"}
 # Stochastic rules using Ziffers notation and regular expressions
@@ -300,7 +300,7 @@ i ii iii iv v vi vii              // Supported roman numerals
 i v%1 vi%-1 iv%-1                 // With inversions
 i^7 iv^dim v^maj9%-2              // With names and inversions
 (i v vi%-1 iv%-1)@(e 0 1 2 012)   // Arpeggio from Roman numerals
-024 146 025%-1 35^0)@(q 1 0 2 0)  // Arpeggio from pitch groups
+(024 146 025%-1 35^0)@(q 1 0 02)  // Arpeggio from pitch groups
 (0 2 4 6)#(e 0 1 2 012)           // Horizontal arpeggio
 ~~~~
 
