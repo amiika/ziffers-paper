@@ -61,7 +61,7 @@ Ziffers has evolved from a simple script embedded in one of many Sonic Pi’s te
 \caption{Ziffers plugin for MuseScore exporting fragment from Aphex Twin's Avril 14th score.\label{mplugin}}
 \end{figure}
 
-The plugin for the *MuseScore 3.0* be used to transform traditional scores (from MusicXML, ABC notation or MIDI files) to the numeric notation for analyzing the musical structures from your favorite composers and using the displaced sequences as a form of rehearsal and inspiration for the live coding. Examples above and below exemplifies this form of learning practice using the extracted sequence from Avril 14th by Aphex Twin. 
+The plugin for the *MuseScore 3.0* can be used to transform traditional scores (from MusicXML, ABC notation or MIDI files) to the numeric notation for analyzing the musical structures from your favorite composers and using the displaced sequences as a form of rehearsal and inspiration for the live coding. Examples above and below exemplifies this form of learning practice using the extracted sequence from Avril 14th by Aphex Twin. 
 
 ~~~~ {.js}
 ziffers " // Aphex Twin - Avril 14th with added transformations
@@ -173,7 +173,9 @@ Ziffers notation is divided into basic and generative syntax. Basic notation con
 
 ## Basic Notation: pitch, rhythm and silence
 
-The Ziffers syntax is supporting many classic musical notation symbols as well as many variations in their writing. For better readability and for the sake of brevity, we have chosen to list and comment only the most commonly accessed tokens, relegating other notation symbols to the example tables. Detailed sections will cover the more advanced and Ziffers specific features. Basic notation contains all static symbols, which can be parsed without additional processing. By default, Ziffers interprets numbers as in pitch class notation `[0-9TE]`, extending numbers to capital characters `T` for `10` and `E` for `11` to support faster input for 12-tone compositions. Pitch classes higher than `9` or lower than `-9` can also be escaped using curly braces. For example, pitch classes `-12` and `24` could be notated as `{-12 24}`, which is then interpreted to the right octave depending on the scale. In a major scale number `24` becomes pitch class `3` in octave `3`. 
+The Ziffers syntax is supporting many classic musical notation symbols as well as many variations in their writing. For better readability and for the sake of brevity, we have chosen to list and comment only the most commonly accessed tokens, relegating other notation symbols to the example tables. Detailed sections will cover the more advanced and Ziffers specific features. Basic notation contains all static symbols, which can be parsed without additional processing. 
+
+By default, Ziffers interprets numbers as in pitch class notation `[0-9TE]`, extending numbers to capital characters `T` for `10` and `E` for `11` to support faster input for 12-tone compositions. Pitch classes higher than `9` or lower than `-9` can also be escaped using curly braces. For example, pitch classes `-12` and `24` could be notated as `{-12 24}`, which is then interpreted to the right octave depending on the scale. In a major scale number `24` becomes pitch class `3` in octave `3`. Pitches can also be sharpened using **#** or flattened with **b** when using diatonic scales.
 
 \begin{figure}[h]
 \centering
@@ -191,13 +193,14 @@ Alternatively, degree based interpretation can be used as a separate option, whe
 \caption{Pitches in degree notation.}
 \end{figure}
 
-In degree based notation, degrees range from 1 to 9 depending on the scale length. Compared with pitch class notation, the degree based notation does not have the root as a mirroring axis. Pitches can also be sharpened using **#** or flattened with **b** when using diatonic scales.
+In degree based notation, degrees range from 1 to 9 depending on the scale length. Compared with pitch class notation, the degree based notation does not have the root as a mirroring axis.
 
 **Note durations** are denoted with lower case characters which are selected from note length names, for example **w** for whole, **h** for half, **q** for quarter, **e** for the eight note etc. In integer notation, silence is defined using the character **r** for rest. In degree based notation, 0 is also treated as silence, as used in the Galin-Paris-Chevé notation [@dauphin2012devenir]. Characters for nearby triplet notes have been selected on the basis of the close proximity on the qwerty keyboard. See the full [list of duration characters](https://github.com/amiika/ziffers/wiki/Melody#list-of-all-note-length-characters) in the documentation. Alternatively, decimals can be used instead of characters. Dotted lengths are used as in traditional musical notation to increase the note duration. Similarly, decimal notation can be used as an alternative to letter-based durations and dots, especially for venturing outside of the traditional note lengths. For example, famous nursery rhyme *Row row row your boat* could be notated differently depending on the chosen duration syntax:
 
 ~~~~ {.js}
 // Use of note length characters and dots for durations
 | q. 0 0 | q0 e1 q.2 | q2 e1 q2 e3 | h4 qr | e 7 7 7 4 4 4 | 2 2 2 0 0 0 | q4 e3 q2 e1 | h. 0 |
+
 // Use of decimal notation for durations
 | 0.375 0 0 | 0.25 0 0.125 1 0.375 2 | 0.25 2 0.125 1 0.25 2 0.125 3 | 0.5 4 0.25 r | // …
 ~~~~
@@ -314,13 +317,13 @@ Expressions can be **evaluated** using curly braces: `{...}`, which can be used 
 **Euclidean rhythms** have gained popularity among music composers [@morrill2022euclidean] for some years after Godfried Toussaint first presented the idea of using euclidean algorithm to generate rhythms from binary sequences [@bridges2005]. *Sonic Pi* also implements the euclidean algorithm as a spread method named after the evenly spread boolean. Ziffers has its own approach to euclidean patterns and implements an algorithm defined by Thomas Morrill [@morrill2022euclidean] and a novel syntax that can be used to combine both onset and offset values from the binary sequence. Syntax for the euclidean generator is defined as an operator for one or two lists:  `(onset)<beats,total,rotate>(offset)`. Values will be selected from onset or offset list according to the binary sequence generated by the euclidean algorithm. Default offset value is a rest, but it can be replaced with a list of alternative offset values. Both onset and offset lists can include any syntax defined in the numeric notation. Values in the list will overflow to the beginning if there are not enough values for the whole cycle. Inner cycles can also be defined using cyclic syntax, to make more complex structures. 
 
 ~~~~ {.js}
-(0 3 2 5)<5,8>                                  // Onset is cycles and offset defaults to r
-(q0 q2)<3,5>((e 3 4) (e 1 4))                   // Pitches from the onset and lists from the offset
-(eX sB)<13,16,3>(eB sX)                         // Rotated by 3 with samples or events
+(0 3 2 5)<5,8>                                 // Onset is cycles and offset defaults to r
+(q0 q2)<3,5>((e 3 4) (e 1 4))                  // Pitches from the onset and lists from the offset
+(eX sB)<13,16,3>(eB sX)                        // Rotated by 3 with samples or events
 (0)<<9 13>,<23 <19 21>>,<0 1 2>>(<2 <-2 -3>>)  // Cyclic euclidean cycles with cyclic rotations
 ~~~~
 
-Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coded composition. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. The live-coding audience can feel unease if they are expecting the performance to follow schematic norms internalized from other types of music. Repeating the segments in consistent order and limiting the introduction of new patterns supports familiarity and can evoke a positive response in the audience [@huron2008sweet]. Using the musical form and gradual variation enables the live-coder to create expectations dynamically which gives satisfaction from anticipating and successfully predicting the structure of the music.
+Generated patterns can be assigned to **inline variables** -- denoted using capital letters -- for adding structure and predictability to the live-coding performance. These variables can be used to replace parts of the syntax and to create musical form by devising reoccurring segments. The live-coding audience can feel unease if they are expecting the performance to follow schematic norms internalized from other types of music. Repeating the segments in consistent order and limiting the introduction of new patterns supports the familiarity and can evoke a positive response in the audience [@huron2008sweet]. Using the musical form and gradual variation enables the live-coder to create expectations dynamically which gives satisfaction from anticipating and successfully predicting the structure of the music.
 
 ~~~~ {.js}
 A=% {A>0.5?(e 1 2):(q2)} {A<0.5?4:5}                             // Use in conditional statements
@@ -332,7 +335,7 @@ A=(0 2 [3 2])+<0 <2 1>> B=(0 (1,5) [3 <(2,5) (0,3)>]) A B B A    // Combine ever
 
 # Conclusion and future work
 
-In this paper, we have presented a novel numeric notation and a pattern language usable in a live coding context. The presented notation is designed as a bridge from the old to the new, linking and facilitating exploration between different forms of computer and staff-based musical notation; from pitch-based staff writing to generative and improvised performance. The Ziffers notation is designed to be platform independent, making it possible to share generative melodies and patterns between different live coding languages and more traditional composition tools. Even though Ziffers as a language is expressive enough to describe complex musical sequences using mathematical and generative operations, profound and meaningful interaction is still to be found in the link between Ziffers and the underlying logic and flow of live coding interfaces implementing it. Further experimentation is still needed to find the perfect balance between the proposed numbered notation and different live coding languages.
+In this paper, we have presented a novel numeric notation and a pattern language usable in a live coding context. The presented notation is designed as a bridge from the old to the new, linking and facilitating exploration between different forms of computer and staff-based musical notation; from pitch-based staff writing to generative and improvised performance. The Ziffers notation is designed to be platform independent, making it possible to share generative melodies and patterns between different live coding languages and more traditional composition tools. Even though Ziffers as a language is expressive enough to describe complex musical sequences using mathematical and generative operations, profound and meaningful interaction is still to be found in the link between Ziffers and the underlying logic and flow of the live coding interfaces implementing it. Further experimentation is still needed to find the perfect balance between the proposed numbered notation and different live coding languages.
 
 For now, Sonic Pi is the only fully supported platform for Ziffers. Due to a planned change from Ruby to Elixir programming language, the current implementation might become unsupported in the future. By then, the implementation needs to be rewritten, but it has also already served its purpose as an exploratory medium for prototyping numbered notation in live coding. It is also always possible to use Ziffers with the latest *Sonic Pi* version with the *Ruby* support.
 

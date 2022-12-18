@@ -339,7 +339,7 @@ class="citation" data-cites="ziffersmusescore2021">(Alonen 2021)</span>
 allowing the transformation of staff-based score format to Ziffers
 notation has also been created and proposed as a proof of concept tool
 for learning the new numeric notation.</p>
-<p>The plugin for the <em>MuseScore 3.0</em> be used to transform
+<p>The plugin for the <em>MuseScore 3.0</em> can be used to transform
 traditional scores (from MusicXML, ABC notation or MIDI files) to the
 numeric notation for analyzing the musical structures from your favorite
 composers and using the displaced sequences as a form of rehearsal and
@@ -524,8 +524,8 @@ readability and for the sake of brevity, we have chosen to list and
 comment only the most commonly accessed tokens, relegating other
 notation symbols to the example tables. Detailed sections will cover the
 more advanced and Ziffers specific features. Basic notation contains all
-static symbols, which can be parsed without additional processing. By
-default, Ziffers interprets numbers as in pitch class notation
+static symbols, which can be parsed without additional processing.</p>
+<p>By default, Ziffers interprets numbers as in pitch class notation
 <code>[0-9TE]</code>, extending numbers to capital characters
 <code>T</code> for <code>10</code> and <code>E</code> for
 <code>11</code> to support faster input for 12-tone compositions. Pitch
@@ -534,7 +534,9 @@ also be escaped using curly braces. For example, pitch classes
 <code>-12</code> and <code>24</code> could be notated as
 <code>{-12 24}</code>, which is then interpreted to the right octave
 depending on the scale. In a major scale number <code>24</code> becomes
-pitch class <code>3</code> in octave <code>3</code>.</p>
+pitch class <code>3</code> in octave <code>3</code>. Pitches can also be
+sharpened using <strong>#</strong> or flattened with <strong>b</strong>
+when using diatonic scales.</p>
 <p>In pitch class notation 0 represents the root for the scale. Negative
 pitch classes can be used to denote pitch classes below the root. Scales
 can be thus mentally visualized as number lines ranging from negative to
@@ -546,9 +548,7 @@ degree based notation can be easier for those who are only familiar with
 scale degrees and not accustomed to pitch class notation.</p>
 <p>In degree based notation, degrees range from 1 to 9 depending on the
 scale length. Compared with pitch class notation, the degree based
-notation does not have the root as a mirroring axis. Pitches can also be
-sharpened using <strong>#</strong> or flattened with <strong>b</strong>
-when using diatonic scales.</p>
+notation does not have the root as a mirroring axis.</p>
 <p><strong>Note durations</strong> are denoted with lower case
 characters which are selected from note length names, for example
 <strong>w</strong> for whole, <strong>h</strong> for half,
@@ -570,8 +570,9 @@ boat</em> could be notated differently depending on the chosen duration
 syntax:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of note length characters and dots for durations</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">|</span> q2 e1 q2 e3 <span class="op">|</span> h4 qr <span class="op">|</span> e <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="op">|</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q4 e3 q2 e1 <span class="op">|</span> h<span class="op">.</span> <span class="dv">0</span> <span class="op">|</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of decimal notation for durations</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.5</span> <span class="dv">4</span> <span class="fl">0.25</span> r <span class="op">|</span> <span class="co">// …</span></span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of decimal notation for durations</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.5</span> <span class="dv">4</span> <span class="fl">0.25</span> r <span class="op">|</span> <span class="co">// …</span></span></code></pre></div>
 <p><strong>Key</strong> is determined from given parameters or from
 inline notation denoted by either MIDI notes, note names or scientific
 pitch notation. <strong>Scale</strong> is determined from the predefined
@@ -773,23 +774,23 @@ notation. Values in the list will overflow to the beginning if there are
 not enough values for the whole cycle. Inner cycles can also be defined
 using cyclic syntax, to make more complex structures.</p>
 <div class="sourceCode" id="cb18"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>)<span class="op">&lt;</span><span class="dv">5</span><span class="op">,</span><span class="dv">8</span><span class="op">&gt;</span>                                  <span class="co">// Onset is cycles and offset defaults to r</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))                   <span class="co">// Pitches from the onset and lists from the offset</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span><span class="dv">3</span><span class="op">&gt;</span>(eB sX)                         <span class="co">// Rotated by 3 with samples or events</span></span>
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>)<span class="op">&lt;</span><span class="dv">5</span><span class="op">,</span><span class="dv">8</span><span class="op">&gt;</span>                                 <span class="co">// Onset is cycles and offset defaults to r</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))                  <span class="co">// Pitches from the onset and lists from the offset</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span><span class="dv">3</span><span class="op">&gt;</span>(eB sX)                        <span class="co">// Rotated by 3 with samples or events</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span>)<span class="op">&lt;&lt;</span><span class="dv">9</span> <span class="dv">13</span><span class="op">&gt;,&lt;</span><span class="dv">23</span> <span class="op">&lt;</span><span class="dv">19</span> <span class="dv">21</span><span class="op">&gt;&gt;,&lt;</span><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;&gt;</span>(<span class="op">&lt;</span><span class="dv">2</span> <span class="op">&lt;-</span><span class="dv">2</span> <span class="op">-</span><span class="dv">3</span><span class="op">&gt;&gt;</span>)  <span class="co">// Cyclic euclidean cycles with cyclic rotations</span></span></code></pre></div>
 <p>Generated patterns can be assigned to <strong>inline
 variables</strong> – denoted using capital letters – for adding
-structure and predictability to the live-coded composition. These
+structure and predictability to the live-coding performance. These
 variables can be used to replace parts of the syntax and to create
 musical form by devising reoccurring segments. The live-coding audience
 can feel unease if they are expecting the performance to follow
 schematic norms internalized from other types of music. Repeating the
 segments in consistent order and limiting the introduction of new
-patterns supports familiarity and can evoke a positive response in the
-audience <span class="citation" data-cites="huron2008sweet">(Huron
+patterns supports the familiarity and can evoke a positive response in
+the audience <span class="citation" data-cites="huron2008sweet">(Huron
 2008)</span>. Using the musical form and gradual variation enables the
 live-coder to create expectations dynamically which gives satisfaction
-from anticipating and successfully predicting the stucture of the
+from anticipating and successfully predicting the structure of the
 music.</p>
 <div class="sourceCode" id="cb19"><pre
 class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=%</span> {A<span class="op">&gt;</span><span class="fl">0.5</span><span class="op">?</span>(e <span class="dv">1</span> <span class="dv">2</span>)<span class="op">:</span>(q2)} {A<span class="op">&lt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span>}                             <span class="co">// Use in conditional statements</span></span>
@@ -811,7 +812,7 @@ traditional composition tools. Even though Ziffers as a language is
 expressive enough to describe complex musical sequences using
 mathematical and generative operations, profound and meaningful
 interaction is still to be found in the link between Ziffers and the
-underlying logic and flow of live coding interfaces implementing it.
+underlying logic and flow of the live coding interfaces implementing it.
 Further experimentation is still needed to find the perfect balance
 between the proposed numbered notation and different live coding
 languages.</p>
