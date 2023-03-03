@@ -155,8 +155,7 @@ taking advantage of the large number of predefined methods and
 compositional helpers offered by <em>Sonic Pi’s</em> rich internal
 library. The dissociation between pitch and rhythm imposed by <em>Sonic
 Pi</em> data structures and imperative-oriented programming model lead
-to the development of the first prototype of Ziffers <span
-class="citation" data-cites="ziffers2018">(Alonen 2018)</span>. After a
+to the development of the first prototype of Ziffers in 2018. After a
 few years of research and prototyping, Ziffers 2.0 was released in 2022
 <span class="citation" data-cites="ziffers2022">(Alonen 2022)</span>. It
 includes a new parser that extends Ziffers capabilities with new
@@ -171,7 +170,11 @@ pitch-based music notation practices with the kairotic notations <span
 class="citation" data-cites="cocker2013live">(Cocker 2013)</span>
 typically found in live coding and algorithmic music performance systems
 <span class="citation" data-cites="blackwell2022live">(Blackwell et al.
-2022)</span>. Therefore, the system has been designed iteratively, in
+2022)</span>. Live coding is a kairotic practice where the programmer is
+creating and modifying the code in the moment for exploring and
+expressing artistic goals <span class="citation"
+data-cites="mclean2018cyclic">(McLean, Fanfani, and Harlizius-Klück
+2018)</span>. The proposed notation has been designed iteratively, in
 conversation with the diverse and complex historical legacy of said
 practices. Documents pertaining to the systems of numeric pitch notation
 in common practice can be traced back as early as the European baroque
@@ -189,16 +192,21 @@ notation <span class="citation" data-cites="davantes1560">(Davantès
 1560)</span>, early theoretical endeavours in algorithmic composition
 <span class="citation" data-cites="kircher1650">(Kircher 1650)</span> or
 in pedagogy and teaching <span class="citation"
-data-cites="rousseau1781projet">(Rousseau 1781)</span>. Finding a new
-breath during the late nineteenth-century through the Galin-Paris-Chevré
-notation <span class="citation" data-cites="dauphin2012devenir">(Dauphin
-2012)</span>, the practice spread to Asia where it is widely used, known
-and practiced, sometimes concurrently with standard staff notation. Some
-specialized applications of numbered notation can also be found in the
-toolset of ethnomusicologists and ethnomathematicians that often take
-advantage of the versatility of symbolic cipher notation to devise
-notation systems capable of formalizing musical systems or previously
-non-written musical practices <span class="citation"
+data-cites="rousseau1781projet">(Rousseau 1781)</span>. The numeric
+notation never became widely popular in Europe, but it has been used in
+music education in schools and in preservation of religious music
+traditions <span class="citation"
+data-cites="buzinov2018psalmodicon">Warkentin (2022)</span>. Finding a
+new breath during the late nineteenth-century through the
+Galin-Paris-Chevré notation <span class="citation"
+data-cites="dauphin2012devenir">(Dauphin 2012)</span>, the practice
+spread to Asia where it is widely used, known and practiced, sometimes
+concurrently with standard staff notation. Some specialized applications
+of numbered notation can also be found in the modern toolset of
+ethnomusicologists and ethnomathematicians that often take advantage of
+the versatility of symbolic cipher notation to devise notation systems
+capable of formalizing musical systems or previously non-written musical
+practices <span class="citation"
 data-cites="Schaffrath1997 chemillier2002ethnomusicology">(Schaffrath
 1997; Chemillier 2002)</span>.</p>
 <p>We perceive –– as a thought experiment –– the use of mininotations
@@ -255,32 +263,33 @@ data-cites="magnusson2019sonic">(Magnusson 2019)</span>.</p>
 id="objectives-specification-of-a-cross-platform-notation-system"><span
 class="header-section-number">3</span> Objectives: Specification of a
 cross-platform notation system</h1>
-<p>Objectives of the Ziffers numerical notation adheres to the cognitive
-dimensions of music notations as defined by <span class="citation"
-data-cites="nash2015cognitive">Nash (2015)</span> and to the subset of
-criterion relevant to the numbered notations defined by the Music
-Notation Project <span class="citation" data-cites="mnma2022">(MNMA
-2022)</span>. The notation must allow users of different ages and
-backgrounds to compose music. The Ziffers extension built for Sonic Pi
-presented in latter sections of this paper builds on the accessibility
-and pedagogical efforts pursued by <span class="citation"
-data-cites="aaron2016sonic">Aaron (2016)</span>. The development of the
-numerical notation aims to remove the exclusivity that comes with the
-music theory and provide a beneficial live coding experience for the
-uninitiated. Use of numeric notation should make it possible to write
-melodic sequences and interval movements using numbers regardless of the
-key and scale.</p>
+<p>Objectives for the presented notation are in parallel with the
+cognitive dimensions of music notations defined by <span
+class="citation" data-cites="nash2015cognitive">Nash (2015)</span> and a
+subset of relevant criterion defined by the Music Notation Project <span
+class="citation" data-cites="mnma2022">(MNMA 2022)</span>. Guiding
+principles has been minimalism, provisionality and learnability of the
+notation that enables users of different ages and backgrounds to easily
+experiment and compose music in a live setting. The Ziffers extension
+built for Sonic Pi presented in latter sections of this paper builds on
+the accessibility and pedagogical efforts pursued by <span
+class="citation" data-cites="aaron2016sonic">Aaron (2016)</span>. The
+development of the numerical notation aims to remove the exclusivity
+that comes with the music theory and provide a beneficial live coding
+experience for the uninitiated. Use of numeric notation should make it
+possible to write melodic sequences and interval movements using numbers
+regardless of the key and scale.</p>
 <p>The implementation of the Ziffers notation is specific to each
-targeted platform. The notation should also minimal enough to be easily
-manipulated through any writing tool by relying solely on symbols taken
-from the ASCII table. To easily conceptualize pitches in time, defining
-a combination of pitch and duration should be as straightforward as
-possible. The notation should be able to function as an educational tool
-for teaching music theory and composition. Furthermore, by making the
-user aware of the relationship between musical and mathematical
-notation, the system should also support teaching advanced music theory
-concepts such as musical set theory and the manipulation of pitch-sets
-or any complex musical objects.</p>
+targeted platform. The notation itself should be minimal enough to be
+easily manipulated through any writing tool by relying solely on symbols
+taken from the ASCII table. To easily conceptualize pitches in time,
+defining a combination of pitch and duration should be as
+straightforward as possible. The notation should be able to function as
+an educational tool for teaching music theory and composition.
+Furthermore, by making the user aware of the relationship between
+musical and mathematical notation, the system should also support
+teaching advanced music theory concepts such as musical set theory and
+the manipulation of pitch-sets or any complex musical objects.</p>
 <p>The number of live coding environments have steadily increased in
 recent years <span class="citation" data-cites="awesome2022">(Toplap
 2022)</span>. We argue that there is now a need for some amount of
@@ -327,196 +336,16 @@ and delayed feedback <span class="citation"
 data-cites="rohrhuber2018algorithmic">(Rohrhuber, Dean, and McLean
 2018)</span> oriented performing context permitted by live coding
 environments.</p>
-<h1 data-number="4" id="sonic-pi-based-prototype-implementation"><span
-class="header-section-number">4</span> SONIC-PI BASED PROTOTYPE
-IMPLEMENTATION</h1>
-<p>Ziffers has evolved from a simple script embedded in one of many
-Sonic Pi’s text buffers to a fully fledged DSL and framework for the
-computer aided algorithmic composition and live coding. The current
-software architecture for the Sonic Pi’s based Ziffers implementation is
-presented in the figure above. A <em>Musescore 3.0</em> plugin <span
-class="citation" data-cites="ziffersmusescore2021">(Alonen 2021)</span>
-allowing the transformation of staff-based score format to Ziffers
-notation has also been created and proposed as a proof of concept tool
-for learning the new numeric notation.</p>
-<p>The plugin for the <em>MuseScore 3.0</em> can be used to transform
-traditional scores (from MusicXML, ABC notation or MIDI files) to the
-numeric notation for analyzing the musical structures from your favorite
-composers and using the displaced sequences as a form of rehearsal and
-inspiration for the live coding. Examples above and below exemplifies
-this form of learning practice using the extracted sequence from Avril
-14th by Aphex Twin.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ziffers <span class="st">&quot; // Aphex Twin - Avril 14th with added transformations</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ss">/ synth: piano</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> q ^ 2 _ 5 ^ 0 e r s 0  </span><span class="sc">|</span><span class="ss"> sq. 5 e 5 ^ 4 3 2 0  </span><span class="sc">|</span><span class="ss"> /</span> retrograde<span class="op">:</span> [<span class="kw">false</span><span class="op">,</span><span class="kw">true</span>]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q <span class="dv">2</span> _ <span class="dv">5</span> <span class="op">^</span> <span class="dv">0</span> e r s <span class="dv">0</span> _  <span class="op">|</span> sq<span class="op">.</span> <span class="at">_</span> <span class="dv">5</span> e <span class="dv">5</span> <span class="op">^</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">0</span>  <span class="op">|</span> <span class="ss">/ octave: </span><span class="sc">[0,1,-1]</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> e __ 0 5 ^ 0 2 _ 2 ^ 0 2 4  </span><span class="sc">|</span><span class="ss"> e __ 3 ^ 0 3 4 _ 1 ^ 0 3 2 </span><span class="sc">|</span><span class="ss"> /</span> inverse<span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="st">&quot;</span></span></code></pre></div>
-<h2 data-number="4.1" id="main-methods"><span
-class="header-section-number">4.1</span> Main methods</h2>
-<p>The <strong>zplay</strong>, <strong>zloop</strong> (z0…z20) and
-<strong>zparse</strong> methods are the main entry points to interact
-with Ziffers. The multiline methods, <strong>ziff</strong> for single
-playtrough and <strong>ziffers</strong> for looping, allows horizontal
-arrangement of simultanious patterns (as in the Aphex Twin example
-above). A slightly different version, <strong>ztracker</strong>,
-emulates the behaviour of classic music trackers (e.g. <em>Pro
-Tracker</em>, <em>Renoise</em>) allowing the vertical arrangement like
-in the <em>HumDrum</em> notation. Being non intrusive, Ziffers can also
-adapt to the <strong>live_loop</strong> mechanism defined by Sonic Pi to
-enable quick playback of different inputs and further enhance musical
-expressivity. The combined usage of <strong>live_loop</strong> and
-<strong>zplay</strong> methods is supported for musicians willing to use
-both patterning paradigms.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a># Example <span class="kw">of</span> combining live_loop and zplay <span class="kw">in</span> Sonic Pi</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>with_fx <span class="op">:</span>reverb<span class="op">,</span> room<span class="op">:</span> <span class="fl">1.0</span> <span class="cf">do</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  live_loop <span class="op">:</span>sonic_pi <span class="cf">do</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    with_synth_defaults divisor<span class="op">:</span> <span class="fu">rrand</span>(<span class="fl">0.1</span><span class="op">,</span><span class="fl">0.15</span>)<span class="op">,</span> attack<span class="op">:</span> <span class="fu">rrand</span>(<span class="fl">0.01</span><span class="op">,</span><span class="fl">0.1</span>) <span class="cf">do</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      pling <span class="op">=</span> <span class="fu">rrand_i</span>(<span class="dv">1000</span><span class="op">,</span><span class="dv">3000</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="fl">4.</span>times <span class="cf">do</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        zplay pling<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>mixolydian<span class="op">,</span> rhythm<span class="op">:</span> <span class="st">&quot;q.eqe&quot;</span><span class="op">,</span> octave<span class="op">:</span> <span class="op">-&gt;</span>(){<span class="fu">rrand_i</span>(<span class="op">-</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span>)}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      end</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    end</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  end</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>end</span></code></pre></div>
-<p>Multiple modes of interaction with the patterning system are detailed
-in the <a
-href="https://github.com/amiika/ziffers/wiki/Play">documentation</a>
-hosting the <em>Sonic Pi</em> implementation. Each method has its own
-specificities and can be adapted to a particular context of execution.
-For instance, composing can be supported by the non-looping zplay method
-while improvisation is preferably handled through the automatically
-synchronized zloop shorthands (each loop synchronizing on z0 unless
-stated otherwise). There are also various shorthands for manipulating
-the effects, synth parameters and playback, such as
-<strong>cycle</strong>, <strong>fade</strong> and <strong>tweak</strong>
-documented in the <a
-href="https://github.com/amiika/ziffers/wiki/Effects">effects
-section</a>.</p>
-<h2 data-number="4.2" id="parsers"><span
-class="header-section-number">4.2</span> Parsers</h2>
-<p>Parsing is implemented with parsing expression grammars (PEGs) using
-the Ruby-based Treetop library (Treetop 2022). Ziffers is constituted of
-three parsers, each one handling specific use cases depending on the
-nature of the input. The <strong>Parameter parser</strong> is used for
-multiline parsing where notation can include supplementary information,
-such as the key, scale, synth, MIDI port, MIDI channel and other context
-or environment specific parameters. The <strong>Generative
-parser</strong> has been specialized to parse random number generators,
-sequence generators relying on various conditional statements and
-mathematical operations. Furthermore, an optional string rewrite loop
-can be used to extend these generative capabilities by transforming the
-input through recursive substitution of some parts of the initial input.
-One can think of the Ziffers parsing system as a multi-layered
-conditional parsing operation. After a first part of context specific or
-generative parsing operations, the resulting string is parsed again
-using the <strong>Basic parser</strong>, which includes only the static
-definitions of pitches, octaves and durations. The relevant data
-structures for the parsed notation are implemented as subclasses of
-array and hash, which implements all the necessary methods for the
-transformations.</p>
-<h2 data-number="4.3" id="inputs-and-parameters"><span
-class="header-section-number">4.3</span> Inputs and parameters</h2>
-<p>All inputs are normalized to a string, type conversion being applied
-when necessary. The integer ‘2468’ can be parsed to a sequence of notes
-or a chord, etc. Adjusting the base behaviour of the parser can be done
-by providing parameters as additional keyword arguments defining a
-context for the parser. In a similar fashion, user input can also be
-specified as a lambda function or as enumerable defined by the
-<em>Ruby</em> language. This is allowing for the definition and use of
-infinite note sequences such as the Morse-Thue sequence demonstrated
-below, one that is commonly used in fractal music composition <span
-class="citation"
-data-cites="kindermann2001musinum gomez2021symbolic">(Kindermann 2001;
-Gómez and Nasser 2021)</span>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a># zplay is the fastest way to ziffer</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;q 0 236 q.4 e6 3 0 2&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>piano # Play pattern</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">2468</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> rhythm<span class="op">:</span> [<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.125</span><span class="op">,</span><span class="fl">0.5</span>] # Parse integer <span class="im">as</span> a sequence</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">2468</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> parse_chord<span class="op">:</span> <span class="kw">true</span> # Parse integer <span class="im">as</span> a chord</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>zplay [<span class="dv">2</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">6</span><span class="op">,</span><span class="dv">8</span>]<span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>E4<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>hex_sus<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>chiplead<span class="op">,</span> width<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> pan<span class="op">:</span> <span class="op">-&gt;</span>(){rand} # Parse array</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>zplay [[<span class="dv">1</span><span class="op">,</span><span class="fl">0.5</span>]<span class="op">,</span>[<span class="dv">3</span><span class="op">,</span><span class="fl">0.25</span>]<span class="op">,</span>[<span class="dv">0</span><span class="op">,</span><span class="fl">1.0</span>]]<span class="op">,</span> key<span class="op">:</span> <span class="dv">60</span><span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>aeolian<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>blade<span class="op">,</span> res<span class="op">:</span> <span class="fl">0.1</span> # <span class="bu">Array</span> <span class="cf">with</span> durations</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a># z0<span class="op">-</span>z20 are shorthands <span class="cf">for</span> loops</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>z0 <span class="st">&quot;q 0 e 3 2 q 4 2&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> divisor<span class="op">:</span> [<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.35</span><span class="op">,</span><span class="fl">0.45</span>]<span class="op">.</span><span class="at">ring</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a># Lambdas can be evaluated <span class="cf">for</span> each loop cycle</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>z1 <span class="op">-&gt;</span>(){<span class="fu">rrand_i</span>(<span class="op">-</span><span class="dv">9</span><span class="op">,</span><span class="dv">9</span>)}<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>blues_minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>kalimba<span class="op">,</span> clickiness<span class="op">:</span> <span class="op">-&gt;</span>(){rand}</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a># Morse<span class="op">-</span>thue sequence defined <span class="im">as</span> infinite enumerable using mod <span class="dv">7</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">z2</span> (<span class="fl">0.</span><span class="op">.</span><span class="at">Float</span><span class="op">::</span>INFINITY)<span class="op">.</span><span class="at">lazy</span><span class="op">.</span><span class="at">collect</span>{<span class="op">|</span>n<span class="op">|</span>n<span class="op">.</span><span class="fu">to_s</span>(<span class="dv">2</span>)<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">count</span>(<span class="st">&#39;1&#39;</span>)<span class="op">%</span><span class="dv">7</span>}<span class="op">,</span> rhythm<span class="op">:</span><span class="fu">spread</span>(<span class="dv">7</span><span class="op">,</span><span class="dv">9</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a># Built<span class="op">-</span><span class="kw">in</span> enumerable <span class="cf">for</span> playing the digits <span class="kw">of</span> pi</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>z3 pi<span class="op">.</span><span class="fu">take</span>(<span class="dv">10</span>)<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>kumoi<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>tb303<span class="op">,</span> rhythm<span class="op">:</span> <span class="fl">0.125</span><span class="op">,</span> cutoff<span class="op">:</span> <span class="fu">tweak</span>(<span class="op">:</span>sine<span class="op">,</span><span class="dv">60</span><span class="op">,</span><span class="dv">100</span><span class="op">,</span><span class="dv">10</span>)<span class="op">.</span><span class="at">reflect</span></span></code></pre></div>
-<p>Parameters can also be used to define meaning for <strong>control
-characters</strong> <code>A-Z</code> to act as placeholders for samples
-or different kind of events and implementation specific functions.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="op">:</span>bd_boom<span class="op">,</span> H<span class="op">:</span> <span class="op">:</span>drum_cymbal_closed        # Define samples</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> H<span class="op">:</span> <span class="dv">90</span><span class="op">,</span> port<span class="op">:</span> <span class="st">&quot;ext_midi&quot;</span><span class="op">,</span> channel<span class="op">:</span> <span class="dv">1</span> # Define MIDI drumkit</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>define <span class="op">:</span>foo <span class="cf">do</span> sample <span class="op">:</span>bd_zum end # Define Sonic Pi method # Define <span class="kw">function</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q F e F F&quot;</span><span class="op">,</span> F<span class="op">:</span> <span class="op">:</span>foo # Time the call using ziffers</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>canon <span class="op">=</span> zparse <span class="st">&quot;5 4 A 3 2 B 1 0&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>pretty_bell<span class="op">,</span> A<span class="op">:</span> {<span class="dt">cue</span><span class="op">:</span> <span class="op">:</span>c2}<span class="op">,</span> B<span class="op">:</span> {<span class="dt">cue</span><span class="op">:</span> <span class="op">:</span>c3} # Define cues</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>z1 canon # Start canon</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>z2 canon<span class="op">,</span> wait<span class="op">:</span> <span class="op">:</span>c2 # Wait <span class="cf">for</span> cue A</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>z3 canon<span class="op">,</span> wait<span class="op">:</span> <span class="op">:</span>c3 # Wait <span class="cf">for</span> cue B</span></code></pre></div>
-<h2 data-number="4.4" id="transformations"><span
-class="header-section-number">4.4</span> Transformations</h2>
-<p>The Transformation phase is an optional step for the manipulation of
-the generated musical patterns as defined by <span class="citation"
-data-cites="spiegel1981manipulations">Spiegel (1981)</span>, for example
-retrograde, inversion, substitution or by defining custom
-transformations that can manipulate the order, pitches, durations or any
-other parameters in the sequence. Transformations can be done in
-multiple ways and in different phases of the live composition process.
-Ziffers syntax also includes inline notation for transformations, that
-can be used for chaining multiple transformations to the defined
-sequences. Inline notation could also act as mechanism to transfer
-information about the intended transformations between different
-implementations. See full list of <a
-href="https://github.com/amiika/ziffers/wiki/Transformations">implemented
-transformations</a> in the documentation.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a># Transformations applied on a live sequence</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;e0 s 1 2 3 4 e5&quot;</span><span class="op">,</span> inverse<span class="op">:</span> [<span class="kw">false</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,-</span><span class="dv">1</span>]<span class="op">,</span> retrograde<span class="op">:</span> [<span class="kw">true</span><span class="op">,</span><span class="kw">false</span>]<span class="op">,</span> swap<span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">4</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a># Deferred transformations using <span class="st">&#39;zparse&#39;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> zparse <span class="st">&quot;q 0 2 1 4&quot;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">.</span><span class="at">inverse</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a<span class="op">.</span><span class="at">retrograde</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> a<span class="op">.</span><span class="fu">inverse</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">.</span><span class="at">retrograde</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">zplay</span> (a<span class="op">*</span><span class="dv">2</span><span class="op">+</span>b<span class="op">+</span>c<span class="op">*</span><span class="dv">2</span><span class="op">+</span>b)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a># Inline variant <span class="kw">of</span> the above mentioned methods</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;((q 0 e 4 2 5 3)&lt;inverse&gt;(3 0 2 3))&lt;swap&gt;(1 3 0)&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>mixolydian</span></code></pre></div>
-<p>Ziffers also implements a <strong>string rewriting system</strong>
-that is a non-deterministic Turing machine for evaluating axioms using
-unrestricted, context-sensitive and stochastic grammars <span
-class="citation" data-cites="mccormack1996grammar">(McCormack et al.
-1996)</span>. Rules for matching can be defined using regular
-expressions and substituted by using any syntax defined in the Ziffers
-notation. In contrast to some other common generative grammar systems
-<span class="citation" data-cites="nierhaus2009algorithmic">(Nierhaus
-2009)</span>, the substitutions made to each generation can be evaluated
-within a loop. This also allows rules to be added, edited and evaluated
-on the fly, creating a new form of rule machine that can be used in a
-live performance.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a># Simple rules creating a long pattern</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 2&quot;</span><span class="op">,</span> <span class="st">&quot;1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;2 1&quot;</span><span class="op">,</span> <span class="st">&quot;2&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 0&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">6</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a># Match using regex<span class="op">,</span> substitute <span class="cf">with</span> evaluation and mod by <span class="dv">7</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;1 2 3&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="ss">/</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;({$*2} [e,q] {$*3})%7&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">3</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a># Play and mutate generations on<span class="op">-</span>the<span class="op">-</span>fly<span class="op">.</span> <span class="at">First</span> rule <span class="cf">for</span> keeping results short<span class="op">.</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="ss">/</span><span class="sc">([a-z][0-9]</span><span class="ss"> </span><span class="sc">){20}</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;&quot;</span><span class="op">,</span> <span class="ss">/</span><span class="sc">[eq][0]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;q0 q1&quot;</span><span class="op">,</span> <span class="st">&quot;q1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e(1,4) e0&quot;</span>}</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a># Change durations using rules</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>z2 <span class="st">&quot;q0 e2 e1 q4&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e&quot;</span><span class="op">,</span> <span class="st">&quot;e&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;q&quot;</span>}</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a># Stochastic rules using Ziffers notation and regular expressions</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.5?q3:q0}&quot;</span><span class="op">,</span> <span class="st">&quot;q3&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.25?q(3,7):q0}&quot;</span><span class="op">,</span> <span class="ss">/q</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;[q3,q0]&quot;</span>}</span></code></pre></div>
-<h1 data-number="5" id="notation"><span
-class="header-section-number">5</span> NOTATION</h1>
+<h1 data-number="4" id="notation"><span
+class="header-section-number">4</span> NOTATION</h1>
 <p>Ziffers notation is divided into basic and generative syntax. Basic
 notation contains the elementary building blocks for sequential and
 polyphonic melodies. Generative notation builds on the basic notation
 and includes syntax for arithmetics, logical operations and
 transformations. Examples in this section are written in implementation
 independent form and could be performed using different methods.</p>
-<h2 data-number="5.1" id="basic-notation-pitch-rhythm-and-silence"><span
-class="header-section-number">5.1</span> Basic Notation: pitch, rhythm
+<h2 data-number="4.1" id="basic-notation-pitch-rhythm-and-silence"><span
+class="header-section-number">4.1</span> Basic Notation: pitch, rhythm
 and silence</h2>
 <p>The Ziffers syntax is supporting many classic musical notation
 symbols as well as many variations in their writing. For better
@@ -568,11 +397,11 @@ and dots, especially for venturing outside of the traditional note
 lengths. For example, famous nursery rhyme <em>Row row row your
 boat</em> could be notated differently depending on the chosen duration
 syntax:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of note length characters and dots for durations</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">|</span> q2 e1 q2 e3 <span class="op">|</span> h4 qr <span class="op">|</span> e <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="op">|</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q4 e3 q2 e1 <span class="op">|</span> h<span class="op">.</span> <span class="dv">0</span> <span class="op">|</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of decimal notation for durations</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.5</span> <span class="dv">4</span> <span class="fl">0.25</span> r <span class="op">|</span> <span class="co">// …</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of note length characters and dots for durations</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">|</span> q2 e1 q2 e3 <span class="op">|</span> h4 qr <span class="op">|</span> e <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span> <span class="op">|</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> q4 e3 q2 e1 <span class="op">|</span> h<span class="op">.</span> <span class="dv">0</span> <span class="op">|</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Use of decimal notation for durations</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> <span class="fl">0.375</span> <span class="dv">0</span> <span class="dv">0</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">0</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.375</span> <span class="dv">2</span> <span class="op">|</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">1</span> <span class="fl">0.25</span> <span class="dv">2</span> <span class="fl">0.125</span> <span class="dv">3</span> <span class="op">|</span> <span class="fl">0.5</span> <span class="dv">4</span> <span class="fl">0.25</span> r <span class="op">|</span> <span class="co">// …</span></span></code></pre></div>
 <p><strong>Key</strong> is determined from given parameters or from
 inline notation denoted by either MIDI notes, note names or scientific
 pitch notation. <strong>Scale</strong> is determined from the predefined
@@ -599,9 +428,9 @@ separator for different objects, like the chords in a sequence.
 <code>%</code> symbol in combination with a chord <code>024%2</code>.
 Roman numerals are also supported as part of the extended syntax for
 chord writing based on tonal/diatonic techniques.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Example harmonization of &#39;Row row row your boat&#39; using different symbols to modify pitches</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="bn">047</span> <span class="dv">0</span>                <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span>      <span class="op">|</span> q0247 e1 q2 e3         <span class="op">|</span> h4 qr      <span class="op">|</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> e <span class="dv">0</span><span class="er">b24</span><span class="op">^</span><span class="dv">0</span> <span class="op">^</span> <span class="dv">0</span> <span class="dv">0</span> _ <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span>  <span class="op">|</span> e <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span>  <span class="op">|</span> q<span class="op">&lt;-</span><span class="dv">2</span><span class="op">&gt;</span><span class="dv">4</span><span class="op">&lt;-</span><span class="dv">1</span><span class="op">&gt;</span><span class="dv">44</span> e3 q2 e1  <span class="op">|</span> h<span class="op">.</span><span class="at">_0024</span><span class="op">%-</span><span class="dv">1</span> <span class="op">|</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Example harmonization of &#39;Row row row your boat&#39; using different symbols to modify pitches</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q<span class="op">.</span> <span class="bn">047</span> <span class="dv">0</span>                <span class="op">|</span> q0 e1 q<span class="op">.</span><span class="dv">2</span>      <span class="op">|</span> q0247 e1 q2 e3         <span class="op">|</span> h4 qr      <span class="op">|</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> e <span class="dv">0</span><span class="er">b24</span><span class="op">^</span><span class="dv">0</span> <span class="op">^</span> <span class="dv">0</span> <span class="dv">0</span> _ <span class="dv">4</span> <span class="dv">4</span> <span class="dv">4</span>  <span class="op">|</span> e <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span>  <span class="op">|</span> q<span class="op">&lt;-</span><span class="dv">2</span><span class="op">&gt;</span><span class="dv">4</span><span class="op">&lt;-</span><span class="dv">1</span><span class="op">&gt;</span><span class="dv">44</span> e3 q2 e1  <span class="op">|</span> h<span class="op">.</span><span class="at">_0024</span><span class="op">%-</span><span class="dv">1</span> <span class="op">|</span></span></code></pre></div>
 <p><strong>Articulations</strong>, such as staccato ’ and accents ` ´
 can be used to affect the amplitude and the duration of the pitches.
 Defining <strong>Measures</strong> is optional but can prove necessary
@@ -612,41 +441,38 @@ important for both human and a machine to be able to start from any
 given measure without having the need to retrace to the beginning of the
 arrangement. <strong>Comments</strong> can be included using
 <code>//</code> or <code>/* */</code> characters.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a comment                 // One-line comments in Ziffers notation</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* This is a multiline comment */</span>    <span class="co">// Multiline comments</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>d3<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span> <span class="op">&lt;</span>minor<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span>             <span class="co">// Inline key and scale</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> h <span class="dv">0</span> <span class="op">^</span> q<span class="op">.</span> <span class="dv">4</span> e <span class="dv">2</span> <span class="op">|</span> q<span class="op">.</span> <span class="dv">4</span> h <span class="dv">6</span> e <span class="dv">2</span> <span class="op">|</span>    <span class="co">// Measures</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bn">024</span> <span class="dv">146</span> <span class="bn">025</span><span class="op">%-</span><span class="dv">1</span> <span class="dv">35</span><span class="op">^</span><span class="dv">0</span>                  <span class="co">// Chords (i v vi iv)</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="vs">``</span><span class="dv">0</span> <span class="vs">`0 0 ´0 ´´0                      // Accents (`</span> softer and ´ louder amp<span class="op">.</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;0 &#39;&#39;0                             // Staccato (shortened duration)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">~&lt;</span><span class="fl">0.3</span><span class="op">&gt;</span><span class="bn">0123456</span>                        <span class="co">// Glissando/bends (with speed param.)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>{<span class="dt">decay</span><span class="op">:</span> <span class="fl">0.5</span>}  <span class="dv">1</span> {<span class="dt">port</span><span class="op">:</span> ext_2} <span class="dv">3</span>      <span class="co">// Hash notation for inline parameters</span></span></code></pre></div>
-<h2 data-number="5.2" id="generative-notation"><span
-class="header-section-number">5.2</span> Generative notation</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// This is a comment                 // One-line comments in Ziffers notation</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* This is a multiline comment */</span>    <span class="co">// Multiline comments</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>d3<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span> <span class="op">&lt;</span>minor<span class="op">&gt;</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">3</span>             <span class="co">// Inline key and scale</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> h <span class="dv">0</span> <span class="op">^</span> q<span class="op">.</span> <span class="dv">4</span> e <span class="dv">2</span> <span class="op">|</span> q<span class="op">.</span> <span class="dv">4</span> h <span class="dv">6</span> e <span class="dv">2</span> <span class="op">|</span>    <span class="co">// Measures</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bn">024</span> <span class="dv">146</span> <span class="bn">025</span><span class="op">%-</span><span class="dv">1</span> <span class="dv">35</span><span class="op">^</span><span class="dv">0</span>                  <span class="co">// Chords (i v vi iv)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="vs">``</span><span class="dv">0</span> <span class="vs">`0 0 ´0 ´´0                      // Accents (`</span> softer and ´ louder amp<span class="op">.</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="st">&#39;0 &#39;&#39;0                             // Staccato (shortened duration)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">~&lt;</span><span class="fl">0.3</span><span class="op">&gt;</span><span class="bn">0123456</span>                        <span class="co">// Glissando/bends (with speed param.)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>{<span class="dt">decay</span><span class="op">:</span> <span class="fl">0.5</span>}  <span class="dv">1</span> {<span class="dt">port</span><span class="op">:</span> ext_2} <span class="dv">3</span>      <span class="co">// Hash notation for inline parameters</span></span></code></pre></div>
+<h2 data-number="4.2" id="generative-notation"><span
+class="header-section-number">4.2</span> Generative notation</h2>
 <p>Repetition is the simplest form of generative syntax also used by the
 traditional staff notation. <strong>Repeats</strong> are denoted using
 dotted list notation <code>[:  :]</code> which is by default repeated
 two times. Repeats can also be nested which is useful for creating the
 minimal representation of repeating tunes like the <em>Frère
 Jacques</em>.</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> q <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">2</span> <span class="dv">3</span> h4 <span class="op">:</span>] [<span class="op">:</span> [<span class="op">:</span> e <span class="dv">4</span> <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> q <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">0</span> _4 h0 <span class="op">:</span>] <span class="op">:</span>] <span class="co">// Frère Jacques</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">:</span><span class="dv">4</span>]     <span class="co">// Repeat 4-times</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> (<span class="dv">0</span><span class="op">,</span><span class="dv">3</span>) (<span class="dv">4</span><span class="op">,</span><span class="dv">6</span>) <span class="op">:</span><span class="dv">6</span>]   <span class="co">// Repeat the same generated sequence 6-times</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> q <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">2</span> <span class="dv">3</span> h4 <span class="op">:</span>] [<span class="op">:</span> [<span class="op">:</span> e <span class="dv">4</span> <span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> q <span class="dv">2</span> <span class="dv">0</span> <span class="op">:</span>] [<span class="op">:</span> q <span class="dv">0</span> _4 h0 <span class="op">:</span>] <span class="op">:</span>] <span class="co">// Frère Jacques</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> q0 e1 q<span class="op">.</span><span class="dv">2</span> <span class="op">:</span><span class="dv">4</span>]     <span class="co">// Repeat 4-times</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> (<span class="dv">0</span><span class="op">,</span><span class="dv">3</span>) (<span class="dv">4</span><span class="op">,</span><span class="dv">6</span>) <span class="op">:</span><span class="dv">6</span>]   <span class="co">// Repeat the same generated sequence 6-times</span></span></code></pre></div>
 <p><strong>Random numbers</strong> are the basic building blocks of all
 aleatoric melodies. There are multiple ways of defining random integers
 and decimals in the generative syntax and the generated values can be
 used for different purposes. Number sequences can be generated using
 range notation inspired by the Ruby syntax which has been updated to be
 more versatile.</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.5</span>) (<span class="dv">0</span><span class="op">,</span><span class="dv">5</span>)            <span class="co">// Random decimal and pitch between defined range</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> <span class="op">?</span>                         <span class="co">// % = (0.01,1.0) ? = (0,scale length)</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>[<span class="fl">0.125</span><span class="op">,</span><span class="fl">0.25</span><span class="op">,</span><span class="fl">0.5</span>] [<span class="dv">0</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">6</span>]  <span class="co">// Random numbers from selection</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.</span><span class="op">.</span><span class="dv">1</span>                       <span class="co">// -1 0 1</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>                      <span class="co">// 0 2</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">*</span><span class="dv">2</span>                      <span class="co">// 0 2 4 </span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">?..</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">5</span>)                    <span class="co">// 5..3 =&gt; 5 2 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.5</span>) (<span class="dv">0</span><span class="op">,</span><span class="dv">5</span>)            <span class="co">// Random decimal and pitch between defined range</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> <span class="op">?</span>                         <span class="co">// % = (0.01,1.0) ? = (0,scale length)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.</span><span class="op">.</span><span class="dv">1</span>                       <span class="co">// -1 0 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>                      <span class="co">// 0 2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fl">0.</span><span class="op">.</span><span class="dv">3</span><span class="op">*</span><span class="dv">2</span>                      <span class="co">// 0 2 4 </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">?..</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">5</span>)                    <span class="co">// 5..3 =&gt; 5 2 3</span></span></code></pre></div>
 <p><strong>Lists</strong> syntax can be used to arrange pitches into
 operable sequences. Arithmetic operations
 <code>+ - * ** / ^ % | &amp; &lt;&lt; &gt;&gt;</code> can be applied to
@@ -660,20 +486,18 @@ chord, unique <strong>!</strong> for removing same pitches from the
 list, pick a random <strong>?</strong> for picking 1-n pitches from the
 list and shuffle <strong>~</strong> for shuffling and picking unique
 random values from the list.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span>  e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span><span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">%</span><span class="dv">7</span>           <span class="co">// Applying multiple operations to a list</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">+</span>(<span class="dv">3</span> <span class="dv">4</span>)                        <span class="co">// Same as: 1+3 1+4 2+3 2+4</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span> e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span>(<span class="dv">0</span> <span class="op">-</span><span class="dv">2</span> <span class="dv">3</span>)<span class="op">-</span>(<span class="dv">2</span> <span class="dv">4</span>)   <span class="co">// Lists and operations can be chained</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">4</span>) <span class="op">:</span><span class="dv">3</span>) (<span class="op">-</span><span class="fl">3.</span><span class="op">.</span><span class="dv">3</span>)<span class="op">~</span><span class="dv">3</span> (<span class="op">-</span><span class="fl">3.</span><span class="op">.</span><span class="dv">3</span>)<span class="op">?</span><span class="dv">3</span>   <span class="co">// Different ways to generate random sequences</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">0</span><span class="op">,</span><span class="dv">6</span>) <span class="op">:</span><span class="dv">3</span>)<span class="op">&amp;</span> ((<span class="dv">100</span><span class="op">,</span><span class="dv">300</span>))$         <span class="co">// Combining chords and separating pitches</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span>  e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span><span class="dv">1</span><span class="op">*</span><span class="dv">4</span><span class="op">%</span><span class="dv">7</span>           <span class="co">// Applying multiple operations to a list</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">+</span>(<span class="dv">3</span> <span class="dv">4</span>)                        <span class="co">// Same as: 1+3 1+4 2+3 2+4</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(q <span class="dv">0</span> e <span class="dv">1</span> <span class="dv">2</span> q <span class="dv">3</span> <span class="dv">5</span>)<span class="op">+</span>(<span class="dv">0</span> <span class="op">-</span><span class="dv">2</span> <span class="dv">3</span>)<span class="op">-</span>(<span class="dv">2</span> <span class="dv">4</span>)   <span class="co">// Lists and operations can be chained</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">4</span>) <span class="op">:</span><span class="dv">3</span>) (<span class="op">-</span><span class="fl">3.</span><span class="op">.</span><span class="dv">3</span>)<span class="op">~</span><span class="dv">3</span> (<span class="op">-</span><span class="fl">3.</span><span class="op">.</span><span class="dv">3</span>)<span class="op">?</span><span class="dv">3</span>   <span class="co">// Different ways to generate random sequences</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">0</span><span class="op">,</span><span class="dv">6</span>) <span class="op">:</span><span class="dv">3</span>)<span class="op">&amp;</span> ((<span class="dv">100</span><span class="op">,</span><span class="dv">300</span>))$         <span class="co">// Combining chords and separating pitches</span></span></code></pre></div>
 <p><strong>Bracket syntax</strong> is alternative notation for durations
 that subdivides the note lengths using nested brackets. Similar notation
 is also used by TidalCycles and Alda. Bracket syntax is especially
 useful for notating triplets or n-tuplets.</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>q [<span class="dv">0</span> <span class="dv">2</span> [<span class="dv">3</span> [<span class="dv">5</span> [<span class="dv">2</span> <span class="dv">0</span>]]]] <span class="co">// Nested brackets subdividing 0.5</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Frere Jacques using the brackets subdividing 1.0</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>w [<span class="op">:</span> [<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">2</span> <span class="dv">3</span>] <span class="dv">4</span>] <span class="op">:</span>] [<span class="op">:</span>[<span class="op">:</span> [[<span class="dv">4</span> <span class="dv">5</span>] [<span class="dv">4</span> <span class="dv">3</span>] <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">0</span> _4] <span class="dv">0</span>] <span class="op">:</span>]<span class="op">:</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>q [<span class="dv">0</span> <span class="dv">2</span> [<span class="dv">3</span> [<span class="dv">5</span> [<span class="dv">2</span> <span class="dv">0</span>]]]] <span class="co">// Nested brackets subdividing 0.5</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Frere Jacques using the brackets subdividing 1.0</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>w [<span class="op">:</span> [<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">2</span> <span class="dv">3</span>] <span class="dv">4</span>] <span class="op">:</span>] [<span class="op">:</span>[<span class="op">:</span> [[<span class="dv">4</span> <span class="dv">5</span>] [<span class="dv">4</span> <span class="dv">3</span>] <span class="dv">2</span> <span class="dv">0</span>] <span class="op">:</span>] [<span class="op">:</span> [[<span class="dv">0</span> _4] <span class="dv">0</span>] <span class="op">:</span>]<span class="op">:</span>]</span></code></pre></div>
 <p><strong>Cyclic notation</strong> for events has been previously
 introduced by TidalCycles. Cyclic structures can be defined by enclosing
 the sequence in nested angle brackets. Ziffers enables the use of cyclic
@@ -681,13 +505,12 @@ notation in loops or as part of repeat notation as alternative endings
 also used in the traditional staff notation. When cycles are defined
 within a repeat notation, the cycles are evaluated within the context of
 the repeat.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;&gt;&gt;</span>                <span class="co">// Cyclic notation for loops</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> <span class="dv">1</span> <span class="op">&lt;</span><span class="dv">2</span> <span class="dv">4</span><span class="op">&gt;</span> <span class="op">:</span>]                  <span class="co">// Alternate endings for repeat</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">7</span>) <span class="op">&lt;</span><span class="dv">2</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;&gt;</span> <span class="op">:</span><span class="dv">3</span>)         <span class="co">// Cycles in a repeated list</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> [<span class="dv">2</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;</span>] <span class="bn">024</span>)<span class="op">+</span>(<span class="op">&lt;</span><span class="dv">2</span> <span class="dv">0</span><span class="op">&gt;</span> <span class="dv">1</span> <span class="dv">2</span>)  <span class="co">// Brackets and cycles in a list</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">+&lt;</span>(<span class="dv">1</span> <span class="dv">2</span>) (<span class="dv">4</span> <span class="dv">6</span>)<span class="op">&gt;</span>          <span class="co">// Operations with cyclic lists</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="op">&lt;</span><span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;</span>)<span class="op">&lt;+</span> <span class="op">-</span> <span class="op">*&gt;&lt;</span><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;</span>        <span class="co">// Cyclic everything</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;&gt;&gt;</span>                <span class="co">// Cyclic notation for loops</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">:</span> <span class="dv">1</span> <span class="op">&lt;</span><span class="dv">2</span> <span class="dv">4</span><span class="op">&gt;</span> <span class="op">:</span>]                  <span class="co">// Alternate endings for repeat</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(<span class="op">:</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">7</span>) <span class="op">&lt;</span><span class="dv">2</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;&gt;</span> <span class="op">:</span><span class="dv">3</span>)         <span class="co">// Cycles in a repeated list</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> [<span class="dv">2</span> <span class="op">&lt;</span><span class="dv">4</span> <span class="dv">5</span><span class="op">&gt;</span>] <span class="bn">024</span>)<span class="op">+</span>(<span class="op">&lt;</span><span class="dv">2</span> <span class="dv">0</span><span class="op">&gt;</span> <span class="dv">1</span> <span class="dv">2</span>)  <span class="co">// Brackets and cycles in a list</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">+&lt;</span>(<span class="dv">1</span> <span class="dv">2</span>) (<span class="dv">4</span> <span class="dv">6</span>)<span class="op">&gt;</span>          <span class="co">// Operations with cyclic lists</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="op">&lt;</span><span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;</span>)<span class="op">&lt;+</span> <span class="op">-</span> <span class="op">*&gt;&lt;</span><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;</span>        <span class="co">// Cyclic everything</span></span></code></pre></div>
 <p><strong>Transformations</strong> can also be notated inline using the
 list syntax and escape notation for built-in methods:
 <code>(list)&lt;method&gt;(optional-list)</code>. Ziffers also
@@ -703,15 +526,14 @@ multiple times, whereas normal repeats are used to repeat the generated
 values and create a sense of repetition. <strong>List functions</strong>
 are inspired by polynomial functions and can be used to transform the
 values using arithmetic expressions.</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span>           <span class="co">// Inline transformation</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>inverse<span class="op">&gt;</span>(<span class="op">-</span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span>)      <span class="co">// Multiple chained transformations</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>(q e e)<span class="op">&lt;&gt;</span>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>)               <span class="co">// Cyclic zip: q 0 e 1 q 2 e 3 q 4 </span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">&lt;+&gt;</span>(<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>)               <span class="co">// Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 </span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">5</span>)<span class="op">&lt;*&gt;</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>)             <span class="co">// Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">3</span>)<span class="op">&lt;</span><span class="dv">4</span><span class="op">&gt;</span>(<span class="dv">1</span> <span class="dv">3</span>)                 <span class="co">// Interval interpolation: 2 4 6 1 3 5 </span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>(<span class="op">-</span><span class="fl">5.</span><span class="op">.</span><span class="dv">5</span>){<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">+</span><span class="dv">3</span>)(x<span class="op">-</span><span class="dv">5</span>)}      <span class="co">// Using function to transform a list</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>){x<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span><span class="op">?</span>(x<span class="op">+</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">2</span><span class="er">x</span>)}     <span class="co">// Applying functions conditionally </span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span>           <span class="co">// Inline transformation</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)<span class="op">&lt;</span>inverse<span class="op">&gt;</span>(<span class="op">-</span><span class="dv">1</span> <span class="dv">2</span> <span class="dv">0</span>)      <span class="co">// Multiple chained transformations</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>(q e e)<span class="op">&lt;&gt;</span>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>)               <span class="co">// Cyclic zip: q 0 e 1 q 2 e 3 q 4 </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">2</span>)<span class="op">&lt;+&gt;</span>(<span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>)               <span class="co">// Product of two lists: 1 3 1 4 1 5 2 3 2 4 2 5 </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">5</span>)<span class="op">&lt;*&gt;</span>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">9</span>)             <span class="co">// Pitch-class set multiplication: 0 5 3 8 6 {11} 9 {14}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="dv">3</span>)<span class="op">&lt;</span><span class="dv">4</span><span class="op">&gt;</span>(<span class="dv">1</span> <span class="dv">3</span>)                 <span class="co">// Interval interpolation: 2 4 6 1 3 5 </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>(<span class="op">-</span><span class="fl">5.</span><span class="op">.</span><span class="dv">5</span>){<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">+</span><span class="dv">3</span>)(x<span class="op">-</span><span class="dv">5</span>)}      <span class="co">// Using function to transform a list</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.</span><span class="op">.</span><span class="dv">5</span>){x<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span><span class="op">?</span>(x<span class="op">+</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">2</span><span class="er">x</span>)}     <span class="co">// Applying functions conditionally </span></span></code></pre></div>
 <p><strong>Chords</strong> can be generated using roman numerals
 <code>(i-vii)</code> and further modified using chord names, inversions
 and modal interchange. <strong>Chord names</strong> are defined using
@@ -733,38 +555,33 @@ generated by defining sequences of chords and selecting pitches from the
 list using the ampersand **<span class="citation"
 data-cites="*"></span>*-operator or by selecting values horizontally
 from the list using the <strong>#</strong>-operator.</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>i ii iii iv v vi vii              <span class="co">// Supported roman numerals</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>i v<span class="op">%</span><span class="dv">1</span> vi<span class="op">%-</span><span class="dv">1</span> iv<span class="op">%-</span><span class="dv">1</span>                 <span class="co">// With inversions</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">^</span><span class="dv">7</span> iv<span class="op">^</span>dim v<span class="op">^</span>maj9<span class="op">%-</span><span class="dv">2</span>              <span class="co">// With names and inversions</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>(i v vi<span class="op">%-</span><span class="dv">1</span> iv<span class="op">%-</span><span class="dv">1</span>)@(e <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="bn">012</span>)   <span class="co">// Arpeggio from Roman numerals</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bn">024</span> <span class="dv">146</span> <span class="bn">025</span><span class="op">%-</span><span class="dv">1</span> <span class="dv">35</span><span class="op">^</span><span class="dv">0</span>)@(q <span class="dv">1</span> <span class="dv">0</span> <span class="dv">2</span> <span class="dv">0</span>)  <span class="co">// Arpeggio from pitch groups</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span>)#(e <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="bn">012</span>)           <span class="co">// Horizontal arpeggio</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>i ii iii iv v vi vii              <span class="co">// Supported roman numerals</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>i v<span class="op">%</span><span class="dv">1</span> vi<span class="op">%-</span><span class="dv">1</span> iv<span class="op">%-</span><span class="dv">1</span>                 <span class="co">// With inversions</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">^</span><span class="dv">7</span> iv<span class="op">^</span>dim v<span class="op">^</span>maj9<span class="op">%-</span><span class="dv">2</span>              <span class="co">// With names and inversions</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>(i v vi<span class="op">%-</span><span class="dv">1</span> iv<span class="op">%-</span><span class="dv">1</span>)@(e <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="bn">012</span>)   <span class="co">// Arpeggio from Roman numerals</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>(<span class="bn">024</span> <span class="dv">146</span> <span class="bn">025</span><span class="op">%-</span><span class="dv">1</span> <span class="dv">35</span><span class="op">^</span><span class="dv">0</span>)@(q <span class="dv">1</span> <span class="dv">0</span> <span class="bn">02</span>)  <span class="co">// Arpeggio from pitch groups</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span>)#(e <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="bn">012</span>)           <span class="co">// Horizontal arpeggio</span></span></code></pre></div>
 <p>Expressions can be <strong>evaluated</strong> using curly braces:
 <code>{...}</code>, which can be used for escaping pitches, arithmetic
 operations or conditional logic. Using ternary operator syntax
 <code>(cond)?(true):(false)</code> it is possible to define alternative
 or conditional parts.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>{<span class="dv">10</span> <span class="dv">11</span> <span class="dv">9</span><span class="op">+</span><span class="dv">2</span> <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}         <span class="co">// Evaluate as pitches</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">=</span>{<span class="dv">10</span> (<span class="dv">10</span><span class="op">,</span><span class="dv">20</span>) <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}       <span class="co">// Evaluate as chords</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">3</span>}               <span class="co">// Single conditional pitch</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>{(<span class="dv">0</span><span class="op">,</span><span class="dv">9</span>)<span class="op">&gt;</span><span class="dv">4</span><span class="op">?</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">6</span>)}   <span class="co">// Random numbers based on condition</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span> <span class="op">%&gt;</span><span class="fl">0.2</span><span class="op">?</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>}     <span class="co">// Nested conditionals </span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>{<span class="dv">10</span> <span class="dv">11</span> <span class="dv">9</span><span class="op">+</span><span class="dv">2</span> <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}         <span class="co">// Evaluate as pitches</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">=</span>{<span class="dv">10</span> (<span class="dv">10</span><span class="op">,</span><span class="dv">20</span>) <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>}       <span class="co">// Evaluate as chords</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">3</span>}               <span class="co">// Single conditional pitch</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>{(<span class="dv">0</span><span class="op">,</span><span class="dv">9</span>)<span class="op">&gt;</span><span class="dv">4</span><span class="op">?</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>)<span class="op">:</span>(<span class="dv">3</span><span class="op">,</span><span class="dv">6</span>)}   <span class="co">// Random numbers based on condition</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>{<span class="op">%&gt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span> <span class="op">%&gt;</span><span class="fl">0.2</span><span class="op">?</span><span class="dv">5</span><span class="op">:</span><span class="dv">3</span>}     <span class="co">// Nested conditionals </span></span></code></pre></div>
 <p><strong>Euclidean rhythms</strong> have gained popularity among music
 composers <span class="citation"
 data-cites="morrill2022euclidean">(Morrill 2022)</span> for some years
 after Godfried Toussaint first presented the idea of using euclidean
 algorithm to generate rhythms from binary sequences <span
 class="citation" data-cites="bridges2005">(Toussaint 2005)</span>.
-<em>Sonic Pi</em> also implements the euclidean algorithm as a spread
-method named after the evenly spread boolean. Ziffers has its own
-approach to euclidean patterns and implements an algorithm defined by
-Thomas Morrill <span class="citation"
-data-cites="morrill2022euclidean">(Morrill 2022)</span> and a novel
-syntax that can be used to combine both onset and offset values from the
-binary sequence. Syntax for the euclidean generator is defined as an
-operator for one or two lists:
+Ziffers includes a novel syntax that can be used to combine both onset
+and offset values of the euclidean cycle. Syntax for the euclidean
+generator is defined as an operator for one or two lists:
 <code>(onset)&lt;beats,total,rotate&gt;(offset)</code>. Values will be
 selected from onset or offset list according to the binary sequence
 generated by the euclidean algorithm. Default offset value is a rest,
@@ -772,12 +589,12 @@ but it can be replaced with a list of alternative offset values. Both
 onset and offset lists can include any syntax defined in the numeric
 notation. Values in the list will overflow to the beginning if there are
 not enough values for the whole cycle. Inner cycles can also be defined
-using cyclic syntax, to make more complex structures.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>)<span class="op">&lt;</span><span class="dv">5</span><span class="op">,</span><span class="dv">8</span><span class="op">&gt;</span>                                 <span class="co">// Onset is cycles and offset defaults to r</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))                  <span class="co">// Pitches from the onset and lists from the offset</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span><span class="dv">3</span><span class="op">&gt;</span>(eB sX)                        <span class="co">// Rotated by 3 with samples or events</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span>)<span class="op">&lt;&lt;</span><span class="dv">9</span> <span class="dv">13</span><span class="op">&gt;,&lt;</span><span class="dv">23</span> <span class="op">&lt;</span><span class="dv">19</span> <span class="dv">21</span><span class="op">&gt;&gt;,&lt;</span><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;&gt;</span>(<span class="op">&lt;</span><span class="dv">2</span> <span class="op">&lt;-</span><span class="dv">2</span> <span class="op">-</span><span class="dv">3</span><span class="op">&gt;&gt;</span>)  <span class="co">// Cyclic euclidean cycles with cyclic rotations</span></span></code></pre></div>
+to make more complex structures.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">5</span>)<span class="op">&lt;</span><span class="dv">5</span><span class="op">,</span><span class="dv">8</span><span class="op">&gt;</span>                                 <span class="co">// Onset is cycles and offset defaults to r</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(q0 q2)<span class="op">&lt;</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">&gt;</span>((e <span class="dv">3</span> <span class="dv">4</span>) (e <span class="dv">1</span> <span class="dv">4</span>))                  <span class="co">// Pitches from the onset and lists from the offset</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(eX sB)<span class="op">&lt;</span><span class="dv">13</span><span class="op">,</span><span class="dv">16</span><span class="op">,</span><span class="dv">3</span><span class="op">&gt;</span>(eB sX)                        <span class="co">// Rotated by 3 with samples or events</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span>)<span class="op">&lt;&lt;</span><span class="dv">9</span> <span class="dv">13</span><span class="op">&gt;,&lt;</span><span class="dv">23</span> <span class="op">&lt;</span><span class="dv">19</span> <span class="dv">21</span><span class="op">&gt;&gt;,&lt;</span><span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span><span class="op">&gt;&gt;</span>(<span class="op">&lt;</span><span class="dv">2</span> <span class="op">&lt;-</span><span class="dv">2</span> <span class="op">-</span><span class="dv">3</span><span class="op">&gt;&gt;</span>)  <span class="co">// Cyclic euclidean cycles with cyclic rotations</span></span></code></pre></div>
 <p>Generated patterns can be assigned to <strong>inline
 variables</strong> – denoted using capital letters – for adding
 structure and predictability to the live-coding performance. These
@@ -791,12 +608,198 @@ class="citation" data-cites="huron2008sweet">(Huron 2008)</span>. Using
 musical form with gradual variation enables the live-coder to create
 expectations dynamically which gives satisfaction from anticipating and
 successfully predicting the structure of the music.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=%</span> {A<span class="op">&gt;</span><span class="fl">0.5</span><span class="op">?</span>(e <span class="dv">1</span> <span class="dv">2</span>)<span class="op">:</span>(q2)} {A<span class="op">&lt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span>}                             <span class="co">// Use in conditional statements</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">=&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">6</span> <span class="dv">7</span><span class="op">&gt;&gt;&gt;</span> B<span class="op">=</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) B A B B A                              <span class="co">// Define repetition</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) <span class="dv">3</span>)<span class="op">+</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>) B<span class="op">=</span>(<span class="dv">0</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span>]) A A B A                       <span class="co">// Create contrasting sections</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">3</span> [<span class="dv">2</span> <span class="dv">4</span>]) B<span class="op">=</span>(A)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span> C<span class="op">=</span>(B)<span class="op">&lt;</span>inverse<span class="op">&gt;</span>(<span class="dv">3</span>) A B C          <span class="co">// Store transformations</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">2</span> [<span class="dv">3</span> <span class="dv">2</span>])<span class="op">+&lt;</span><span class="dv">0</span> <span class="op">&lt;</span><span class="dv">2</span> <span class="dv">1</span><span class="op">&gt;&gt;</span> B<span class="op">=</span>(<span class="dv">0</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">5</span>) [<span class="dv">3</span> <span class="op">&lt;</span>(<span class="dv">2</span><span class="op">,</span><span class="dv">5</span>) (<span class="dv">0</span><span class="op">,</span><span class="dv">3</span>)<span class="op">&gt;</span>]) A B B A    <span class="co">// Combine everything</span></span></code></pre></div>
+<h1 data-number="5" id="sonic-pi-based-prototype-implementation"><span
+class="header-section-number">5</span> SONIC-PI BASED PROTOTYPE
+IMPLEMENTATION</h1>
+<p>Ziffers has evolved from a simple script embedded in one of many
+Sonic Pi’s text buffers to a fully fledged DSL and framework for the
+computer aided algorithmic composition and live coding. The current
+software architecture for the Sonic Pi’s based Ziffers implementation is
+presented in the figure above. A <em>Musescore 3.0</em> plugin <span
+class="citation" data-cites="ziffersmusescore2021">(Alonen 2021)</span>
+allowing the transformation of staff-based score format to Ziffers
+notation has also been created and proposed as a proof of concept tool
+for learning the new numeric notation.</p>
+<p>The plugin for the <em>MuseScore 3.0</em> can be used to transform
+traditional scores (from MusicXML, ABC notation or MIDI files) to the
+numeric notation for analyzing the musical structures from your favorite
+composers and using the displaced sequences as a form of rehearsal and
+inspiration for the live coding. Examples above and below exemplifies
+this form of learning practice using the extracted sequence from Avril
+14th by Aphex Twin.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ziffers <span class="st">&quot; // Aphex Twin - Avril 14th with added transformations</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ss">/ synth: piano</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> q ^ 2 _ 5 ^ 0 e r s 0  </span><span class="sc">|</span><span class="ss"> sq. 5 e 5 ^ 4 3 2 0  </span><span class="sc">|</span><span class="ss"> /</span> retrograde<span class="op">:</span> [<span class="kw">false</span><span class="op">,</span><span class="kw">true</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">|</span> q <span class="dv">2</span> _ <span class="dv">5</span> <span class="op">^</span> <span class="dv">0</span> e r s <span class="dv">0</span> _  <span class="op">|</span> sq<span class="op">.</span> <span class="at">_</span> <span class="dv">5</span> e <span class="dv">5</span> <span class="op">^</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">0</span>  <span class="op">|</span> <span class="ss">/ octave: </span><span class="sc">[0,1,-1]</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">|</span><span class="ss"> e __ 0 5 ^ 0 2 _ 2 ^ 0 2 4  </span><span class="sc">|</span><span class="ss"> e __ 3 ^ 0 3 4 _ 1 ^ 0 3 2 </span><span class="sc">|</span><span class="ss"> /</span> inverse<span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="st">&quot;</span></span></code></pre></div>
+<h2 data-number="5.1" id="main-methods"><span
+class="header-section-number">5.1</span> Main methods</h2>
+<p>The <strong>zplay</strong>, <strong>zloop</strong> (z0…z20) and
+<strong>zparse</strong> methods are the main entry points to interact
+with Ziffers. The multiline methods, <strong>ziff</strong> for single
+playtrough and <strong>ziffers</strong> for looping, allows horizontal
+arrangement of simultanious patterns (as in the Aphex Twin example
+above). A slightly different version, <strong>ztracker</strong>,
+emulates the behaviour of classic music trackers (e.g. <em>Pro
+Tracker</em>, <em>Renoise</em>) allowing the vertical arrangement like
+in the <em>HumDrum</em> notation. Being non intrusive, Ziffers can also
+adapt to the <strong>live_loop</strong> mechanism defined by Sonic Pi to
+enable quick playback of different inputs and further enhance musical
+expressivity. The combined usage of <strong>live_loop</strong> and
+<strong>zplay</strong> methods is supported for musicians willing to use
+both patterning paradigms.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a># Example <span class="kw">of</span> combining live_loop and zplay <span class="kw">in</span> Sonic Pi</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>with_fx <span class="op">:</span>reverb<span class="op">,</span> room<span class="op">:</span> <span class="fl">1.0</span> <span class="cf">do</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  live_loop <span class="op">:</span>sonic_pi <span class="cf">do</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    with_synth_defaults divisor<span class="op">:</span> <span class="fu">rrand</span>(<span class="fl">0.1</span><span class="op">,</span><span class="fl">0.15</span>)<span class="op">,</span> attack<span class="op">:</span> <span class="fu">rrand</span>(<span class="fl">0.01</span><span class="op">,</span><span class="fl">0.1</span>) <span class="cf">do</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      pling <span class="op">=</span> <span class="fu">rrand_i</span>(<span class="dv">1000</span><span class="op">,</span><span class="dv">3000</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="fl">4.</span>times <span class="cf">do</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        zplay pling<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>mixolydian<span class="op">,</span> rhythm<span class="op">:</span> <span class="st">&quot;q.eqe&quot;</span><span class="op">,</span> octave<span class="op">:</span> <span class="op">-&gt;</span>(){<span class="fu">rrand_i</span>(<span class="op">-</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span>)}</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      end</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  end</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>end</span></code></pre></div>
+<p>Multiple modes of interaction with the patterning system are detailed
+in the <a
+href="https://github.com/amiika/ziffers/wiki/Play">documentation</a>
+hosting the <em>Sonic Pi</em> implementation. Each method has its own
+specificities and can be adapted to a particular context of execution.
+For instance, composing can be supported by the non-looping zplay method
+while improvisation is preferably handled through the automatically
+synchronized zloop shorthands (each loop synchronizing on z0 unless
+stated otherwise). There are also various shorthands for manipulating
+the effects, synth parameters and playback, such as
+<strong>cycle</strong>, <strong>fade</strong> and <strong>tweak</strong>
+documented in the <a
+href="https://github.com/amiika/ziffers/wiki/Effects">effects
+section</a>.</p>
+<h2 data-number="5.2" id="parsers"><span
+class="header-section-number">5.2</span> Parsers</h2>
+<p>Parsing is implemented with parsing expression grammars (PEGs) using
+the Ruby-based Treetop library (Treetop 2022). Ziffers is constituted of
+three parsers, each one handling specific use cases depending on the
+nature of the input. The <strong>Parameter parser</strong> is used for
+multiline parsing where notation can include supplementary information,
+such as the key, scale, synth, MIDI port, MIDI channel and other context
+or environment specific parameters. The <strong>Generative
+parser</strong> has been specialized to parse random number generators,
+sequence generators relying on various conditional statements and
+mathematical operations. Furthermore, an optional string rewrite loop
+can be used to extend these generative capabilities by transforming the
+input through recursive substitution of some parts of the initial input.
+One can think of the Ziffers parsing system as a multi-layered
+conditional parsing operation. After a first part of context specific or
+generative parsing operations, the resulting string is parsed again
+using the <strong>Basic parser</strong>, which includes only the static
+definitions of pitches, octaves and durations. The relevant data
+structures for the parsed notation are implemented as subclasses of
+array and hash, which implements all the necessary methods for the
+transformations.</p>
+<h2 data-number="5.3" id="inputs-and-parameters"><span
+class="header-section-number">5.3</span> Inputs and parameters</h2>
+<p>All inputs are normalized to a string, type conversion being applied
+when necessary. The integer ‘2468’ can be parsed to a sequence of notes
+or a chord, etc. Adjusting the base behaviour of the parser can be done
+by providing parameters as additional keyword arguments defining a
+context for the parser. In a similar fashion, user input can also be
+specified as a lambda function or as enumerable defined by the
+<em>Ruby</em> language. This is allowing for the definition and use of
+infinite note sequences such as the Morse-Thue sequence demonstrated
+below, one that is commonly used in fractal music composition <span
+class="citation"
+data-cites="kindermann2001musinum gomez2021symbolic">(Kindermann 2001;
+Gómez and Nasser 2021)</span>.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a># zplay is the fastest way to ziffer</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;q 0 236 q.4 e6 3 0 2&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>piano # Play pattern</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">2468</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> rhythm<span class="op">:</span> [<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.125</span><span class="op">,</span><span class="fl">0.5</span>] # Parse integer <span class="im">as</span> a sequence</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>zplay <span class="dv">2468</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>c3<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> parse_chord<span class="op">:</span> <span class="kw">true</span> # Parse integer <span class="im">as</span> a chord</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>zplay [<span class="dv">2</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">6</span><span class="op">,</span><span class="dv">8</span>]<span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>E4<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>hex_sus<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>chiplead<span class="op">,</span> width<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> pan<span class="op">:</span> <span class="op">-&gt;</span>(){rand} # Parse array</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>zplay [[<span class="dv">1</span><span class="op">,</span><span class="fl">0.5</span>]<span class="op">,</span>[<span class="dv">3</span><span class="op">,</span><span class="fl">0.25</span>]<span class="op">,</span>[<span class="dv">0</span><span class="op">,</span><span class="fl">1.0</span>]]<span class="op">,</span> key<span class="op">:</span> <span class="dv">60</span><span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>aeolian<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>blade<span class="op">,</span> res<span class="op">:</span> <span class="fl">0.1</span> # <span class="bu">Array</span> <span class="cf">with</span> durations</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a># z0<span class="op">-</span>z20 are shorthands <span class="cf">for</span> loops</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>z0 <span class="st">&quot;q 0 e 3 2 q 4 2&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>fm<span class="op">,</span> divisor<span class="op">:</span> [<span class="fl">0.25</span><span class="op">,</span><span class="fl">0.35</span><span class="op">,</span><span class="fl">0.45</span>]<span class="op">.</span><span class="at">ring</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a># Lambdas can be evaluated <span class="cf">for</span> each loop cycle</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>z1 <span class="op">-&gt;</span>(){<span class="fu">rrand_i</span>(<span class="op">-</span><span class="dv">9</span><span class="op">,</span><span class="dv">9</span>)}<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>blues_minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>kalimba<span class="op">,</span> clickiness<span class="op">:</span> <span class="op">-&gt;</span>(){rand}</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a># Morse<span class="op">-</span>thue sequence defined <span class="im">as</span> infinite enumerable using mod <span class="dv">7</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">z2</span> (<span class="fl">0.</span><span class="op">.</span><span class="at">Float</span><span class="op">::</span>INFINITY)<span class="op">.</span><span class="at">lazy</span><span class="op">.</span><span class="at">collect</span>{<span class="op">|</span>n<span class="op">|</span>n<span class="op">.</span><span class="fu">to_s</span>(<span class="dv">2</span>)<span class="op">.</span><span class="fu">split</span>(<span class="st">&#39;&#39;</span>)<span class="op">.</span><span class="fu">count</span>(<span class="st">&#39;1&#39;</span>)<span class="op">%</span><span class="dv">7</span>}<span class="op">,</span> rhythm<span class="op">:</span><span class="fu">spread</span>(<span class="dv">7</span><span class="op">,</span><span class="dv">9</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a># Built<span class="op">-</span><span class="kw">in</span> enumerable <span class="cf">for</span> playing the digits <span class="kw">of</span> pi</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>z3 pi<span class="op">.</span><span class="fu">take</span>(<span class="dv">10</span>)<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>kumoi<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>tb303<span class="op">,</span> rhythm<span class="op">:</span> <span class="fl">0.125</span><span class="op">,</span> cutoff<span class="op">:</span> <span class="fu">tweak</span>(<span class="op">:</span>sine<span class="op">,</span><span class="dv">60</span><span class="op">,</span><span class="dv">100</span><span class="op">,</span><span class="dv">10</span>)<span class="op">.</span><span class="at">reflect</span></span></code></pre></div>
+<p>Parameters can also be used to define meaning for <strong>control
+characters</strong> <code>A-Z</code> to act as placeholders for samples
+or different kind of events and implementation specific functions.</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="op">:</span>bd_boom<span class="op">,</span> H<span class="op">:</span> <span class="op">:</span>drum_cymbal_closed        # Define samples</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;[: q K H [K K] H :4]&quot;</span><span class="op">,</span> K<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> H<span class="op">:</span> <span class="dv">90</span><span class="op">,</span> port<span class="op">:</span> <span class="st">&quot;ext_midi&quot;</span><span class="op">,</span> channel<span class="op">:</span> <span class="dv">1</span> # Define MIDI drumkit</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>define <span class="op">:</span>foo <span class="cf">do</span> sample <span class="op">:</span>bd_zum end # Define Sonic Pi method # Define <span class="kw">function</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q F e F F&quot;</span><span class="op">,</span> F<span class="op">:</span> <span class="op">:</span>foo # Time the call using ziffers</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>canon <span class="op">=</span> zparse <span class="st">&quot;5 4 A 3 2 B 1 0&quot;</span><span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>pretty_bell<span class="op">,</span> A<span class="op">:</span> {<span class="dt">cue</span><span class="op">:</span> <span class="op">:</span>c2}<span class="op">,</span> B<span class="op">:</span> {<span class="dt">cue</span><span class="op">:</span> <span class="op">:</span>c3} # Define cues</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>z1 canon # Start canon</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>z2 canon<span class="op">,</span> wait<span class="op">:</span> <span class="op">:</span>c2 # Wait <span class="cf">for</span> cue A</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>z3 canon<span class="op">,</span> wait<span class="op">:</span> <span class="op">:</span>c3 # Wait <span class="cf">for</span> cue B</span></code></pre></div>
+<h2 data-number="5.4" id="transformations"><span
+class="header-section-number">5.4</span> Transformations</h2>
+<p>The Transformation phase is an optional step for the manipulation of
+the generated musical patterns as defined by <span class="citation"
+data-cites="spiegel1981manipulations">Spiegel (1981)</span>, for example
+retrograde, inversion, substitution or by defining custom
+transformations that can manipulate the order, pitches, durations or any
+other parameters in the sequence. Transformations can be done in
+multiple ways and in different phases of the live composition process.
+Ziffers syntax also includes inline notation for transformations, that
+can be used for chaining multiple transformations to the defined
+sequences. Inline notation could also act as mechanism to transfer
+information about the intended transformations between different
+implementations. See full list of <a
+href="https://github.com/amiika/ziffers/wiki/Transformations">implemented
+transformations</a> in the documentation.</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a># Transformations applied on a live sequence</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;e0 s 1 2 3 4 e5&quot;</span><span class="op">,</span> inverse<span class="op">:</span> [<span class="kw">false</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,-</span><span class="dv">1</span>]<span class="op">,</span> retrograde<span class="op">:</span> [<span class="kw">true</span><span class="op">,</span><span class="kw">false</span>]<span class="op">,</span> swap<span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">4</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a># Deferred transformations using <span class="st">&#39;zparse&#39;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> zparse <span class="st">&quot;e. 0 2 q1 e 4 2 1&quot;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a<span class="op">.</span><span class="at">inverse</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a<span class="op">.</span><span class="at">retrograde</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> a<span class="op">.</span><span class="at">retrograde</span><span class="op">.</span><span class="fu">inverse</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">zplay</span> (a<span class="op">*</span><span class="dv">2</span><span class="op">+</span>b<span class="op">+</span>c<span class="op">*</span><span class="dv">2</span><span class="op">+</span>d<span class="op">+</span>c)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a># Inline variant <span class="kw">of</span> the above mentioned methods</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;((q 0 e 4 2 5 3)&lt;inverse&gt;(3 0 2 3))&lt;swap&gt;(1 3 0)&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>mixolydian</span></code></pre></div>
+<p>Ziffers also implements a <strong>string rewriting system</strong>
+that is a non-deterministic Turing machine for evaluating axioms using
+unrestricted, context-sensitive and stochastic grammars <span
+class="citation" data-cites="mccormack1996grammar">(McCormack et al.
+1996)</span>. Rules for matching can be defined using regular
+expressions and substituted by using any syntax defined in the Ziffers
+notation. In contrast to some other common generative grammar systems
+<span class="citation" data-cites="nierhaus2009algorithmic">(Nierhaus
+2009)</span>, the substitutions made to each generation can be evaluated
+within a loop. This also allows rules to be added, edited and evaluated
+on the fly, creating a new form of rule machine that can be used in a
+live performance.</p>
 <div class="sourceCode" id="cb19"><pre
-class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=%</span> {A<span class="op">&gt;</span><span class="fl">0.5</span><span class="op">?</span>(e <span class="dv">1</span> <span class="dv">2</span>)<span class="op">:</span>(q2)} {A<span class="op">&lt;</span><span class="fl">0.5</span><span class="op">?</span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span>}                             <span class="co">// Use in conditional statements</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">=&lt;</span><span class="dv">1</span> <span class="dv">2</span> <span class="op">&lt;</span><span class="dv">3</span> <span class="op">&lt;</span><span class="dv">6</span> <span class="dv">7</span><span class="op">&gt;&gt;&gt;</span> B<span class="op">=</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) B A B B A                              <span class="co">// Define repetition</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">6</span>) <span class="dv">3</span>)<span class="op">+</span>(<span class="dv">1</span><span class="op">,</span><span class="dv">3</span>) B<span class="op">=</span>(<span class="dv">0</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span>]) A A B A                       <span class="co">// Create contrasting sections</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">3</span> [<span class="dv">2</span> <span class="dv">4</span>]) B<span class="op">=</span>(A)<span class="op">&lt;</span>retrograde<span class="op">&gt;</span> C<span class="op">=</span>(B)<span class="op">&lt;</span>inverse<span class="op">&gt;</span>(<span class="dv">3</span>) A B C          <span class="co">// Store transformations</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>(<span class="dv">0</span> <span class="dv">2</span> [<span class="dv">3</span> <span class="dv">2</span>])<span class="op">+&lt;</span><span class="dv">0</span> <span class="op">&lt;</span><span class="dv">2</span> <span class="dv">1</span><span class="op">&gt;&gt;</span> B<span class="op">=</span>(<span class="dv">0</span> (<span class="dv">1</span><span class="op">,</span><span class="dv">5</span>) [<span class="dv">3</span> <span class="op">&lt;</span>(<span class="dv">2</span><span class="op">,</span><span class="dv">5</span>) (<span class="dv">0</span><span class="op">,</span><span class="dv">3</span>)<span class="op">&gt;</span>]) A B B A    <span class="co">// Combine everything</span></span></code></pre></div>
+class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a># Simple rules creating a long pattern</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 2&quot;</span><span class="op">,</span> <span class="st">&quot;1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;2 1&quot;</span><span class="op">,</span> <span class="st">&quot;2&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;1 0&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">6</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a># Match using regex<span class="op">,</span> substitute <span class="cf">with</span> evaluation and mod by <span class="dv">7</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;1 2 3&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="ss">/</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;({$*2} [e,q] {$*3})%7&quot;</span>}<span class="op">,</span> gen<span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a># Play and mutate generations on<span class="op">-</span>the<span class="op">-</span>fly<span class="op">.</span> <span class="at">First</span> rule <span class="cf">for</span> keeping results short<span class="op">.</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="ss">/</span><span class="sc">([a-z][0-9]</span><span class="ss"> </span><span class="sc">){20}</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;q0&quot;</span><span class="op">,</span> <span class="ss">/</span><span class="sc">[eq][0]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;q0 q1&quot;</span><span class="op">,</span> <span class="st">&quot;q1&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e(1,4) e0&quot;</span>}</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a># Change durations using rules</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>z2 <span class="st">&quot;q0 e2 e1 q4&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;e&quot;</span><span class="op">,</span> <span class="st">&quot;e&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;q&quot;</span>}</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a># Stochastic rules using Ziffers notation and regular expressions</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>z1 <span class="st">&quot;q0&quot;</span><span class="op">,</span> rules<span class="op">:</span> {<span class="st">&quot;q0&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.5?q3:q0}&quot;</span><span class="op">,</span> <span class="st">&quot;q3&quot;</span><span class="kw">=&gt;</span><span class="st">&quot;{%&gt;0.25?q(3,7):q0}&quot;</span><span class="op">,</span> <span class="ss">/q</span><span class="sc">[1-9]</span><span class="ss">/</span><span class="kw">=&gt;</span><span class="st">&quot;[q3,q0]&quot;</span>}</span></code></pre></div>
 <h1 data-number="6" id="conclusion-and-future-work"><span
 class="header-section-number">6</span> Conclusion and future work</h1>
 <p>In this paper, we have presented a novel numeric notation and a
@@ -822,16 +825,24 @@ the implementation needs to be rewritten, but it has also already served
 its purpose as an exploratory medium for prototyping numbered notation
 in live coding. It is also always possible to use Ziffers with the
 latest <em>Sonic Pi</em> version with the <em>Ruby</em> support.</p>
-<p>As a future work, we intend to develop parsers in other live coding
-libraries such as Sardine <span class="citation"
-data-cites="forment2022">(Forment 2022)</span>, SuperCollider and
-others. An upgrade for the MuseScore plugin is also planned to the
-upcoming MuseScore version 4.0, as a way to support the input of the
+<p>As a future work, we intend to develop new parsers for other live
+coding platforms. Experimental object oriented parser for Python <span
+class="citation" data-cites="ziffers2023">(Alonen and Forment
+2023)</span> has already been established enabling live coding in
+Sardine <span class="citation" data-cites="forment2022">(Forment
+2022)</span> and transformation of Ziffers notation to other Python
+based computer-assisted composition frameworks such as Music21 library
+<span class="citation" data-cites="cuthbert2010music21">(Cuthbert and
+Ariza 2010)</span>. An upgrade for the MuseScore plugin is also planned
+for MuseScore version 4.0, as a way to support the input of the
 generative numeric notation directly to traditional sheet music and
 create a hybrid algorithmic composition environment for both numbered
 and standard notation. We envision that the proposed notation can also
 be used as a tool for teaching music analysis and pitch-class set theory
-and act as a stepping stone between music theory and live coding.</p>
+and act as a stepping stone between music theory and live coding.
+Development of new tools for the numeric notation will also support
+qualitative studies to further study different dimensions of the
+numerical live coding notation.</p>
 <h1 data-number="7" id="acknowledgment"><span
 class="header-section-number">7</span> Acknowledgment</h1>
 <p>Authors would like to thank Sam Aaron and the whole Sonic Pi
@@ -849,25 +860,31 @@ Aaron, Sam. 2016. <span>“Sonic Pi–Performance in Education, Technology
 and Art.”</span> <em>International Journal of Performance Arts and
 Digital Media</em> 12 (2): 171–78.
 </div>
-<div id="ref-ziffers2018" class="csl-entry" role="doc-biblioentry">
-Alonen, Miika. 2018. <em>Ziffers: Numbered Notation for Algorithmic
-Composition</em> (version 0.1). <a
-href="https://github.com/amiika/ziffers/commit/c12516d2b1604836925cbe829e488e033578405c">https://github.com/amiika/ziffers/commit/c12516d2b1604836925cbe829e488e033578405c</a>.
-</div>
 <div id="ref-ziffersmusescore2021" class="csl-entry"
 role="doc-biblioentry">
-———. 2021. <em>Ziffers Export Plugin for MuseScore 3</em>. <a
+Alonen, Miika. 2021. <em>Ziffers Export Plugin for MuseScore 3</em>. <a
 href="https://github.com/amiika/ziffers-musescore">https://github.com/amiika/ziffers-musescore</a>.
 </div>
 <div id="ref-ziffers2022" class="csl-entry" role="doc-biblioentry">
 ———. 2022. <em>Ziffers: Numbered Notation for Algorithmic
-Composition</em> (version 2.0). <a
+Composition</em>. <a
 href="https://github.com/amiika/ziffers">https://github.com/amiika/ziffers</a>.
+</div>
+<div id="ref-ziffers2023" class="csl-entry" role="doc-biblioentry">
+Alonen, Miika, and Raphaël Maurice Forment. 2023. <em>Ziffers for
+Python</em>. <a
+href="https://github.com/Bubobubobubobubo/ziffers-python">https://github.com/Bubobubobubobubo/ziffers-python</a>.
 </div>
 <div id="ref-blackwell2022live" class="csl-entry"
 role="doc-biblioentry">
 Blackwell, Alan F, Emma Cocker, Geoff Cox, Alex McLean, and Thor
 Magnusson. 2022. <em>Live Coding: A User’s Manual</em>. MIT Press.
+</div>
+<div id="ref-buzinov2018psalmodicon" class="csl-entry"
+role="doc-biblioentry">
+Buzinov, Kristina. 2018. <span>“The Invention of Psalmodikon, and Its
+Role in Scandinavian Folk and Church Music Traditions.”</span> <a
+href="https://psalmodikon.info/PsalmodikonPaperByKristinaBuzinov.pdf">https://psalmodikon.info/PsalmodikonPaperByKristinaBuzinov.pdf</a>.
 </div>
 <div id="ref-chemillier2002ethnomusicology" class="csl-entry"
 role="doc-biblioentry">
@@ -878,6 +895,11 @@ Logic Underlying Orally Transmitted Artistic Practices.”</span> In
 <div id="ref-cocker2013live" class="csl-entry" role="doc-biblioentry">
 Cocker, Emma. 2013. <span>“Live Notation:–Reflections on a Kairotic
 Practice.”</span> <em>Performance Research</em> 18 (5): 69–76.
+</div>
+<div id="ref-cuthbert2010music21" class="csl-entry"
+role="doc-biblioentry">
+Cuthbert, Michael Scott, and Christopher Ariza. 2010. <span>“Music21: A
+Toolkit for Computer-Aided Musicology and Symbolic Music Data.”</span>
 </div>
 <div id="ref-dannenberg1986cmu" class="csl-entry"
 role="doc-biblioentry">
@@ -1031,6 +1053,12 @@ McLean, Alex. 2020. <span>“Algorithmic Pattern.”</span> In
 <em>Proceedings of the 20th Conference on New Interfaces for Musical
 Expression. Birmingham, UK</em>.
 </div>
+<div id="ref-mclean2018cyclic" class="csl-entry" role="doc-biblioentry">
+McLean, Alex, Giovanni Fanfani, and Ellen Harlizius-Klück. 2018.
+<span>“Cyclic Patterns of Movement Across Weaving, Epiplok<span>ē</span>
+and Live Coding.”</span> <em>Dancecult: Journal of Electronic Dance
+Music Culture</em> 10 (1): 10–15.
+</div>
 <div id="ref-mclean2010tidal" class="csl-entry" role="doc-biblioentry">
 McLean, Alex, and Geraint Wiggins. 2010. <span>“Tidal–Pattern Language
 for the Live Coding of Music.”</span> In <em>Proceedings of the 7th
@@ -1117,10 +1145,7 @@ href="https://github.com/toplap/awesome-livecoding">https://github.com/toplap/aw
 <div id="ref-bridges2005" class="csl-entry" role="doc-biblioentry">
 Toussaint, Godfried. 2005. <span>“The Euclidean Algorithm Generates
 Traditional Musical Rhythms.”</span> In <em>Renaissance Banff:
-Mathematics, Music, Art, Culture</em>, edited by Reza Sarhangi and
-Robert V. Moody, 47–56. Southwestern College, Winfield, Kansas: Bridges
-Conference. <a
-href="http://archive.bridgesmathart.org/2005/bridges2005-47.html">http://archive.bridgesmathart.org/2005/bridges2005-47.html</a>.
+Mathematics, Music, Art, Culture</em>, 47–56.
 </div>
 <div id="ref-walshaw2011abc" class="csl-entry" role="doc-biblioentry">
 Walshaw, Christopher. 2011. <span>“The Abc Music Standard 2.1.”</span>
