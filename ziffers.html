@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title>Ziffers - Numbered Notation for Algorithmic Composition</title>
+  <title>Ziffers - Numbered Musical Notation for Live Coding and Algorithmic Composition</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -76,8 +76,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <body>
 <div id="header">
-<h1 class="title">Ziffers - Numbered Notation for Algorithmic
-Composition</h1>
+<h1 class="title">Ziffers - Numbered Musical Notation for Live Coding
+and Algorithmic Composition</h1>
 <ul id="authorlist">
 <li>true</li>
 <li>true</li>
@@ -86,22 +86,22 @@ Composition</h1>
 
 <h2 class="abstract">Abstract</h2>
 <div id="abstract">
-<p>Ziffers is an algorithmic number based musical notation system. It
-offers concise syntax to support composition and improvisation with
-complex melodies and rhythms. Ziffers is the result of experiments in
-unifying several types of musical notation centred around the use of
-symbols and numbers. It is inspired by the older numbered musical
-notations (<em>Ziffersystem</em>, <em>Jianpu</em>), contemporary music
-theory (pitch-class sets, post-tonal music analysis, serialism) and
-shorthand notations used in live-coding. Ziffers aims for a balance
-between fixed media music notation and generative notations for live
-coding performance. In this article, we propose an implementation
-agnostic numbered notation for algorithmic composition and live coding.
-As a proof of concept, this article will also present a live-coding
-framework for Ziffers notation and an export plugin for a general
-purpose scorewriter. In doing so, we hope to highlight the versatility
-of our approach in using unified syntax for different contexts of
-execution and interpretation.</p>
+<p>Ziffers is an algorithmic number based musical notation for live
+coding. It offers concise syntax to support composition and
+improvisation with complex melodies and rhythms. Ziffers is the result
+of experiments in unifying several types of musical notation centred
+around the use of symbols and numbers. It is inspired by the older
+numbered musical notations (<em>Ziffersystem</em>, <em>Jianpu</em>),
+contemporary music theory (pitch-class sets, post-tonal music analysis,
+serialism) and shorthand notations used in live-coding. Ziffers aims for
+a balance between fixed media music notation and generative notations
+for live coding performance. In this article, we propose an
+implementation agnostic numbered notation for algorithmic composition
+and live coding. As a proof of concept, this article will also present a
+live-coding framework for Ziffers notation and an export plugin for a
+general purpose scorewriter. In doing so, we hope to highlight the
+versatility of our approach in using unified syntax for different
+contexts of execution and interpretation.</p>
 </div>
 
 <h1 data-number="1"
@@ -263,32 +263,31 @@ data-cites="magnusson2019sonic">(Magnusson 2019)</span>.</p>
 id="objectives-specification-of-a-cross-platform-notation-system"><span
 class="header-section-number">3</span> Objectives: Specification of a
 cross-platform notation system</h1>
-<p>Objectives for the presented numeric notation were formed by
-examining different live coding practices and reviewing cognitive
-dimensions of music notations by <span class="citation"
+<p>Objectives for the Ziffers notation were formed by examining
+different live coding practices and reviewing cognitive dimensions of
+music notations by <span class="citation"
 data-cites="nash2015cognitive">Nash (2015)</span> and the desirable
 criteria for alternative music notations defined by the Music Notation
 Project <span class="citation" data-cites="mnma2022">(MNMA 2022)</span>.
-Defining the scope for the numeric live coding notation gives insight in
-the design decisions and builds a foundation for its evaluation and
-future research. Guiding principles for the notation has been
-minimalism, flexibility and learnability which enables users of
-different ages and backgrounds to easily experiment and compose music in
-a live setting. The Ziffers extension built for Sonic Pi presented in
-latter sections of this paper builds on the accessibility and
-pedagogical efforts pursued by <span class="citation"
-data-cites="aaron2016sonic">Aaron (2016)</span>. The development of the
-numerical notation aims to remove the exclusivity that comes with the
-music theory and provide a beneficial live coding experience for the
-uninitiated. Use of numeric notation should make it possible to write
-melodic sequences and interval movements using numbers regardless of the
-key and scale. The notation should be able to function as an educational
-tool for teaching music theory and composition. Furthermore, by making
-the user aware of the relationship between musical and mathematical
-notation, the system should also support teaching advanced music theory
-concepts such as musical set theory and the manipulation of pitch-sets
-or any complex musical objects.</p>
-<p>In addition to the cognitive and pedagogical objectives, the notation
+Defining the scope for the numbered live coding notation builds a
+foundation for more structured evaluation and the future research.
+Guiding principles for the new notation has been minimalism, flexibility
+and learnability to enable users of different ages and backgrounds to
+easily experiment and compose music in a live setting. The Ziffers
+extension built for Sonic Pi presented in latter sections of this paper
+builds on the accessibility and pedagogical efforts pursued by <span
+class="citation" data-cites="aaron2016sonic">Aaron (2016)</span>. The
+development of the numerical system aims to remove the exclusivity that
+comes with the music theory and provide a beneficial live coding
+experience for the uninitiated. Use of numeric notation should make it
+possible to write melodic sequences and interval movements using numbers
+regardless of the key and scale. The notation should be able to function
+as an educational tool for teaching music theory and composition.
+Furthermore, by making the user aware of the relationship between
+musical and mathematical notation, the system should also support
+teaching advanced music theory concepts such as musical set theory and
+the manipulation of pitch-sets or any complex musical objects.</p>
+<p>In addition to the cognitive and pedagogical objectives, Ziffers
 should also enable interoperability between different live coding and
 compositional tools. The number of live coding environments have
 steadily increased in recent years <span class="citation"
@@ -325,10 +324,10 @@ objects such as integer notation (<code>0-9</code> and <code>T=10</code>
 and <code>E=11</code>), scale degrees (<code>1-9, 0=rest</code>), midi
 notation (<code>1-127</code>), MIDI channels (<code>0-15</code>) or even
 roman numerals for chord sequence writing (<code>i-vii</code>).</p>
-<p>The notation should support commenting and providing supplementary
-information to clarify the meaning of any number sequence, thus adding
-support for the definition of custom scales, temperaments and events of
-any kind. The base syntax has also been designed to support common
+<p>It is also important to support commenting and providing
+supplementary information to clarify the meaning of any number sequence,
+thus adding support for the definition of custom scales, temperaments
+and events of any kind. Ziffers notation also support common
 score-centric notation symbols (articulations, bar lines, repetitions)
 and extended generative symbols (random numbers, mathematical
 operations) more typically found in a live coding context. In doing so,
@@ -846,7 +845,8 @@ notation. We envision that the proposed notation can also be used as a
 tool for teaching music analysis and pitch-class set theory and act as a
 stepping stone between music theory and live coding. Development of new
 tools will also support future research for studying the use the
-numerical notation in computer-aided composition and live coding.</p>
+numbered musical notation in computer-aided composition and live
+coding.</p>
 <h1 data-number="7" id="acknowledgment"><span
 class="header-section-number">7</span> Acknowledgment</h1>
 <p>Authors would like to thank Sam Aaron and the whole Sonic Pi
