@@ -297,25 +297,26 @@ platforms and compositional tools. The number of live coding
 environments have steadily increased in recent years <span
 class="citation" data-cites="awesome2022">(Toplap 2022)</span>. We argue
 that there is now a need for some amount of notational interoperability
-between different live coding environments. We interpret the non
-coordinated emergence of Tidal-like mininotations in tools such as
-Gibber <span class="citation" data-cites="roberts2019bringing">(Charles
-Roberts and Pachon-Puentes 2019)</span>, Bacalao <span class="citation"
+between different live coding environments. We interpret the emergence
+of Tidal-like mininotations in tools such as Gibber <span
+class="citation" data-cites="roberts2019bringing">(Charles Roberts and
+Pachon-Puentes 2019)</span>, Bacalao <span class="citation"
 data-cites="balacao2020">(Fraser 2020)</span>, Petal <span
-class="citation" data-cites="petal_2019">(kn1kn1 2017)</span> and Hydra
-<span class="citation" data-cites="jackhydra">(Jack 2019)</span> as an
-attempt from live-coders to agree on a common rhythmic pattern language
-despite the use of different and often highly personalized environments.
-In a similar fashion, the Ziffers project is hoping to bring some
-cross-environment support for concise and rich melodic notation.
-Moreover, this project can also be considered as an attempt to bridge
-the gap between traditional staff-based notation tools such as Avid’s
-Sibelius, Steinberg’s Dorico or Musescore and kairotic pattern notations
-used by live-coders. As demonstrated by the Musescore interpreter
-(Figure .), Ziffers can be used both as a live and fixed-media notation,
-allowing any musician learning the system to quickly jot down or hear
-their ideas directly in any Ziffers supported software system capable of
-audio playback.</p>
+class="citation" data-cites="petal_2019">(kn1kn1 2017)</span>, Hydra
+<span class="citation" data-cites="jackhydra">(Jack 2019)</span> and
+Vortex <span class="citation" data-cites="mclean2022alternate">(McLean
+2022)</span> as an attempt from live-coders to agree on a common
+rhythmic pattern language despite the use of different and often highly
+personalized environments. In a similar fashion, the Ziffers project is
+hoping to bring some cross-environment support for concise and rich
+melodic notation. Moreover, this project can also be considered as an
+attempt to bridge the gap between traditional staff-based notation tools
+such as Avid’s Sibelius, Steinberg’s Dorico or Musescore and kairotic
+pattern notations used by live-coders. As demonstrated by the Musescore
+interpreter (Figure .), Ziffers can be used both as a live and
+fixed-media notation, allowing any musician learning the system to
+quickly jot down or hear their ideas directly in any Ziffers supported
+software system capable of audio playback.</p>
 <p>The implementation of the parser is specific to each targeted
 platform but the numeric notation itself should be minimal enough to be
 easily manipulated through any writing tool by relying solely on symbols
@@ -340,9 +341,9 @@ allowing the displacement of live coding ideas into the realm of
 score-based music composition. From another perspective, Ziffers opens
 the field for quickly bringing musical ideas from staff-based musical
 notation in to the typically improvised and delayed feedback <span
-class="citation" data-cites="rohrhuber2018algorithmic">(Rohrhuber, Dean,
-and McLean 2018)</span> oriented performing context permitted by live
-coding environments.</p>
+class="citation" data-cites="rohrhuber2018algorithmic">(Rohrhuber
+2018)</span> oriented performing context permitted by live coding
+environments.</p>
 <h1 data-number="4" id="notation"><span
 class="header-section-number">4</span> NOTATION</h1>
 <p>Ziffers notation is divided into basic and generative syntax. Basic
@@ -720,10 +721,9 @@ context for the parser. In a similar fashion, user input can also be
 specified as a lambda function or as enumerable defined by the
 <em>Ruby</em> language. This is allowing for the definition and use of
 infinite note sequences such as the Morse-Thue sequence demonstrated
-below, one that is commonly used in fractal music composition <span
-class="citation"
-data-cites="kindermann2001musinum gomez2021symbolic">(Kindermann 2001;
-Gómez and Nasser 2021)</span>.</p>
+below, one of which is often used in fractal music composition <span
+class="citation" data-cites="kindermann2001musinum">(Kindermann
+2001)</span>.</p>
 <div class="sourceCode" id="cb16"><pre
 class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a># zplay is the fastest way to ziffer</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>zplay <span class="st">&quot;q 0 236 q.4 e6 3 0 2&quot;</span><span class="op">,</span> key<span class="op">:</span> <span class="op">:</span>g3<span class="op">,</span> scale<span class="op">:</span> <span class="op">:</span>minor<span class="op">,</span> synth<span class="op">:</span> <span class="op">:</span>piano # Play pattern</span>
@@ -819,19 +819,24 @@ generative and improvised performance. Platform independent design for
 the notation makes it possible to share generative melodies and patterns
 between different live coding languages and more traditional composition
 tools.</p>
-<p>The Ziffers notation has higher degree of abstraction than the
-traditional score which makes it harder to process mentally. On the
-other hand, the basic notation also simplifies live coding by retaining
-the close relationship between pitches and duration. The generative
-notation also provides many shorthands that reduces the time for typing
-and the need for hard mental operations. Even though Ziffers as a
-language is expressive enough to describe complex musical sequences
-using mathematical and generative operations, profound and meaningful
-interaction is still to be found in the link between Ziffers and the
-underlying logic and flow of the live coding interfaces implementing it.
-Further experimentation is still needed to find the perfect balance
-between the proposed numbered notation and different live coding
-practices.</p>
+<p>The Ziffers notation draws inspiration from the traditional score and
+the musical set theory creating a middle ground for traditional
+computational musicology and experimental live coding practices which
+distinguishes it from the other mini-notations used in the field. Use of
+the basic notation simplifies the creation of melodies and rhythms by
+retaining the close relationship between pitches and durations enabling
+interoperability with the traditional score using transformation to
+numbered notation. The generative notation provides shorthands for
+operations and transformations enabling an easy introduction to
+exploratory live coding. The excessive use of shorthands could also have
+an opposite effect of making the notation more difficult to understand.
+Even though Ziffers as a language is expressive enough to describe
+complex musical sequences using mathematical and generative operations,
+profound and meaningful interaction is still to be found in the link
+between the Ziffers and the underlying logic and flow of the live coding
+interfaces implementing it. Further experimentation is still needed to
+find the perfect balance between the proposed numbered notation and
+different live coding practices.</p>
 <p>For now, Sonic Pi is the only fully supported platform for Ziffers.
 Due to a planned change from Ruby to Elixir programming language, the
 current implementation might become unsupported in the future. By then,
@@ -854,7 +859,7 @@ the proposed notation can also be used as a tool for teaching music
 analysis and pitch-class set theory and act as a stepping stone between
 music theory and live coding. Development of new tools will also support
 future research for studying the use the numbered musical notation in
-computer-aided composition and live coding.</p>
+live coding and computer-assisted composition.</p>
 <h1 data-number="7" id="acknowledgment"><span
 class="header-section-number">7</span> Acknowledgment</h1>
 <p>Authors would like to thank Sam Aaron and the whole Sonic Pi
@@ -916,6 +921,8 @@ Practice.”</span> <em>Performance Research</em> 18 (5): 69–76.
 role="doc-biblioentry">
 Cuthbert, Michael Scott, and Christopher Ariza. 2010. <span>“Music21: A
 Toolkit for Computer-Aided Musicology and Symbolic Music Data.”</span>
+<em>Proceedings of the 11th International Society for Music Information
+Retrieval Conference</em>.
 </div>
 <div id="ref-dannenberg1986cmu" class="csl-entry"
 role="doc-biblioentry">
@@ -959,12 +966,6 @@ Fraser, Glen. 2020. <em>Balacao - Somewhat Fishy Live Cod(e) Extensions
 to SuperCollider.</em> (version 0.1). <a
 href="https://github.com/totalgee/bacalao">https://github.com/totalgee/bacalao</a>.
 </div>
-<div id="ref-gomez2021symbolic" class="csl-entry"
-role="doc-biblioentry">
-Gómez, Ricardo, and Luis Nasser. 2021. <span>“Symbolic Structures in
-Music Theory and Composition, Binary Keyboards, and the Thue–Morse
-Shift.”</span> <em>Journal of Mathematics and Music</em> 15 (3): 247–66.
-</div>
 <div id="ref-good2001musicxml" class="csl-entry" role="doc-biblioentry">
 Good, Michael. 2001. <span>“MusicXML for Notation and Analysis.”</span>
 <em>The Virtual Score: Representation, Retrieval, Restoration</em> 12
@@ -973,8 +974,7 @@ Good, Michael. 2001. <span>“MusicXML for Notation and Analysis.”</span>
 <div id="ref-heinemann1998pitch" class="csl-entry"
 role="doc-biblioentry">
 Heinemann, Stephen. 1998. <span>“Pitch-Class Set Multiplication in
-Theory and Practice.”</span> <em>Music Theory Spectrum</em> 20 (1):
-72–96.
+Theory and Practice.”</span> <em>Music Theory Spectrum</em>, 72–96.
 </div>
 <div id="ref-hoogland2019mercury" class="csl-entry"
 role="doc-biblioentry">
@@ -1050,13 +1050,16 @@ Signal Inscriptions</em>. Bloomsbury Academic.
 </div>
 <div id="ref-magnusson2018performing" class="csl-entry"
 role="doc-biblioentry">
-Magnusson, Thor, and Alex McLean. 2018. <span>“Performing with Patterns
-of Time.”</span>
+Magnusson, Thor, and Alex McLean. 2018. <span>“<span
+class="nocase">Performing with Patterns of Time</span>.”</span> In
+<em><span class="nocase">The Oxford Handbook of Algorithmic
+Music</span></em>. Oxford University Press. <a
+href="https://doi.org/10.1093/oxfordhb/9780190226992.013.21">https://doi.org/10.1093/oxfordhb/9780190226992.013.21</a>.
 </div>
 <div id="ref-mccartney2002rethinking" class="csl-entry"
 role="doc-biblioentry">
 McCartney, James. 2002. <span>“Rethinking the Computer Music Language:
-Super Collider.”</span> <em>Computer Music Journal</em> 26 (4): 61–68.
+Super Collider.”</span> <em>Computer Music Journal</em>, 61–68.
 </div>
 <div id="ref-mccormack1996grammar" class="csl-entry"
 role="doc-biblioentry">
@@ -1067,7 +1070,12 @@ Composition.”</span> <em>Complex Systems</em> 96: 321–36.
 role="doc-biblioentry">
 McLean, Alex. 2020. <span>“Algorithmic Pattern.”</span> In
 <em>Proceedings of the 20th Conference on New Interfaces for Musical
-Expression. Birmingham, UK</em>.
+Expression</em>.
+</div>
+<div id="ref-mclean2022alternate" class="csl-entry"
+role="doc-biblioentry">
+———. 2022. <span>“Alternate Timelines for TidalCycles.”</span> <em>In
+ICLC</em>.
 </div>
 <div id="ref-mclean2018cyclic" class="csl-entry" role="doc-biblioentry">
 McLean, Alex, Giovanni Fanfani, and Ellen Harlizius-Klück. 2018.
@@ -1093,7 +1101,7 @@ Society</em>, 1–7.
 <div id="ref-nash2015cognitive" class="csl-entry"
 role="doc-biblioentry">
 Nash, Chris. 2015. <span>“The Cognitive Dimensions of Music
-Notations.”</span>
+Notations.”</span> <em>In Tenor</em>.
 </div>
 <div id="ref-nienhuys2003lilypond" class="csl-entry"
 role="doc-biblioentry">
@@ -1105,7 +1113,7 @@ Citeseer.
 <div id="ref-nierhaus2009algorithmic" class="csl-entry"
 role="doc-biblioentry">
 Nierhaus, Gerhard. 2009. <em>Algorithmic Composition: Paradigms of
-Automated Music Generation</em>. Springer Science &amp; Business Media.
+Automated Music Generation</em>. Springer.
 </div>
 <div id="ref-opusmodus2022" class="csl-entry" role="doc-biblioentry">
 Opusmodus. 2022. <span>“Opusmodus - Structural Composition
@@ -1124,13 +1132,19 @@ the Web Audio Conference</em>.
 </div>
 <div id="ref-roberts2018tensions" class="csl-entry"
 role="doc-biblioentry">
-Roberts, Charlie, and Graham Wakefield. 2018. <span>“Tensions and
-Techniques in Live Coding Performance.”</span>
+Roberts, Charlie, and Graham Wakefield. 2018. <span>“<span
+class="nocase">Tensions and Techniques in Live Coding
+Performance</span>.”</span> In <em><span class="nocase">The Oxford
+Handbook of Algorithmic Music</span></em>. Oxford University Press. <a
+href="https://doi.org/10.1093/oxfordhb/9780190226992.013.20">https://doi.org/10.1093/oxfordhb/9780190226992.013.20</a>.
 </div>
 <div id="ref-rohrhuber2018algorithmic" class="csl-entry"
 role="doc-biblioentry">
-Rohrhuber, Julian, RT Dean, and A McLean. 2018. <span>“Algorithmic Music
-and the Philosophy of Time.”</span>
+Rohrhuber, Julian. 2018. <span>“<span class="nocase">Algorithmic Music
+and the Philosophy of Time</span>.”</span> In <em><span
+class="nocase">The Oxford Handbook of Algorithmic Music</span></em>.
+Oxford University Press. <a
+href="https://doi.org/10.1093/oxfordhb/9780190226992.013.1">https://doi.org/10.1093/oxfordhb/9780190226992.013.1</a>.
 </div>
 <div id="ref-rousseau1781projet" class="csl-entry"
 role="doc-biblioentry">
@@ -1165,12 +1179,14 @@ Mathematics, Music, Art, Culture</em>, 47–56.
 </div>
 <div id="ref-walshaw2011abc" class="csl-entry" role="doc-biblioentry">
 Walshaw, Christopher. 2011. <span>“The Abc Music Standard 2.1.”</span>
-<em>URL: Http://Abcnotation.com/Wiki/Abc: Standard: V2</em> 1.
+<a
+href="http://abcnotation.com/wiki/abc">http://abcnotation.com/wiki/abc</a>.
 </div>
 <div id="ref-warkentin2022story" class="csl-entry"
 role="doc-biblioentry">
 Warkentin, Emily Grace. 2022. <span>“The Story of the Ziffersystem and
-the Russian Mennonites: Counting Blessings.”</span>
+the Russian Mennonites: Counting Blessings.”</span> <a
+href="https://digitalcommons.trinity.edu/music_honors/10">https://digitalcommons.trinity.edu/music_honors/10</a>.
 </div>
 </div>
 </body>
