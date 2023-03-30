@@ -146,21 +146,22 @@ capable of embedding algorithmic and generative processes at the
 notational level. The base notation comprises of basic tokens denoting
 pitch, rhythm and expression. They have subsequently been enriched by
 operators and generative constructs denoting algorithmic transformations
-built upon the first layer. Presented framework for using Ziffers in
-live-coding is built on <em>Sonic Pi</em> <span class="citation"
-data-cites="aaron2016sonic">(Aaron 2016)</span>, a live coding platform
-designed for education and music performance. Ziffers initially took
-form as an attempt to speed up the process of writing melodic lines by
-taking advantage of the large number of predefined methods and
-compositional helpers offered by <em>Sonic Pi’s</em> rich internal
-library. The dissociation between pitch and rhythm imposed by <em>Sonic
-Pi</em> data structures and imperative-oriented programming model led to
-the development of the first prototype of Ziffers in 2018. After a few
-years of research and prototyping, Ziffers 2.0 was released in 2022
-<span class="citation" data-cites="ziffers2022">(Alonen 2022)</span>. It
-includes a new parser that extends Ziffers capabilities with new
-operators and nested structures for greater support in stochastic and
-aleatoric composition.</p>
+built upon the first layer. Presented framework for using Ziffers<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> in live-coding is built on <em>Sonic
+Pi</em> <span class="citation" data-cites="aaron2016sonic">(Aaron
+2016)</span>, a live coding platform designed for education and music
+performance. Ziffers initially took form as an attempt to speed up the
+process of writing melodic lines by taking advantage of the large number
+of predefined methods and compositional helpers offered by <em>Sonic
+Pi’s</em> rich internal library. The dissociation between pitch and
+rhythm imposed by <em>Sonic Pi</em> data structures and
+imperative-oriented programming model led to the development of the
+first prototype of Ziffers in 2018. After a few years of research and
+prototyping, Ziffers 2.0 was released in 2022. It includes a new parser
+that extends Ziffers capabilities with new operators and nested
+structures for greater support in stochastic and aleatoric
+composition.</p>
 <h1 data-number="2"
 id="method-designing-by-drawing-from-music-notation-history"><span
 class="header-section-number">2</span> Method: Designing by drawing from
@@ -187,11 +188,13 @@ class="citation" data-cites="forte1973structure">(Forte
 1973)</span>.</p>
 <p>Numerical systems for score, harmonic or melodic writing –– less
 commonly encountered than their staff-based counterparts –– have
-historically served as compositional tools for polyphonic contrapuntal
-notation <span class="citation" data-cites="davantes1560">(Davantès
-1560)</span>, early theoretical endeavours in algorithmic composition
-<span class="citation" data-cites="kircher1650">(Kircher 1650)</span> or
-in pedagogy and teaching <span class="citation"
+historically served as support for sight-singing <span class="citation"
+data-cites="davantes1560">(Davantès 1560)</span>, as compositional tool
+for polyphonic contrapuntal notation <span class="citation"
+data-cites="parran1639">(Parran 1639)</span>, early theoretical
+endeavours in algorithmic composition <span class="citation"
+data-cites="kircher1650">(Kircher 1650)</span> or in pedagogy and
+teaching <span class="citation"
 data-cites="rousseau1781projet">(Rousseau 1781)</span>. Although not
 gaining widespread popularity in Western music practices, the numbered
 notation has been used in music education and preserving religious music
@@ -629,11 +632,12 @@ IMPLEMENTATION</h1>
 Sonic Pi’s text buffers to a fully fledged DSL and framework for the
 computer aided algorithmic composition and live coding. The current
 software architecture for the Sonic Pi’s based Ziffers implementation is
-presented in the figure above. A <em>Musescore 3.0</em> plugin <span
-class="citation" data-cites="ziffersmusescore2021">(Alonen 2021)</span>
-allowing the transformation of staff-based score format to Ziffers
-notation has also been created and proposed as a proof of concept tool
-for learning the new numeric notation.</p>
+presented in the figure above. A <em>Musescore 3.0</em> plugin<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> allowing the transformation of
+staff-based score format to Ziffers notation has also been created and
+proposed as a proof of concept tool for learning the new numeric
+notation.</p>
 <p>The plugin for the <em>MuseScore 3.0</em> can be used to transform
 traditional scores (from MusicXML, ABC notation or MIDI files) to the
 numeric notation for analyzing the musical structures from your favorite
@@ -845,8 +849,8 @@ its purpose as an exploratory medium for prototyping numbered notation
 in live coding. It is also always possible to use Ziffers with the
 latest <em>Sonic Pi</em> version with the <em>Ruby</em> support.</p>
 <p>As a future work, we intend to develop new parsers for other live
-coding platforms. Experimental parser for Python <span class="citation"
-data-cites="ziffers2023">(Alonen and Forment 2023)</span> has already
+coding platforms. Experimental parser<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a> for Python has already
 been established enabling live coding using Ziffers in Sardine <span
 class="citation" data-cites="forment2022">(Forment 2022)</span> and
 transformation of Ziffers notation to other Python based
@@ -876,21 +880,6 @@ role="doc-bibliography">
 Aaron, Sam. 2016. <span>“Sonic Pi–Performance in Education, Technology
 and Art.”</span> <em>International Journal of Performance Arts and
 Digital Media</em> 12 (2): 171–78.
-</div>
-<div id="ref-ziffersmusescore2021" class="csl-entry"
-role="doc-biblioentry">
-Alonen, Miika. 2021. <em>Ziffers Export Plugin for MuseScore 3</em>. <a
-href="https://github.com/amiika/ziffers-musescore">https://github.com/amiika/ziffers-musescore</a>.
-</div>
-<div id="ref-ziffers2022" class="csl-entry" role="doc-biblioentry">
-———. 2022. <em>Ziffers: Numbered Notation for Algorithmic
-Composition</em>. <a
-href="https://github.com/amiika/ziffers">https://github.com/amiika/ziffers</a>.
-</div>
-<div id="ref-ziffers2023" class="csl-entry" role="doc-biblioentry">
-Alonen, Miika, and Raphaël Maurice Forment. 2023. <em>Ziffers for
-Python</em>. <a
-href="https://github.com/Bubobubobubobubo/ziffers-python">https://github.com/Bubobubobubobubo/ziffers-python</a>.
 </div>
 <div id="ref-bel1992bol" class="csl-entry" role="doc-biblioentry">
 Bel, Bernard, and James Kippen. 1992. <span>“Bol Processor
@@ -1120,6 +1109,11 @@ Opusmodus. 2022. <span>“Opusmodus - Structural Composition
 System.”</span> 2022. <a
 href="https://opusmodus.com/">https://opusmodus.com/</a>.
 </div>
+<div id="ref-parran1639" class="csl-entry" role="doc-biblioentry">
+Parran, Antoine. 1639. <span>“Traité de La Musique Theorique Et Pratique
+, Contenant Les Preceptes de La Composition.”</span> 1639. <a
+href="https://gallica.bnf.fr/ark:/12148/bpt6k1040308m/f89.item">https://gallica.bnf.fr/ark:/12148/bpt6k1040308m/f89.item</a>.
+</div>
 <div id="ref-roads1996computer" class="csl-entry"
 role="doc-biblioentry">
 Roads, Curtis. 1996. <em>The Computer Music Tutorial</em>. MIT press.
@@ -1189,5 +1183,17 @@ the Russian Mennonites: Counting Blessings.”</span> <a
 href="https://digitalcommons.trinity.edu/music_honors/10">https://digitalcommons.trinity.edu/music_honors/10</a>.
 </div>
 </div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Ziffers for Sonic Pi: <a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Ziffers plugin for MuseScore 3.0: <a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Ziffers for Python: <a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>
